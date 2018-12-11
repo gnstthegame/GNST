@@ -1,0 +1,169 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CharacterMotor : MonoBehaviour {
+    public float maxDist = 0.5f, armLength = 1f, prepereSpeed = 2;
+    public float moc;
+    Animator anim;
+    Vector3 LevelForward, dir = Vector3.forward, rail, begin;
+    Quaternion beg;
+    float betwen, asd;
+    public bool frez = false, drag = false, prepere = false;
+    GameObject go;
+    Transform box;
+    Collider cl;
+    public Camera MainCam;
+    int layerMask;
+    void Start() {
+        anim = GetComponent<Animator>();
+        layerMask = 1 << 8;
+        layerMask = ~layerMask;
+    }
+
+    void Update() {
+        RaycastHit hit;
+        if (Physics.Raycast(MainCam.ScreenPointToRay(Input.mousePosition), out hit, 100f, layerMask)) {
+            Vector3 MouseTarget = hit.point - transform.position;
+            MouseTarget.y = 0;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(MouseTarget), 10f);
+            Debug.DrawLine(hit.point, MainCam.transform.position, Color.red);
+        }
+
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) {
+            if (Input.GetButton("Sprint")) {
+                anim.SetFloat("Forward", 1.6f, 0.1f, Time.deltaTime);
+            } else {
+                anim.SetFloat("Forward", 1f, 0.05f, Time.deltaTime);
+            }
+            //dir = LevelForward * Input.GetAxis("Vertical") + Vector3.Cross(LevelForward, transform.up) * -Input.GetAxis("Horizontal");
+            dir = LevelForward * Input.GetAxis("Vertical") + Vector3.Cross(LevelForward, transform.up) * -Input.GetAxis("Horizontal");
+            if (drag) {
+                anim.SetFloat("InputVertical", Vector3.Dot(rail, dir), 0.05f, Time.deltaTime);
+
+            }
+            if (!frez) {
+            }
+        } else {
+            anim.SetFloat("Forward", 0, 0.3f, Time.deltaTime);
+            anim.SetFloat("InputVertical", 0, 0.3f, Time.deltaTime);
+        }
+        if (Input.GetButtonDown("Dash")) {
+            transform.rotation = Quaternion.LookRotation(dir);
+            anim.SetTrigger("Dash");
+            frez = true;
+        }
+
+        if (Input.GetButtonDown("Jump")) {
+            //RaycastHit hit;
+            //GetComponent<Rigidbody>().velocity = (transform.up * 10);
+
+
+            if (Physics.Raycast(transform.position, transform.forward, out hit, maxDist) && (hit.transform.tag == "Climbable" || hit.transform.tag == "CliMov")) {
+                if (Vector3.Distance(transform.position, hit.point) < maxDist) {
+                    //rotate -hit.normal
+                    anim.SetTrigger("Climb");
+                    Debug.Log("clim");
+                } else {
+                    Debug.Log("dist");
+                }
+            }
+        }
+
+        Debug.DrawRay(transform.position, dir, Color.red);
+        if (Input.GetButtonDown("Interact")) {
+            //RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, maxDist) && (hit.transform.tag == "Moveable" || hit.transform.tag == "CliMov")) {
+                Debug.Log("push");
+                box = hit.transform;
+                Vector3 d = box.position - transform.position;
+                d.Normalize();
+                float df = Vector3.Dot(box.forward, d);
+                float dr = Vector3.Dot(box.right, d);
+
+                if (Mathf.Abs(df) > Mathf.Abs(dr)) {
+                    if (df < 0) {//forw
+                        rail = box.forward;
+                    } else {//back
+                        rail = -box.forward;
+                    }
+                } else {
+                    if (dr < 0) {//right
+                        rail = box.right;
+                    } else {//left
+                        rail = -box.right;
+                    }
+                }
+
+                frez = true;
+
+                go = new GameObject();
+                go.transform.position = hit.point;
+                go.transform.parent = hit.transform;
+
+                //transform.rotation = Quaternion.LookRotation(-rail);
+
+                if (Physics.Raycast(transform.position, -rail, out hit, maxDist) && (hit.transform.tag == "Moveable" || hit.transform.tag == "CliMov")) {
+                    go.transform.position = hit.point;
+                    go.transform.parent = hit.transform;
+                }
+                prepere = true;
+                begin = transform.position;
+                beg = transform.rotation;
+                betwen = 0;
+
+            }
+        }
+        if (prepere) {
+            anim.SetBool("Drag", true);
+            betwen += Time.deltaTime * prepereSpeed;
+            transform.position = Vector3.Lerp(begin, go.transform.position + (rail * armLength), betwen);
+            transform.rotation = Quaternion.Lerp(beg, Quaternion.LookRotation(-rail), betwen);
+            if (betwen >= 1) {
+                prepere = false;
+                drag = true;
+            }
+
+        }
+        if (drag) {
+            float differende = Vector3.Distance(go.transform.position, transform.position);
+            box.GetComponent<Rigidbody>().velocity = transform.forward * (armLength - differende) * moc;
+            //transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(-rail), 10f);
+        }
+        if (Input.GetButtonUp("Interact")) {
+            Drop();
+        }
+    }
+    private void OnCollisionStay(Collision collision) {
+        if (prepere) {
+            if (collision.collider == cl) {
+                Drop();
+            }
+        }
+
+    }
+    private void OnCollisionEnter(Collision collision) {
+        cl = collision.collider;
+        Drop();
+    }
+    void Drop() {
+        anim.SetBool("Drag", false);
+        drag = false;
+        frez = false;
+        prepere = false;
+        Destroy(go);
+    }
+    public void LevelDir(Vector3 camForw) {
+        LevelForward = Vector3.ProjectOnPlane(camForw, transform.up);
+    }
+    public void LevelDir() {
+        LevelForward = Vector3.ProjectOnPlane(MainCam.transform.forward, transform.up);
+    }
+    public void unfreez() {
+        frez = false;
+    }
+    public void EndJump() {
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+    }
+
+}
