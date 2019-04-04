@@ -14,7 +14,7 @@ public class StatModifier {
     public readonly StatModType Type;
     //kolejnosc w ktorej statystyki sa odczytywane
     public readonly int Order;
-    //
+    //z czego modyfikator
     public readonly object Source;
 
     public StatModifier(float value, StatModType type, int order, object source)

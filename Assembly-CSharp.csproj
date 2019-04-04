@@ -132,6 +132,11 @@
     <Compile Include="Assets\Scripts\Inventory\Item.cs" />
     <Compile Include="Assets\Scripts\Inventory\ItemSlot.cs" />
     <Compile Include="Assets\Scripts\Inventory\ItemTooltip.cs" />
+    <Compile Include="Assets\Scripts\Inventory\Shop\BuyButton.cs" />
+    <Compile Include="Assets\Scripts\Inventory\Shop\PanelOpener.cs" />
+    <Compile Include="Assets\Scripts\Inventory\Shop\SellButton.cs" />
+    <Compile Include="Assets\Scripts\Inventory\Shop\Shop.cs" />
+    <Compile Include="Assets\Scripts\Inventory\Shop\ShopManager.cs" />
     <Compile Include="Assets\Scripts\Inventory\StatDisplay.cs" />
     <Compile Include="Assets\Scripts\Inventory\StatPanel.cs" />
     <Compile Include="Assets\Scripts\Inventory\StatTooltip.cs" />

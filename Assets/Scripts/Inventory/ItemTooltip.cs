@@ -19,12 +19,13 @@ public class ItemTooltip : MonoBehaviour {
         ItemSlotText.text = item.equipmentType.ToString();
 
         sb.Length = 0;
+        AddStat(item.Armor, "Armor");
         AddStat(item.Strength, "Strength");
-        AddStat(item.Strength, "Agility");
-        AddStat(item.Strength, "Luck");
-        AddStat(item.Strength, "Armor");
-        AddStat(item.Strength, "CritChance");
-        AddStat(item.Strength, "HitRatio");
+        AddStat(item.Agility, "Agility");
+        AddStat(item.Stamina, "Stamina");
+        AddStat(item.Luck, "Luck");
+        AddStat(item.Crit, "CritChance");
+        AddStat(item.Hit, "HitRatio");
 
         ItemStatsText.text = sb.ToString();
 

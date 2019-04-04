@@ -23,7 +23,6 @@ public class CharacterStat {
         }
     }
     protected readonly List<StatModifier> statModifiers;
-
     public readonly ReadOnlyCollection<StatModifier> StatModifiers;
 
     public CharacterStat()
@@ -34,7 +33,7 @@ public class CharacterStat {
 
     public CharacterStat(float baseValue)
     {
-        isDirty = true;
+        //isDirty = true;
         BaseValue = baseValue;
         statModifiers = new List<StatModifier>();
         StatModifiers = statModifiers.AsReadOnly();
@@ -99,7 +98,7 @@ public class CharacterStat {
             {
                 sumPercentAdd += mod.Value;
 
-                if(i + 1 >= statModifiers.Count || statModifiers[i].Type != StatModType.PercentAdd)
+                if(i + 1 >= statModifiers.Count || statModifiers[i + 1].Type != StatModType.PercentAdd)
                 {
                     finalValue *= 1 + mod.Value;
                     sumPercentAdd = 0;
