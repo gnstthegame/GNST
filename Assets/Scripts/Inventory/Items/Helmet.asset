@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
+  m_Name: Helmet
+  m_EditorClassIdentifier: 
+  Id: 0
+  Name: Helmet of Something
+  Sprite: {fileID: 21300000, guid: 64adab818e1fc2f459e62a729630c130, type: 3}
+  Strength: 5
+  Agility: 5
+  Stamina: 5
+  Luck: 5
+  Armor: 10
+  Crit: 5
+  Hit: 5
+  equipmentType: 0
