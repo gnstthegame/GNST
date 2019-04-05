@@ -36,7 +36,7 @@ public class InventoryManager : MonoBehaviour {
 
     private void Awake()
     {
-        statPanel.SetStats(Level, Strength, Agility, Stamina, Luck, Crit, Armor, Hit);
+        statPanel.SetStats(Level, Strength, Agility, Stamina, Luck, Armor, Crit, Hit);
         statPanel.UpdateStatValues();
         //statPanel.UpdateStatNames();
 
