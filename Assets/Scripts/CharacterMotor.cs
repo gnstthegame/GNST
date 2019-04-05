@@ -10,13 +10,17 @@ public class CharacterMotor : MonoBehaviour {
     public bool frez = false, draging = false, prepere = false;
     Collider cl;
     CapsuleCollider colider;
-    public Weapon wep;
     public Camera cam;
     Coroutine routine;
     GameObject go;
+    [SerializeField]
+    bool grounded = false;
     static Vector3 UpOfset = new Vector3(0, 0.05f, 0);
 
     void Start() {
+        if (cam == null) {
+            cam = Camera.main;
+        }
         colider = GetComponent<CapsuleCollider>();
         anim = GetComponent<Animator>();
         LevelDir();
@@ -159,13 +163,13 @@ public class CharacterMotor : MonoBehaviour {
             Drop();
             cl = null;
         }
-
+        grounded = true;
+    }
+    private void OnCollisionExit(Collision collision) {
+        grounded = false;
     }
     void Drop() {
-        if (routine != null) {
-            StopCoroutine(routine);
-            routine = null;
-        }
+        StopAllCoroutines();
         colider.center = new Vector3(0, 4, 0);
         anim.SetBool("Drag", false);
         draging = false;
@@ -183,13 +187,6 @@ public class CharacterMotor : MonoBehaviour {
     }
     public void EndJump() {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-    }
-    public void AtackDone() {
-        anim.SetBool("LeftAtack", false);
-        anim.SetBool("RightAtack", false);
-        if (wep != null) {
-            wep.Rese();
-        }
     }
 
 }

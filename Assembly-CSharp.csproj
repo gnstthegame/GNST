@@ -61,6 +61,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Battle\Ai.cs" />
+    <Compile Include="Assets\Battle\ClickableTile.cs" />
+    <Compile Include="Assets\Battle\Skill.cs" />
+    <Compile Include="Assets\Battle\TileMap.cs" />
+    <Compile Include="Assets\Battle\Unit.cs" />
     <Compile Include="Assets\Editor Default Resources\UMotionEditor\Scripts\Application\AssetResourcesFile.cs" />
     <Compile Include="Assets\Editor Default Resources\UMotionEditor\Scripts\Application\CameraCompatibilityUtility.cs" />
     <Compile Include="Assets\Editor Default Resources\UMotionEditor\Scripts\Application\TimelineClipWrapper.cs" />
@@ -120,12 +125,17 @@
     <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
+    <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\ChangeCameraPosition.cs" />
     <Compile Include="Assets\Scripts\CharacterMotor.cs" />
     <Compile Include="Assets\Scripts\DamageReciver.cs" />
     <Compile Include="Assets\Scripts\DoorTrigger.cs" />
     <Compile Include="Assets\Scripts\RandomSlide.cs" />
     <Compile Include="Assets\Scripts\Weapon.cs" />
+    <Compile Include="Assets\ShadowRealm\FallingBlock.cs" />
+    <Compile Include="Assets\ShadowRealm\FallingTrigger.cs" />
+    <Compile Include="Assets\ShadowRealm\ShadowRealm.cs" />
+    <Compile Include="Assets\UILookAt.cs" />
     <Compile Include="Assets\UMotion Examples\Miscellaneous\Scripts\ResetPosition.cs" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
     <None Include="Assets\Editor Default Resources\UMotionEditor\Shaders\UnlitDashedLine.shader" />
