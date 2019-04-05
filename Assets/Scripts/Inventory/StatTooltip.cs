@@ -40,8 +40,7 @@ public class StatTooltip : MonoBehaviour {
             if (stat.Value > stat.BaseValue)
                 sb.Append("+");
 
-
-            sb.Append(stat.Value - stat.BaseValue);
+            sb.Append(System.Math.Round(stat.Value - stat.BaseValue, 4));
             sb.Append(")");
         }
         
