@@ -59,6 +59,7 @@ public class TileMap : MonoBehaviour {
     bool playerTurn = true;
     public bool wait = false;
 
+
     public int mapSizeX = 10;
     public int mapSizeY = 10;
     float far;
@@ -101,6 +102,8 @@ public class TileMap : MonoBehaviour {
         }
     }
     void MakeTiles() {// tworzy objekty pól
+        Quaternion rem = transform.rotation;
+        transform.rotation = Quaternion.identity;
         for (int x = 0; x < mapSizeX; x++) {
             for (int y = 0; y < mapSizeY; y++) {
                 GameObject go = (GameObject)Instantiate(VisualPrefab, new Vector3(x * VisualPrefab.transform.localScale.x * 1.1f, VisualPrefab.transform.localScale.y / 2, y * VisualPrefab.transform.localScale.z * 1.1f) + transform.position, Quaternion.identity, transform);
@@ -111,6 +114,7 @@ public class TileMap : MonoBehaviour {
                 tiles[x, y] = ct;
             }
         }
+        transform.rotation = rem;
         Units = FindObjectsOfType<Unit>().ToList();
         foreach (Unit u in Units) {
             Vector3 vec = u.transform.position;
@@ -123,13 +127,16 @@ public class TileMap : MonoBehaviour {
                 EnemyUnits.Add(u);
             } else {
                 PlayerUnits.Add(u);
+                PlayerUnit uu = (PlayerUnit)u;
+                uu.Activ();
             }
             int ux = Mathf.RoundToInt((vec.x - tiles[0, 0].transform.position.x) / VisualPrefab.transform.localScale.x), uy = Mathf.RoundToInt((vec.z - tiles[0, 0].transform.position.z) / VisualPrefab.transform.localScale.z);
             ux = Mathf.Clamp(ux, 0, mapSizeX - 1);
             uy = Mathf.Clamp(uy, 0, mapSizeY - 1);
+            int tx = ux, ty = uy;
             int i = 0;
             while ((tiles[ux, uy].Unit != null || tiles[ux, uy].type > 1) && i < 4) {
-                Vector2 a = new Vector2(ux, uy) + neighbor[i];
+                Vector2 a = new Vector2(tx, ty) + neighbor[i];
                 if (NotOutOfRange(a)) {
                     ux = (int)a.x;
                     uy = (int)a.y;
@@ -139,7 +146,10 @@ public class TileMap : MonoBehaviour {
             tiles[ux, uy].Unit = u;
             u.tileX = ux;
             u.tileY = uy;
-            u.transform.position = new Vector3(tiles[ux, uy].transform.position.x, u.transform.position.y, tiles[ux, uy].transform.position.z);
+            //u.transform.position = new Vector3(tiles[ux, uy].transform.position.x, u.transform.position.y, tiles[ux, uy].transform.position.z);
+            //Queue<Pole> q = new Queue<Pole>();
+            //q.Enqueue(new Pole(ux, uy));
+            u.MoveToPos(new Vector3(tiles[ux, uy].transform.position.x, u.transform.position.y, tiles[ux, uy].transform.position.z));
             Debug.Log("asign" + ux.ToString() + uy.ToString());
         }
     }
@@ -226,6 +236,7 @@ public class TileMap : MonoBehaviour {
                     }
                 }
                 if (!check) {
+                    Debug.Log("atack canceled");
                     return;
                 }
             }
@@ -516,7 +527,7 @@ public class TileMap : MonoBehaviour {
         Vector2 AtackPoint = p.target;
         if (p.executor.animated) {
             wait = true;
-            p.executor.CastSkill(p.useSkill);
+            p.executor.CastSkill(p);
         }
         yield return new WaitUntil(() => wait == false);
         int dmg = (int)Random.Range(p.useSkill.Dmg.x, p.useSkill.Dmg.y);

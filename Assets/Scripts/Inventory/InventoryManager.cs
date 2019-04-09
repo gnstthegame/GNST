@@ -18,7 +18,8 @@ public class InventoryManager : MonoBehaviour {
     public CharacterStat Armor;
     public CharacterStat Crit;
     public CharacterStat Hit;
-    
+    public Sprite fist;
+
     [SerializeField] StatPanel statPanel;
     [SerializeField] ItemTooltip itemTooltip;
     //ostatnia rzecz
@@ -32,6 +33,24 @@ public class InventoryManager : MonoBehaviour {
         {
             itemTooltip = FindObjectOfType<ItemTooltip>();
         }
+    }
+    public List<Skill> GetSkills() {
+        List<EquipmentSlot> eq = new List<EquipmentSlot>(equipmentPanel.equipmentSlots);
+        eq = eq.FindAll(item => item.Item!=null&&( item.equipmentType == EquipmentType.Meele || item.equipmentType == EquipmentType.Ranged));
+        
+        List<Skill> skils = new List<Skill>();
+        foreach (EquipmentSlot i in eq) {
+            Skill s = i.Item.getskill();
+            s.Dmg += new Vector2(Agility.Value, Strength.Value);
+            skils.Add(s);
+        }
+        if (skils.Count < 3) {
+            Skill sk = new Skill(new Vector2(1, 1)) {
+                Icon = fist
+            };
+            skils.Add(sk);
+        }
+        return skils;
     }
 
     private void Awake()

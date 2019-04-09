@@ -7,7 +7,7 @@ public class CharacterMotor : MonoBehaviour {
     public float moc;
     Animator anim;
     Vector3 LevelForward, dir = Vector3.forward;
-    public bool frez = false, draging = false, prepere = false;
+    public bool frez = false, draging = false, prepere = false; //private
     Collider cl;
     CapsuleCollider colider;
     public Camera cam;
@@ -15,7 +15,7 @@ public class CharacterMotor : MonoBehaviour {
     GameObject go;
     [SerializeField]
     bool grounded = false;
-    static Vector3 UpOfset = new Vector3(0, 0.05f, 0);
+    static Vector3 UpOfset = new Vector3(0, 0.2f, 0);
 
     void Start() {
         if (cam == null) {
@@ -64,7 +64,6 @@ public class CharacterMotor : MonoBehaviour {
 
         Debug.DrawRay(transform.position, dir, Color.red);
         if (Input.GetButtonDown("Interact") && routine == null) {
-            Debug.Log("mov");
             routine = StartCoroutine(Drag());
         }
         if (Input.GetButtonUp("Interact")) {
@@ -98,9 +97,10 @@ public class CharacterMotor : MonoBehaviour {
     }
     IEnumerator Drag() {
         RaycastHit hit;
+        Debug.Log("mov");
         if (Physics.Raycast(transform.position + UpOfset, transform.forward, out hit, maxDist) && (hit.transform.tag == "Movable" || hit.transform.tag == "CliMov")) {
             draging = true;
-            Debug.Log("mov");
+            Debug.Log("Hited");
             Vector3 d = (hit.transform.position - UpOfset) - transform.position;
             d.Normalize();
             float df = Vector3.Dot(hit.transform.forward, d);
@@ -169,11 +169,13 @@ public class CharacterMotor : MonoBehaviour {
         grounded = false;
     }
     void Drop() {
+        Debug.Log("drop");
         StopAllCoroutines();
+        //StopCoroutine(routine);
+        routine = null;
         colider.center = new Vector3(0, 4, 0);
         anim.SetBool("Drag", false);
         draging = false;
-        frez = false;
         prepere = false;
         if (go != null) {
             Destroy(go);

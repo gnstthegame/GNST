@@ -1488,6 +1488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 114343530365210672}
   equipmentType: 6
+  equippableItem: {fileID: 0}
 --- !u!114 &114070093872469646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1843,6 +1844,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 114111757589726456}
   equipmentType: 3
+  equippableItem: {fileID: 0}
 --- !u!114 &114213847117995034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1922,6 +1924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 114367267835120600}
   equipmentType: 0
+  equippableItem: {fileID: 0}
 --- !u!114 &114244600689729444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2044,6 +2047,7 @@ MonoBehaviour:
     BaseValue: 5
   Hit:
     BaseValue: 5
+  fist: {fileID: 0}
   statPanel: {fileID: 114647733741113456}
   itemTooltip: {fileID: 0}
   draggableItem: {fileID: 0}
@@ -2654,6 +2658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 114615478202592180}
   equipmentType: 1
+  equippableItem: {fileID: 0}
 --- !u!114 &114535390966647914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2874,6 +2879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 114197338394980722}
   equipmentType: 4
+  equippableItem: {fileID: 0}
 --- !u!114 &114645930026490580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2887,6 +2893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 114102979600223110}
   equipmentType: 2
+  equippableItem: {fileID: 0}
 --- !u!114 &114647733741113456
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3389,6 +3396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 114918576052495830}
   equipmentType: 5
+  equippableItem: {fileID: 0}
 --- !u!114 &114906200885830250
 MonoBehaviour:
   m_ObjectHideFlags: 1

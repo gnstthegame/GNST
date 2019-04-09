@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ClickableTile : MonoBehaviour {
 
@@ -15,13 +16,12 @@ public class ClickableTile : MonoBehaviour {
     private void Awake() {
         Re = GetComponent<Renderer>();
         Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position, new Vector3(transform.localScale.x / 2.1f, 0f, transform.localScale.z / 2.1f));
-        if (hitColliders.Length != 1) {
+        List<Collider>  col = new List<Collider>(hitColliders);
+        col.RemoveAll(item => item.isTrigger);
+        if (col.Count != 0) {
             type = 3;
         }
         Re.material.SetColor("_Color", far);
-    }
-    private void Update() {
-        //Debug.DrawRay(transform.position, Vector3.down, Color.red, 15);
     }
     public void Stat(int s) {
         stat = s;
@@ -66,7 +66,7 @@ public class ClickableTile : MonoBehaviour {
                 return 1;
         }
     }
-    void OnMouseEnter() {
+    public void MouseEnter() {
         if (stat == 1 || stat == 2) {
             map.ViewPath(tileX, tileY);
         }
@@ -76,7 +76,7 @@ public class ClickableTile : MonoBehaviour {
             Re.material.color = select;
         }
     }
-    void OnMouseExit() {
+    public void MouseExit() {
         Stat(stat);
         if (stat == 5) {
             map.AtackMode();
@@ -84,7 +84,7 @@ public class ClickableTile : MonoBehaviour {
     }
     void OnMouseUp() {
     }
-    void OnMouseDown() {
+    public void MouseDown() {
         map.TileClicked(tileX, tileY);
     }
 }
