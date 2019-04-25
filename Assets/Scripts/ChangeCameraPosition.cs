@@ -8,12 +8,12 @@ public class ChangeCameraPosition : MonoBehaviour {
     private void Start() {
     }
     public void MoveCamera(Transform pos) {
-        StopCoroutine("Move");
-        StartCoroutine("Move", pos);
+        StopCoroutine(Move(pos));
+        StartCoroutine(Move(pos));
     }
     IEnumerator Move(Transform pos) {
         float tmp=0;
-        while (Vector3.Distance(transform.position, pos.position) > 0f || Vector3.Angle(transform.forward, pos.forward) > 0f) {
+        while (tmp<1f) {
             tmp += Time.deltaTime*speed;
             transform.position = Vector3.Lerp(transform.position, pos.position, tmp);
             transform.rotation = Quaternion.Lerp(transform.rotation, pos.rotation, tmp);

@@ -15,13 +15,15 @@ public class ClickableTile : MonoBehaviour {
 
     private void Awake() {
         Re = GetComponent<Renderer>();
+        Re.material.SetColor("_Color", far);
+    }
+    public void Init() {
         Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position, new Vector3(transform.localScale.x / 2.1f, 0f, transform.localScale.z / 2.1f));
-        List<Collider>  col = new List<Collider>(hitColliders);
-        col.RemoveAll(item => item.isTrigger);
+        List<Collider> col = new List<Collider>(hitColliders);
+        col.RemoveAll(item => item.isTrigger || item.tag == "Player" || item.tag == "Enemy");
         if (col.Count != 0) {
             type = 3;
         }
-        Re.material.SetColor("_Color", far);
     }
     public void Stat(int s) {
         stat = s;
@@ -32,7 +34,7 @@ public class ClickableTile : MonoBehaviour {
             case 1://clear
                 Re.material.color = walkable;
                 break;
-            case 2://pass
+            case 2://pass by
                 Re.material.color = pass;
                 break;
             case 3://select
@@ -60,6 +62,7 @@ public class ClickableTile : MonoBehaviour {
             case 1://avoid
                 return 1.001f;
             case 2://occupied
+                return Mathf.Infinity;
             case 3://Blocked
                 return Mathf.Infinity;
             default:
@@ -81,8 +84,6 @@ public class ClickableTile : MonoBehaviour {
         if (stat == 5) {
             map.AtackMode();
         }
-    }
-    void OnMouseUp() {
     }
     public void MouseDown() {
         map.TileClicked(tileX, tileY);

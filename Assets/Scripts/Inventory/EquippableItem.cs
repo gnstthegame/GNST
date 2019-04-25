@@ -26,13 +26,16 @@ public class EquippableItem : Item {
     public int Cost;
     public int AttackRange = 0;
     public string AnimTrigger = "Dash";
+    public GameObject Model3d;
     public bool positive = false;
     public EquipmentType equipmentType;
     
 
     public override Skill getskill() {
-        Skill skl= new Skill(Area, Dmg, Cost, AnimTrigger);
-        skl.Icon = Sprite;
+        Skill skl = new Skill(Area, Dmg, Cost, AnimTrigger) {
+            Icon = Sprite,
+            Model = Model3d
+        };
         return skl;
     }
 

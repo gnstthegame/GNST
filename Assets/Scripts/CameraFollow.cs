@@ -10,7 +10,7 @@ public class CameraFollow : MonoBehaviour {
     public enum FreezAgnle { x, y, z };
     public FreezAgnle frez;
     // Use this for initialization
-    void Start() {
+    void Awake() {
         dif = transform.position - player.position;
         StartLoc = transform.localPosition;
     }

@@ -4,28 +4,19 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class PlayerUnit : Unit {
-    public GameObject ButtonsMenu;
-    public GameObject[] Buttons;
     public InventoryManager Inv;
 
     public void Activ() {
         GetComponent<CharacterMotor>().enabled = false;
         MaxAP = 2+ (int)Inv.Stamina.Value;
-        MovementRange = 1+(int)Inv.Agility.Value;
+        Movement = 1+(int)Inv.Agility.Value;
         MaxHP = 4+(int)Inv.Stamina.Value;
-        AP = (int)Inv.Stamina.Value;
+        //AP = (int)Inv.Stamina.Value;
+        AP = 0;
         APacc = (int)Inv.Stamina.Value;
         Armor = (int)Inv.Armor.Value;
         Skile = Inv.GetSkills();
-        ButtonsMenu.SetActive(true);
-        for (int i=0; i<Buttons.Length; i++) {
-            if(i<Skile.Count) {
-                Buttons[i].SetActive(true);
-                Buttons[i].GetComponent<Image>().sprite = Skile[i].Icon;
-            } else {
-                Buttons[i].SetActive(false);
-            }
-        }
+
 
     }
     private void Awake() {

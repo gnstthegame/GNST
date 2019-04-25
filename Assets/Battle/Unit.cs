@@ -9,8 +9,27 @@ public class Unit : MonoBehaviour {
     public int MaxHP = 5, MaxAP = 10;//private
     public int ArmorBase = 0, APaccBase = 2;//private
     public int ArmorMod = 0, APaccMod = 2;
-    public int luck = 0;
+    public int luck = 0;/// <summary>
+    /// ///////////////////////////////////////////////////////////
+    /// </summary>
     public int ap = 2;//private
+    public int MovRange = 3, MovMod=0;
+    public Transform Hand;
+    public Hud hud;
+
+    internal TileMap map;
+    public Pole[,] mapa;
+    internal List<Effect> Effects = new List<Effect>();
+    public bool animated = false;
+    public bool CanMove = true;
+    public bool CanAct = true;
+    internal int lastUsedSkill;
+    internal Animator anim;
+    public bool agresive = true;//defense offens
+    public List<Skill> Skile = new List<Skill>();
+    Coroutine rut;
+    GameObject weapon;
+
     public int AP {
         get { return ap; }
         set { ap = Mathf.Clamp(value, 0, MaxAP); }
@@ -24,7 +43,6 @@ public class Unit : MonoBehaviour {
         get { return hp; }
         set {
             hp = Mathf.Clamp(value, 0, MaxHP);
-            StartCoroutine(HPChange(hp));
             if (hp == 0) Die();
         }
     }
@@ -36,22 +54,10 @@ public class Unit : MonoBehaviour {
         get { return Mathf.Max(0, ArmorBase + ArmorMod); }
         set { ArmorBase = Mathf.Max(0, value); }
     }
-
-    public TileMap map;
-    public Pole[,] mapa;
-    public Slider HPBar;
-    public Text HPText;
-    public Transform Panel;
-    internal List<Effect> Effects = new List<Effect>();
-    public int MovementRange = 3;
-    public bool animated = false;
-    public bool CanMove = true;
-    public bool CanAct = true;
-    internal int lastUsedSkill;
-    internal Animator anim;
-    public bool agresive = true;//defense offens
-    public List<Skill> Skile = new List<Skill>();
-    Coroutine rut;
+    public int Movement {
+        get { return Mathf.Max(0, MovRange + MovMod); }
+        set { MovRange = Mathf.Max(0, value); }
+    }
 
     public void EndRound() {
         CanMove = false;
@@ -61,13 +67,9 @@ public class Unit : MonoBehaviour {
         if (animated) {
             anim = GetComponent<Animator>();
         }
-        HP = MaxHP;
-        HPBar.maxValue = MaxHP;
-        HPText.text = HP.ToString();
     }
-    private void Update() {
-        Panel.transform.position = Camera.main.WorldToScreenPoint(transform.position);
-    }
+
+
     public void NewRound() {
         foreach (Effect i in Effects) {
             if (i.Triger == 1) {
@@ -83,6 +85,7 @@ public class Unit : MonoBehaviour {
         AP += APacc;
         CanMove = true;
         CanAct = true;
+
     }
     public Skill GetSkill(int k) {
         if (k >= Skile.Count) {
@@ -113,11 +116,12 @@ public class Unit : MonoBehaviour {
                 dmg = i.Func(dmg, this);
             }
         }
-        anim.SetTrigger("Hit");
         dmg -= Armor;
         dmg = Mathf.Max(0, dmg);
         HP = HP - dmg;
-
+        Debug.Log(dmg + " " + HP);
+        anim.SetTrigger("Hit");
+        hud.Upd();
     }
     public void MovingOnTiles(Queue<Pole> v) {
         CanMove = false;
@@ -128,13 +132,15 @@ public class Unit : MonoBehaviour {
         CanAct = false;
         CanMove = false;
         anim.SetTrigger(p.useSkill.trigger);
-        map.ClearTiles();
+        map.ClearTiles(true);
+        Destroy(weapon);
+        if (p.useSkill.Model!=null) weapon = Instantiate(p.useSkill.Model,Hand.position,Hand.rotation,Hand);
         StartCoroutine(RotateTowards(map.tiles[(int)p.target.x, (int)p.target.y].transform.position));
         StartCoroutine(WaitForAnim());
     }
     IEnumerator Steps(Queue<Pole> v) {
         if (v != null) {
-            if (animated) {
+            if (animated && v.Count > 0) {
                 if (map != null && map.tiles != null && map.tiles[tileX, tileY] != null) {
                     map.tiles[tileX, tileY].Unit = null;
                 }
@@ -145,7 +151,7 @@ public class Unit : MonoBehaviour {
                 rut = StartCoroutine(GoTo(vec));
                 while (v.Count > 0) {
                     vec.y = transform.position.y;
-                    if (Vector3.Distance(vec, transform.position) < 0.20f) {
+                    if (Vector3.Distance(vec, transform.position) < 0.2f) {
                         v.Dequeue();
                         if (v.Count > 0) {
                             map.tiles[tileX, tileY].Unit = null;
@@ -186,21 +192,10 @@ public class Unit : MonoBehaviour {
             yield return 0;
         }
         while (anim.GetFloat("Forward") > 0.01f) {
-            anim.SetFloat("Forward", 0f, 0.3f, Time.deltaTime);
+            anim.SetFloat("Forward", 0f, 0.1f, Time.deltaTime);
             yield return 0;
         }
         anim.SetFloat("Forward", 0);
-    }
-
-    IEnumerator HPChange(int hp) {
-        HPText.text = hp.ToString();
-        float old = HPBar.value;
-        float delta = 0;
-        while (delta < 1f) {
-            HPBar.value = Mathf.Lerp(old, (float)hp, delta);
-            delta += Time.deltaTime * 1;
-            yield return null;
-        }
     }
 
     IEnumerator WaitForAnim() {
@@ -218,6 +213,5 @@ public class Unit : MonoBehaviour {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, to, 8f);
             yield return 0;
         }
-
     }
 }

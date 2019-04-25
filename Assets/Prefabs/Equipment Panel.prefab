@@ -167,6 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 114918566788914442}
   equipmentType: 1
+  equippableItem: {fileID: 0}
 --- !u!114 &114114030648005364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,6 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 114726910699421198}
   equipmentType: 3
+  equippableItem: {fileID: 0}
 --- !u!114 &114185566321490656
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -220,6 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 114606408517474682}
   equipmentType: 6
+  equippableItem: {fileID: 0}
 --- !u!114 &114510566227022442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -233,6 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 114929489566596998}
   equipmentType: 2
+  equippableItem: {fileID: 0}
 --- !u!114 &114550667236001050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -320,6 +324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 114620349687198256}
   equipmentType: 4
+  equippableItem: {fileID: 0}
 --- !u!114 &114724228691072562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -333,6 +338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 114185566321490656}
   equipmentType: 0
+  equippableItem: {fileID: 0}
 --- !u!114 &114726910699421198
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -373,6 +379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 114904416090467190}
   equipmentType: 5
+  equippableItem: {fileID: 0}
 --- !u!114 &114904416090467190
 MonoBehaviour:
   m_ObjectHideFlags: 1

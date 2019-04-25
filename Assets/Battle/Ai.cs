@@ -18,7 +18,7 @@ public class Ai : Unit {
         tmp2[2] = new Vector2(1, -1);
         tmp2[3] = new Vector2(0, -1);
         Skile.Add(new Skill(tmp, new Vector2(3, 6)));
-        Skile.Add(new Skill(tmp2, new Vector2(2, 2), 0, "Dash",1,null,false,5));
+        //Skile.Add(new Skill(tmp2, new Vector2(2, 5), 0, "Dash",1,null,false,5));
         Vector2[] tmp3 = new Vector2[3];
         tmp3[0] = new Vector2(-1, -1);
         tmp3[1] = new Vector2(0, -1);

@@ -31,6 +31,7 @@ public class Skill {/*
     public string trigger = "Punch";
     public bool positive = false;
     public Sprite Icon;
+    public GameObject Model;
     public Skill() { }
     public Skill(Vector2 ForwardAtackDmg) {
         Area = new Vector2[1];

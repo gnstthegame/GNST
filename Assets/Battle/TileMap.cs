@@ -84,6 +84,9 @@ public class TileMap : MonoBehaviour {
         foreach (Unit u in EnemyUnits) {
             u.NewRound();
         }
+        foreach(Unit u in PlayerUnits) {
+            u.hud.Unselect();
+        }
         AiBehavior();
     }
     public void EnemyEndTurn() {
@@ -93,6 +96,12 @@ public class TileMap : MonoBehaviour {
         }
         foreach (Unit u in PlayerUnits) {
             u.NewRound();
+        }
+        if (PlayerUnits.Count > 0) {
+            selectedUnit = PlayerUnits[0];
+            selectedUnit.hud.Select();
+            GenerateMap(selectedUnit);
+            ClearTiles();
         }
     }
     void Update() {
@@ -115,22 +124,27 @@ public class TileMap : MonoBehaviour {
             }
         }
         transform.rotation = rem;
+        foreach (ClickableTile t in tiles) {
+            t.Init();
+        }
         Units = FindObjectsOfType<Unit>().ToList();
         foreach (Unit u in Units) {
             Vector3 vec = u.transform.position;
             Vector3 center = tiles[mapSizeX / 2, mapSizeY / 2].transform.position;
-            if (Mathf.Abs(vec.x - center.x) > VisualPrefab.transform.localScale.x * (mapSizeX / 2 + 1) || Mathf.Abs(vec.z - center.z) > VisualPrefab.transform.localScale.z * (mapSizeY / 2 + 1)) {
-                Debug.Log("out");
+            if (Mathf.Abs(vec.x - center.x) > VisualPrefab.transform.localScale.x * (mapSizeX / 2 + 2) || Mathf.Abs(vec.z - center.z) > VisualPrefab.transform.localScale.z * (mapSizeY / 2 + 2)) {
+                Debug.Log("out of battleground");
                 continue;
             }
             if (u is Ai) {
                 EnemyUnits.Add(u);
+                u.hud.Activ(u, false);
             } else {
                 PlayerUnits.Add(u);
                 PlayerUnit uu = (PlayerUnit)u;
                 uu.Activ();
+                u.hud.Activ(u, true);
             }
-            int ux = Mathf.RoundToInt((vec.x - tiles[0, 0].transform.position.x) / VisualPrefab.transform.localScale.x), uy = Mathf.RoundToInt((vec.z - tiles[0, 0].transform.position.z) / VisualPrefab.transform.localScale.z);
+            int ux = Mathf.CeilToInt((vec.x - tiles[0, 0].transform.position.x) / VisualPrefab.transform.localScale.x), uy = Mathf.CeilToInt((vec.z - tiles[0, 0].transform.position.z) / VisualPrefab.transform.localScale.z)+1;
             ux = Mathf.Clamp(ux, 0, mapSizeX - 1);
             uy = Mathf.Clamp(uy, 0, mapSizeY - 1);
             int tx = ux, ty = uy;
@@ -143,15 +157,14 @@ public class TileMap : MonoBehaviour {
                 }
                 i++;
             }
+            u.map = this;
             tiles[ux, uy].Unit = u;
             u.tileX = ux;
             u.tileY = uy;
-            //u.transform.position = new Vector3(tiles[ux, uy].transform.position.x, u.transform.position.y, tiles[ux, uy].transform.position.z);
-            //Queue<Pole> q = new Queue<Pole>();
-            //q.Enqueue(new Pole(ux, uy));
             u.MoveToPos(new Vector3(tiles[ux, uy].transform.position.x, u.transform.position.y, tiles[ux, uy].transform.position.z));
             Debug.Log("asign" + ux.ToString() + uy.ToString());
         }
+        EnemyEndTurn();
     }
     bool NotOutOfRange(Vector2 a) {
         return NotOutOfRange((int)a.x, (int)a.y);
@@ -223,7 +236,7 @@ public class TileMap : MonoBehaviour {
             return;
         }
         if (selectedSkill != null && selectedUnit != null && selectedUnit.CanAct) {
-            if (selectedSkill.AttackRange > 0) {//sprawdzanie
+            if (selectedSkill.AttackRange > 0) {//check for attack
                 if (Mathf.Abs(selectedUnit.tileX - x) + Mathf.Abs(selectedUnit.tileY - y) >= selectedSkill.AttackRange) {
                     return;
                 }
@@ -249,11 +262,13 @@ public class TileMap : MonoBehaviour {
             };
             StartCoroutine(DealAttack(p));
         }
-        if (selectedSkill == null) {
+        if (selectedSkill == null) {//select or go
             if (tiles[x, y].Unit != null) {
-                selectedUnit = tiles[x, y].Unit;
-                GenerateMap(selectedUnit);
-                ClearTiles();
+                if (PlayerUnits.Contains(tiles[x, y].Unit)) {
+                    selectedUnit = tiles[x, y].Unit;
+                    GenerateMap(selectedUnit);
+                    ClearTiles();
+                }
             } else {
                 if (selectedUnit != null && selectedUnit.CanMove) {
                     GoTo(x, y);
@@ -297,7 +312,7 @@ public class TileMap : MonoBehaviour {
     public void GenerateMap(Unit u, bool Ignore = false, List<Vector2> Obstacle = null) {//generuje mape chodzenia
         int maxDist = 0;
         if (u.CanMove) {
-            maxDist = u.MovementRange;
+            maxDist = u.Movement;
         }
         u.mapa = new Pole[mapSizeX, mapSizeY];
         map = u.mapa;
@@ -510,12 +525,14 @@ public class TileMap : MonoBehaviour {
                     p.executor.MovingOnTiles(p.pole.path);
                     yield return new WaitUntil(() => wait == false);
                     StartCoroutine(DealAttack(p));
+                    yield return new WaitUntil(() => wait == false);
                 }
                 if (p.CoordinatedWith != null && p.CoordinatedWith.useSkill.moment == i) {
                     wait = true;
                     p.CoordinatedWith.executor.MovingOnTiles(p.CoordinatedWith.pole.path);
                     yield return new WaitUntil(() => wait == false);
                     StartCoroutine(DealAttack(p.CoordinatedWith));
+                    yield return new WaitUntil(() => wait == false);
                 }
             }
         }
@@ -531,12 +548,13 @@ public class TileMap : MonoBehaviour {
         }
         yield return new WaitUntil(() => wait == false);
         int dmg = (int)Random.Range(p.useSkill.Dmg.x, p.useSkill.Dmg.y);
+        Debug.Log("dmg" + dmg);
         foreach (Vector2 v in p.useSkill.DirectedArea[p.BestDir]) {
             Vector2 asd = AtackPoint + v;
             if (NotOutOfRange(asd)) {
                 if (p.useSkill.positive) {
                     tiles[(int)asd.x, (int)asd.y].Stat(2);
-                    if ((tiles[(int)asd.x, (int)asd.y].Unit is Ai && p.executor is Ai) || (tiles[(int)asd.x, (int)asd.y].Unit is Unit && p.executor is Unit)) {
+                    if ((tiles[(int)asd.x, (int)asd.y].Unit is Ai && p.executor is Ai) || (tiles[(int)asd.x, (int)asd.y].Unit is PlayerUnit && p.executor is PlayerUnit)) {
                         tiles[(int)asd.x, (int)asd.y].Unit.GetAttack(dmg, p.useSkill.efect);
                     }
                 } else {
