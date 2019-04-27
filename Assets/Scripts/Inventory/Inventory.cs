@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
-public class Inventory : MonoBehaviour {
+public class Inventory : MonoBehaviour, IItemContainter {
     //przedmioty startowe
     [SerializeField] List<Item> startingItems;
     [SerializeField] Transform itemsParent;
-    [SerializeField] ItemSlot[] itemSlots;
+    [SerializeField] public ItemSlot[] itemSlots;
+    public Text moneyText;
+    public int money;
 
     public event Action<ItemSlot> OnPointerEnterEvent;
     public event Action<ItemSlot> OnPointerExitEvent;
@@ -33,6 +36,11 @@ public class Inventory : MonoBehaviour {
         SetStartingItems();
     }
 
+    private void Update()
+    {
+        moneyText.text = "Plusz: " + money.ToString();
+    }
+
     private void OnValidate()
     {
         if(itemsParent != null)
@@ -47,7 +55,7 @@ public class Inventory : MonoBehaviour {
         int i = 0;
         for(; i < startingItems.Count && i < itemSlots.Length; i++)
         {
-            itemSlots[i].Item = startingItems[i];
+            itemSlots[i].Item = Instantiate(startingItems[i]);
         }
 
         for (; i < itemSlots.Length; i++)
@@ -69,17 +77,18 @@ public class Inventory : MonoBehaviour {
         return false;
     }
 
-    public bool RemoveItem(Item item)
+    public Item RemoveItem(string itemID)
     {
         for (int i = 0; i < itemSlots.Length; i++)
         {
-            if (itemSlots[i].Item == item)
+            Item item = itemSlots[i].Item;
+            if (item != null && item.ID == itemID)
             {
                 itemSlots[i].Item = null;
-                return true;
+                return item;
             }
         }
-        return false;
+        return null;
     }
 
     public bool IsFull()
@@ -92,5 +101,18 @@ public class Inventory : MonoBehaviour {
             }
         }
         return true;
+    }
+
+    public bool RemoveItem(Item item)
+    {
+        for (int i = 0; i < itemSlots.Length; i++)
+        {
+            if (item != null)
+            {
+                itemSlots[i].Item = null;
+                return item;
+            }
+        }
+        return false;
     }
 }

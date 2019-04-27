@@ -5,16 +5,22 @@ using UnityEngine;
 public class PanelOpener : MonoBehaviour {
     public GameObject buyPanel;
     public GameObject sellPanel;
+    public GameObject buyButton;
+    public GameObject sellButton;
 
     public void BuyPanel()
     {
-        sellPanel.SetActive(false);
         buyPanel.SetActive(true);
+        sellButton.SetActive(true);
+        sellPanel.SetActive(false);
+        buyButton.SetActive(false);
     }
 
     public void SellPanel()
     {
-        buyPanel.SetActive(false);
         sellPanel.SetActive(true);
+        buyButton.SetActive(true);
+        buyPanel.SetActive(false);
+        sellButton.SetActive(false);
     }
 }

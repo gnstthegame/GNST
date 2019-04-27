@@ -1,15 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu]
 public class Item : ScriptableObject
 {
-    public int Id;
+    [SerializeField] string id;
+    public string ID { get { return id; } }
     public string Name;
     public Sprite Sprite;
+    public int BuyValue;
+    public int SellValue;
 
-    public virtual Skill getskill() {
-        return new Skill();
+    private void OnValidate()
+    {
+        string path = AssetDatabase.GetAssetPath(this);
+        id = AssetDatabase.AssetPathToGUID(path);
     }
 }

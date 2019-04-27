@@ -32,6 +32,17 @@ public class ItemTooltip : MonoBehaviour {
         gameObject.SetActive(true);
     }
 
+    public void ShowTooltip(UsableItem item)
+    {
+        ItemNameText.text = item.Name;
+        ItemSlotText.text = "Usable";
+        sb.Length = 0;
+
+        sb.Insert(0, item.description);
+        ItemStatsText.text = sb.ToString();
+        gameObject.SetActive(true);
+    }
+
     public void HideTooltip()
     {
         gameObject.SetActive(false);

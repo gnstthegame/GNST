@@ -18,8 +18,7 @@ public class InventoryManager : MonoBehaviour {
     public CharacterStat Armor;
     public CharacterStat Crit;
     public CharacterStat Hit;
-    public Sprite fist;
-
+    
     [SerializeField] StatPanel statPanel;
     [SerializeField] ItemTooltip itemTooltip;
     //ostatnia rzecz
@@ -34,24 +33,6 @@ public class InventoryManager : MonoBehaviour {
             itemTooltip = FindObjectOfType<ItemTooltip>();
         }
     }
-    public List<Skill> GetSkills() {
-        List<EquipmentSlot> eq = new List<EquipmentSlot>(equipmentPanel.equipmentSlots);
-        eq = eq.FindAll(item => item.Item!=null&&( item.equipmentType == EquipmentType.Meele || item.equipmentType == EquipmentType.Ranged));
-        
-        List<Skill> skils = new List<Skill>();
-        foreach (EquipmentSlot i in eq) {
-            Skill s = i.Item.getskill();
-            s.Dmg += new Vector2(Agility.Value, Strength.Value);
-            skils.Add(s);
-        }
-        if (skils.Count < 3) {
-            Skill sk = new Skill(new Vector2(1, 1)) {
-                Icon = fist
-            };
-            skils.Add(sk);
-        }
-        return skils;
-    }
 
     private void Awake()
     {
@@ -59,8 +40,8 @@ public class InventoryManager : MonoBehaviour {
         statPanel.UpdateStatValues();
         //statPanel.UpdateStatNames();
 
-        inventory.OnRightClickEvent += Equip;
-        equipmentPanel.OnRightClickEvent += Unequip;
+        inventory.OnRightClickEvent += InventoryRightClick;
+        equipmentPanel.OnRightClickEvent += EquipmentPanelRightClick;
 
         inventory.OnPointerEnterEvent += ShowTooltip;
         equipmentPanel.OnPointerEnterEvent += ShowTooltip;
@@ -81,30 +62,41 @@ public class InventoryManager : MonoBehaviour {
         equipmentPanel.OnDropEvent += Drop;
     }
 
-    private void Equip(ItemSlot itemSlot)
+    private void InventoryRightClick(ItemSlot itemSlot)
     {
-        EquippableItem equippableItem = itemSlot.Item as EquippableItem;
-        if(equippableItem != null)
+        if(itemSlot.Item is EquippableItem)
         {
-            Equip(equippableItem);
+            Equip((EquippableItem)itemSlot.Item);
+        }
+        else if(itemSlot.Item is UsableItem)
+        {
+            UsableItem usableItem = itemSlot.Item as UsableItem;
+            usableItem.Use(this);
+
+            if (usableItem.isConsumable)
+            {
+                inventory.RemoveItem(usableItem.ID);
+            }
         }
     }
 
-    private void Unequip(ItemSlot itemSlot)
+    private void EquipmentPanelRightClick(ItemSlot itemSlot)
     {
-        EquippableItem equippableItem = itemSlot.Item as EquippableItem;
-        if (equippableItem != null)
+        if (itemSlot.Item is EquippableItem)
         {
-            Unequip(equippableItem);
+            Unequip((EquippableItem)itemSlot.Item);
         }
     }
 
     private void ShowTooltip(ItemSlot itemSlot)
     {
-        EquippableItem equippableItem = itemSlot.Item as EquippableItem;
-        if (equippableItem != null)
+        if (itemSlot.Item != null && itemSlot.Item is EquippableItem)
         {
-            itemTooltip.ShowTooltip(equippableItem);
+            itemTooltip.ShowTooltip((EquippableItem)itemSlot.Item);
+        }
+        else if(itemSlot.Item != null && itemSlot.Item is UsableItem)
+        {
+            itemTooltip.ShowTooltip((UsableItem)itemSlot.Item);
         }
     }
 
@@ -141,28 +133,32 @@ public class InventoryManager : MonoBehaviour {
 
     private void Drop(ItemSlot dropItemSlot)
     {
-        if(dropItemSlot.CanReceiveItem(draggedSlot.Item) && draggedSlot.CanReceiveItem(dropItemSlot.Item))
+        if(draggedSlot.Item != null)
         {
-            EquippableItem dragItem = draggedSlot.Item as EquippableItem;
-            EquippableItem dropItem = dropItemSlot.Item as EquippableItem;
-
-            if(draggedSlot is EquipmentSlot)
+            if (dropItemSlot.CanReceiveItem(draggedSlot.Item) && draggedSlot.CanReceiveItem(dropItemSlot.Item))
             {
-                if(dragItem != null) dragItem.Unequip(this);
-                if (dropItem != null) dropItem.Equip(this);
-            }
+                EquippableItem dragItem = draggedSlot.Item as EquippableItem;
+                EquippableItem dropItem = dropItemSlot.Item as EquippableItem;
 
-            if(dropItemSlot is EquipmentSlot)
-            {
-                if (dragItem != null) dragItem.Equip(this);
-                if (dropItem != null) dropItem.Unequip(this);
-            }
-            statPanel.UpdateStatValues();
+                if (draggedSlot is EquipmentSlot)
+                {
+                    if (dragItem != null) dragItem.Unequip(this);
+                    if (dropItem != null) dropItem.Equip(this);
+                }
 
-            Item draggedItem = draggedSlot.Item;
-            draggedSlot.Item = dropItemSlot.Item;
-            dropItemSlot.Item = draggedItem;
+                if (dropItemSlot is EquipmentSlot)
+                {
+                    if (dragItem != null) dragItem.Equip(this);
+                    if (dropItem != null) dropItem.Unequip(this);
+                }
+                statPanel.UpdateStatValues();
+
+                Item draggedItem = draggedSlot.Item;
+                draggedSlot.Item = dropItemSlot.Item;
+                dropItemSlot.Item = draggedItem;
+            }
         }
+        
        
     }
 
@@ -186,7 +182,7 @@ public class InventoryManager : MonoBehaviour {
     public void Equip(EquippableItem item)
     {
         //Usuniecie z panelu ekwipunku
-        if (inventory.RemoveItem(item))
+        if (inventory.RemoveItem(item.ID))
         {
             //przedmiot ktory poprzednio byl zalozony
             EquippableItem previousItem;
@@ -218,7 +214,6 @@ public class InventoryManager : MonoBehaviour {
             item.Unequip(this);
             statPanel.UpdateStatValues();
             inventory.AddItem(item);
-            //update stat
         }
     }
 }

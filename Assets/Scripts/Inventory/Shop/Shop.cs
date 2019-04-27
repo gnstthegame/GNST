@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour {
 
-    [SerializeField] GameObject inventory;
-    [SerializeField] List<Item> items;
+    [SerializeField] Inventory inventory;
+    [SerializeField] public List<Item> sellItems;
     [SerializeField] Transform playerTransform;
-    [SerializeField] GameObject shop;
+    [SerializeField] ShopManager shop;
 
 
     bool isInRange;
     Ray ray;
     RaycastHit hit;
-	// Use this for initialization
-	void Start () {
-        shop.SetActive(false);
+
+    private void OnValidate()
+    {
+        inventory = FindObjectOfType<Inventory>();
+    }
+
+    // Use this for initialization
+    void Start () {
+        shop.canvasGroup.alpha = 0;
 	}
 	
 	// Update is called once per frame
@@ -31,6 +37,7 @@ public class Shop : MonoBehaviour {
                 if (hit.transform.tag == "Shop")
                 {
                     Debug.Log("Test");
+                    shop.canvasGroup.alpha = 1;
                     //canvasGroup.alpha = 0;
                 }
             }
@@ -39,15 +46,15 @@ public class Shop : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        //isInRange = true;
+        isInRange = true;
         Debug.Log("In range");
-        shop.SetActive(true);
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
         isInRange = false;
-        shop.SetActive(false);
+        shop.canvasGroup.alpha = 0; 
     }
 
    

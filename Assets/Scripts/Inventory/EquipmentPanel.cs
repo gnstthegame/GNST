@@ -8,7 +8,7 @@ using System;
 /// </summary>
 public class EquipmentPanel : MonoBehaviour {
     [SerializeField] Transform equipmentSlotsParent;
-    [SerializeField] public EquipmentSlot[] equipmentSlots;
+    [SerializeField] EquipmentSlot[] equipmentSlots;
 
     public event Action<ItemSlot> OnPointerEnterEvent;
     public event Action<ItemSlot> OnPointerExitEvent;

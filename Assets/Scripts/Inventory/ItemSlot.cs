@@ -42,7 +42,6 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         }
     }
 
-
     protected virtual void OnValidate()
     {
         if(image == null)

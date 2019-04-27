@@ -8,7 +8,6 @@ using UnityEngine;
 public class EquipmentSlot : ItemSlot
 {
     public EquipmentType equipmentType;
-    public EquippableItem equippableItem;
 
     protected override void OnValidate()
     {
@@ -20,8 +19,8 @@ public class EquipmentSlot : ItemSlot
     {
         if (item == null)
             return true;
-        equippableItem = item as EquippableItem;
-        Debug.Log(item.Name);
+
+        EquippableItem equippableItem = item as EquippableItem;
         return equippableItem != null && equippableItem.equipmentType == equipmentType;
     }
 }

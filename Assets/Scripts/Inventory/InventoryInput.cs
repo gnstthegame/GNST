@@ -11,7 +11,8 @@ public class InventoryInput : MonoBehaviour {
         {
             if (Input.GetKeyDown(toggleInventoryKeys[i]))
             {
-                inventoryGameObject.SetActive(!inventoryGameObject.activeSelf);
+                inventoryGameObject.GetComponent<CanvasGroup>().alpha = (inventoryGameObject.GetComponent<CanvasGroup>().alpha == 0) ? 1 : 0;
+                inventoryGameObject.GetComponent<CanvasGroup>().blocksRaycasts = (inventoryGameObject.GetComponent<CanvasGroup>().alpha == 0) ? false : true;
                 break;
             }
         }

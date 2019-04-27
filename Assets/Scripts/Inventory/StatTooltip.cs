@@ -7,10 +7,10 @@ using UnityEngine.UI;
 public class StatTooltip : MonoBehaviour {
     [SerializeField] Text StatNameText;
     [SerializeField] Text StatModifiers;
+    public Vector3 offset;
 
     private StringBuilder sb = new StringBuilder();
 
-    //POPRAWIC DODAWANIE STATYSTYK
     //Wyswietlanie statystyk
     public void ShowTooltip(CharacterStat stat, string statName)
     {

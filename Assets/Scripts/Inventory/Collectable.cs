@@ -27,7 +27,7 @@ public class Collectable : MonoBehaviour {
                 if(hit.transform.name == "Cube (3)")
                 {
                     Destroy(gameObject);
-                    inventory.AddItem(item);
+                    inventory.AddItem(Instantiate(item));
                 }
             }         
         }

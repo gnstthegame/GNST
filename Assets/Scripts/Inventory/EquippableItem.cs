@@ -20,25 +20,7 @@ public class EquippableItem : Item {
     public int Armor;
     public int Crit;
     public int Hit;
-
-    public Vector2 Dmg;
-    public Vector2[] Area;
-    public int Cost;
-    public int AttackRange = 0;
-    public string AnimTrigger = "Dash";
-    public GameObject Model3d;
-    public bool positive = false;
     public EquipmentType equipmentType;
-    
-
-    public override Skill getskill() {
-        Skill skl = new Skill(Area, Dmg, Cost, AnimTrigger) {
-            Icon = Sprite,
-            Model = Model3d
-        };
-        return skl;
-    }
-
 
     //Tutaj beda modyfikatory statystyk
     public void Equip(InventoryManager c)
