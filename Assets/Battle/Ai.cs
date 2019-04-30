@@ -24,12 +24,12 @@ public class Ai : Unit {
         tmp3[1] = new Vector2(0, -1);
         tmp3[2] = new Vector2(1, -1);
         //Effect e = new Effect(2, 3,(int dmg, Unit u) => { return dmg/2; });
-        Effect e = new Effect(2, 2, (int dmg, Unit u) => { u.ArmorMod += 2; return 0; }, (int dmg, Unit u) => { u.ArmorMod -= 2; return 0; });
+        Effect e = new Effect(Effect.trig.OnApply, 2, (int dmg, Unit u) => { u.ArmorMod += 2; return 0; }, (int dmg, Unit u) => { u.ArmorMod -= 2; return 0; });
         Skile.Add(new Skill(tmp3, Vector2.zero, 4, "Dash", 2, e, true));
 
 
         Vector2[] self = new Vector2[1] { new Vector2(0, -1) };
-        Effect f = new Effect(2, 1, (int dmg, Unit u) => { u.AP += 2; return 0; });
+        Effect f = new Effect(Effect.trig.OnApply, 1, (int dmg, Unit u) => { u.AP += 2; return 0; });
         Skile.Add(new Skill(self, Vector2.zero, 0, "Dash", 3, f));
     }
 }

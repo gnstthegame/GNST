@@ -3,17 +3,102 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Effect {
-    public int Triger = 0;//0-BeforeGetHit, 1-OnTurnStart, 2-OnApply
+    public enum trig {
+        BeforeGetHit, OnTurnStart, OnApply
+    }
+    public trig Triger;//0-BeforeGetHit, 1-OnTurnStart, 2-OnApply
     public int Duration;
     public delegate int delegacja(int dmg, Unit u);
     public delegacja Func, OnDestroy;
     /// <param name="trigger">0-BeforeGetHit, 1-OnTurnStart, 2-OnApply</param>
-    public Effect(int trigger, int duration, delegacja Function = null, delegacja onDestroy = null) {
+    public Effect(trig trigger, int duration, delegacja Function = null, delegacja onDestroy = null) {
         Triger = trigger;
-        Func = Function;
         Duration = duration;
+        Func = Function;
         OnDestroy = onDestroy;
     }
+    public Effect(trig trigger, int duration, int val = 0, EffectType Function = 0, EffectType onDestroy = 0) {
+        Triger = trigger;
+        Duration = duration;
+        Func = Eff(Function, val);
+        OnDestroy = Eff(onDestroy, val);
+    }
+    public enum EffectType {
+        Null,
+        ArmorPlus,
+        Armor,
+        APPlus,
+        APMinus,
+        APaccPlus,
+        APaccMinus,
+        HPPlus,
+        HPMinus,
+        MovPlus,
+        MovMinus,
+        LuckPlus,
+        LuckMinus,
+        ClearEffects,
+        DmgMultiplayer
+    }
+    delegacja Eff(EffectType id, int value = 0) {
+        int it = (int)id;
+        switch (it) {
+            default:
+                return null;
+            case 1:
+                //Armor+
+                return (int dmg, Unit u) => { u.ArmorMod += value; return dmg; };
+            case 2:
+                //Armor-
+                return (int dmg, Unit u) => { u.ArmorMod -= value; return dmg; };
+            case 3:
+                //AP+
+                return (int dmg, Unit u) => { u.AP += value; return dmg; };
+            case 4:
+                //AP-
+                return (int dmg, Unit u) => { u.AP -= value; return dmg; };
+            case 5:
+                //APacc+
+                return (int dmg, Unit u) => { u.APaccMod += value; return dmg; };
+            case 6:
+                //APacc-
+                return (int dmg, Unit u) => { u.APaccMod -= value; return dmg; };
+            case 7:
+                //HP+
+                return (int dmg, Unit u) => { u.HP += value; return dmg; };
+            case 8:
+                //HP-
+                return (int dmg, Unit u) => { u.HP -= value; return dmg; };
+            case 9:
+                //Mov+
+                return (int dmg, Unit u) => { u.MovMod += value; return dmg; };
+            case 10:
+                //Mov-
+                return (int dmg, Unit u) => { u.MovMod -= value; return dmg; };
+            case 11:
+                //Luck+
+                return (int dmg, Unit u) => { u.LuckMod += value; return dmg; };
+            case 12:
+                //Luck-
+                return (int dmg, Unit u) => { u.LuckMod -= value; return dmg; };
+            case 13:
+                //Oczyszczenie
+                return (int dmg, Unit u) => {
+                    foreach (Effect e in u.Effects) {
+                        e.OnDestroy(0, u);
+                    }
+                    u.Effects.Clear();
+                    return dmg;
+                };
+            case 14:
+                //Multiplayer
+                return (int dmg, Unit u) => { return dmg * value; };
+            case 15:
+                //skuteczność
+                return (int dmg, Unit u) => {  ;return dmg; };
+        }
+    }
+
 }
 
 public class Skill {/*
@@ -50,8 +135,20 @@ public class Skill {/*
         AttackRange = Range;
         moment = Moment;
         positive = Positive;
-        Calculate();
         trigger = AnimationTriggerName;
+        Calculate();
+    }
+    public Skill(Vector2[] AtackArea, Vector2 Damage, int cost, string AnimationTrigger, Sprite icon, GameObject model, Effect.trig trigg = 0, int duration=0,int value=0, Effect.EffectType Function = 0, Effect.EffectType onDestroy = 0, bool Positive = false, int Range = 0) {
+        Area = AtackArea;
+        Dmg = Damage;
+        Cost = cost;
+        Icon = icon;
+        Model = model;
+        efect = new Effect(trigg, duration, value, Function, onDestroy);
+        AttackRange = Range;
+        positive = Positive;
+        trigger = AnimationTrigger;
+        Calculate();
     }
 
     void Calculate() {

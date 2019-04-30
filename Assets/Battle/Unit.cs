@@ -9,7 +9,8 @@ public class Unit : MonoBehaviour {
     public int MaxHP = 5, MaxAP = 10;//private
     public int ArmorBase = 0, APaccBase = 2;//private
     public int ArmorMod = 0, APaccMod = 2;
-    public int luck = 0;/// <summary>
+    public int LuckMod = 0,  luckBase = 0;
+    /// <summary>
     /// ///////////////////////////////////////////////////////////
     /// </summary>
     public int ap = 2;//private
@@ -35,8 +36,8 @@ public class Unit : MonoBehaviour {
         set { ap = Mathf.Clamp(value, 0, MaxAP); }
     }
     public int Luck {
-        get { return luck; }
-        set { luck = Mathf.Max(value, 0); }
+        get { return Mathf.Max(0, luckBase + LuckMod); }
+        set { luckBase = Mathf.Max(value, 0); }
     }
     public int hp = 5;//private
     public int HP {
@@ -72,7 +73,7 @@ public class Unit : MonoBehaviour {
 
     public void NewRound() {
         foreach (Effect i in Effects) {
-            if (i.Triger == 1) {
+            if (i.Triger == Effect.trig.OnTurnStart) {
                 i.Func(0, this);
             }
             i.Duration--;
@@ -107,12 +108,12 @@ public class Unit : MonoBehaviour {
                 Effects.Remove(prim);
             }
             Effects.Add(e);
-            if (e.Triger == 2) {
+            if (e.Triger == Effect.trig.OnApply) {
                 e.Func(dmg, this);
             }
         }
         foreach (Effect i in Effects) {
-            if (i.Triger == 0) {
+            if (i.Triger == Effect.trig.BeforeGetHit) {
                 dmg = i.Func(dmg, this);
             }
         }
@@ -122,6 +123,15 @@ public class Unit : MonoBehaviour {
         Debug.Log(dmg + " " + HP);
         anim.SetTrigger("Hit");
         hud.Upd();
+    }
+    public float TestLuck() {
+        Vector2 dmg = new Vector2(2, 5);
+        float RandomValue = Random.value;
+        float luckNorm = (float)(10 - Luck) / 10f;
+        if (RandomValue > luckNorm) {
+            return 1.5f;
+        }
+        return RandomValue / luckNorm;
     }
     public void MovingOnTiles(Queue<Pole> v) {
         CanMove = false;

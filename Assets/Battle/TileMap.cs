@@ -52,14 +52,10 @@ public class TileMap : MonoBehaviour {
     List<Unit> PlayerUnits = new List<Unit>();
     List<Unit> EnemyUnits = new List<Unit>();
     public Pole[,] map;
-    bool inTarget = false;
     Skill selectedSkill;
-    int round = 0;
-    bool atackMode = false;
     bool playerTurn = true;
     public bool wait = false;
-
-
+    
     public int mapSizeX = 10;
     public int mapSizeY = 10;
     float far;
@@ -547,7 +543,11 @@ public class TileMap : MonoBehaviour {
             p.executor.CastSkill(p);
         }
         yield return new WaitUntil(() => wait == false);
-        int dmg = (int)Random.Range(p.useSkill.Dmg.x, p.useSkill.Dmg.y);
+        float TLuck = p.executor.TestLuck();
+
+
+        int dmg = (int)Mathf.LerpUnclamped(p.useSkill.Dmg.x, p.useSkill.Dmg.y, TLuck);
+        //int dmg = (int)Random.Range(p.useSkill.Dmg.x, p.useSkill.Dmg.y);
         Debug.Log("dmg" + dmg);
         foreach (Vector2 v in p.useSkill.DirectedArea[p.BestDir]) {
             Vector2 asd = AtackPoint + v;
