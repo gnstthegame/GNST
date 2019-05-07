@@ -18,14 +18,23 @@ public class EquippableItem : Item {
     public int Stamina;
     public int Luck;
     public int Armor;
-    public int Crit;
-    public int Hit;
     public EquipmentType equipmentType;
+    public string Opis;
 
-    public override Item GetCopy()
-    {
-        return Instantiate(this);
-    }
+    public Vector2[] Area;
+    public Vector2 Dmg;
+    public int Cost;
+    public string AnimTrigger;
+    public int AttackRange;
+    public GameObject Model3d;
+
+    public bool positive;
+    public Effect.EffectType Efekt, OnDestroy;
+    public int EfektPower;
+    public Effect.trig EffectTriggered;
+    public int CzasTrwania;
+    //public Skill(Vector2[] AtackArea, Vector2 Damage, int cost, string AnimationTrigger, Effect.trig trigg, int duration = 0, int value = 0, Effect.DelegationType Function = 0, Effect.DelegationType onDestroy = 0, bool Positive = false, int Range = 0) {
+
 
     public override void Destroy()
     {
@@ -44,10 +53,10 @@ public class EquippableItem : Item {
             c.Luck.AddModifier(new StatModifier(Luck, StatModType.Flat, this));
         if (Armor != 0)
             c.Armor.AddModifier(new StatModifier(Armor, StatModType.Flat, this));
-        if (Crit != 0)
-            c.Crit.AddModifier(new StatModifier(Crit, StatModType.Flat, this));
-        if (Hit != 0)
-            c.Hit.AddModifier(new StatModifier(Hit, StatModType.Flat, this));
+    }
+    public override Skill getskill() {
+        Skill skl = new Skill(Area, Dmg, Cost, AnimTrigger, Sprite, Model3d, EffectTriggered, CzasTrwania, EfektPower, Efekt, OnDestroy, positive, AttackRange);
+        return skl;
     }
 
     public void Unequip(InventoryManager c)

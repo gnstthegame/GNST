@@ -16,9 +16,8 @@ public class InventoryManager : MonoBehaviour {
     public CharacterStat Stamina;
     public CharacterStat Luck;
     public CharacterStat Armor;
-    public CharacterStat Crit;
-    public CharacterStat Hit;
-    
+    public Sprite fist;
+
     [SerializeField] StatPanel statPanel;
     [SerializeField] ItemTooltip itemTooltip;
     //ostatnia rzecz
@@ -36,7 +35,7 @@ public class InventoryManager : MonoBehaviour {
 
     private void Awake()
     {
-        statPanel.SetStats(Level, Strength, Agility, Stamina, Luck, Armor, Crit, Hit);
+        statPanel.SetStats(Level, Strength, Agility, Stamina, Luck, Armor);
         statPanel.UpdateStatValues();
         //statPanel.UpdateStatNames();
 
@@ -143,7 +142,38 @@ public class InventoryManager : MonoBehaviour {
             {
                 SwapItems(dropItemSlot);
             }
-        }      
+        }
+    }
+    public List<Skill> GetSkills() {
+        List<EquipmentSlot> eq = new List<EquipmentSlot>(equipmentPanel.equipmentSlots);
+        eq = eq.FindAll(item => item.Item != null && (item.equipmentType == EquipmentType.Melee || item.equipmentType == EquipmentType.Ranged));
+
+        List<Skill> skils = new List<Skill>();
+        foreach (EquipmentSlot i in eq) {
+            Skill s = i.Item.getskill();
+            s.Dmg += new Vector2(Agility.Value, Strength.Value);
+            if (s.Dmg.x > s.Dmg.y) {
+                s.Dmg.y = s.Dmg.x;
+            }
+            skils.Add(s);
+        }
+        if (skils.Count < 3) {
+            Skill sk = new Skill(new Vector2(1, 1)) {
+                Icon = fist
+            };
+            skils.Add(sk);
+        }
+        return skils;
+    }
+    public List<Item> GetItems() {
+        List<EquipmentSlot> eq = new List<EquipmentSlot>(equipmentPanel.equipmentSlots);
+        eq = eq.FindAll(item => item.Item != null && (item.equipmentType == EquipmentType.Usable1 || item.equipmentType == EquipmentType.Usable2 || item.equipmentType == EquipmentType.Usable3));
+
+        List<Item> skils = new List<Item>();
+        foreach (EquipmentSlot i in eq) {
+            skils.Add(i.Item);
+        }
+        return skils;
     }
 
     private void SwapItems(ItemSlot dropItemSlot)
@@ -180,10 +210,18 @@ public class InventoryManager : MonoBehaviour {
         int stacksToAdd = Mathf.Min(numAddableStacks, draggedSlot.Amount);
         dropItemSlot.Amount += stacksToAdd;
         draggedSlot.Amount -= stacksToAdd;
-    }
+        }
+        public void Show() {
+            GetComponent<CanvasGroup>().alpha = 1;
+            GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
+        public void Hide() {
+            GetComponent<CanvasGroup>().alpha = 0;
+            GetComponent<CanvasGroup>().blocksRaycasts = false;
+        }
 
-    //potrzebne bo equip mozna wywolac tylko na equippableitem
-    private void EquipFromInventory(Item item)
+        //potrzebne bo equip mozna wywolac tylko na equippableitem
+        private void EquipFromInventory(Item item)
     {
         if(item is EquippableItem)
         {
