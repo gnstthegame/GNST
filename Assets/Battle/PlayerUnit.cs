@@ -15,9 +15,10 @@ public class PlayerUnit : Unit {
         AP = 0;
         APacc = (int)Inv.Stamina.Value;
         Armor = (int)Inv.Armor.Value;
+        CanMove = true;
+        CanAct = true;
         Skile = Inv.GetSkills();
-
-
+        Items = Inv.GetItems();
     }
     private void Awake() {
         //Effect e = new Effect(0,3, (int dmg, Unit u) => { return 0; });

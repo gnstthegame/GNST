@@ -9,6 +9,7 @@ public class FallingBlock : MonoBehaviour {
     public float falDistance = 100f;
     public float rotLimit = 1f;
     public float smooth = 0.3f;
+    public bool DontRotate = false;
     public Transform tr;
     public SpriteRenderer Rend;
     public Sprite[] symbols = new Sprite[10];
@@ -18,7 +19,9 @@ public class FallingBlock : MonoBehaviour {
     Vector3 temp = Vector3.zero;
 
     void Awake() {
-        transform.Rotate(transform.up, Random.Range(0, 5) * 90f);
+        if (!DontRotate) {
+            transform.Rotate(transform.up, Random.Range(0, 5) * 90f);
+        }
         tr.position += Vector3.up * (Random.value - 0.5f) * 0.2f;
         startPos = tr.position;
         startRot = tr.rotation;

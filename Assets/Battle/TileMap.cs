@@ -51,20 +51,44 @@ public class TileMap : MonoBehaviour {
     List<Unit> Units;
     List<Unit> PlayerUnits = new List<Unit>();
     List<Unit> EnemyUnits = new List<Unit>();
+    List<Unit> DeadUnits = new List<Unit>();
     public Pole[,] map;
     Skill selectedSkill;
     bool playerTurn = true;
     public bool wait = false;
-    
+
     public int mapSizeX = 10;
     public int mapSizeY = 10;
     float far;
 
+    InputMenager IM;
+    RewardMenu RM;
+    private void OnValidate() {
+        IM = FindObjectOfType<InputMenager>();
+        RM = FindObjectOfType<RewardMenu>();
+    }
+
+
     public void UnitDie(Unit u) {
+        DeadUnits.Add(u);
         Units.Remove(u);
         PlayerUnits.Remove(u);
         EnemyUnits.Remove(u);
         tiles[u.tileX, u.tileY].Unit = null;
+        if (PlayerUnits.Count < 1) {
+            //game Over
+            IM.BlockMenu();
+        }
+        if (EnemyUnits.Count < 1) {
+            //Battle end
+            List<Ai.Loot> reward = new List<Ai.Loot>();
+            foreach (Ai a in DeadUnits) {
+                reward.Add(a.Clear());
+            }
+            RM.Show(reward);
+            PlayerUnits[0].GetComponent<CharacterMotor>().enabled = true;
+            Destroy(gameObject);
+        }
     }
 
     private void Start() {
@@ -80,7 +104,7 @@ public class TileMap : MonoBehaviour {
         foreach (Unit u in EnemyUnits) {
             u.NewRound();
         }
-        foreach(Unit u in PlayerUnits) {
+        foreach (Unit u in PlayerUnits) {
             u.hud.Unselect();
         }
         AiBehavior();
@@ -140,7 +164,8 @@ public class TileMap : MonoBehaviour {
                 uu.Activ();
                 u.hud.Activ(u, true);
             }
-            int ux = Mathf.CeilToInt((vec.x - tiles[0, 0].transform.position.x) / VisualPrefab.transform.localScale.x), uy = Mathf.CeilToInt((vec.z - tiles[0, 0].transform.position.z) / VisualPrefab.transform.localScale.z)+1;
+            u.hud.Upd();
+            int ux = Mathf.CeilToInt((vec.x - tiles[0, 0].transform.position.x) / VisualPrefab.transform.localScale.x), uy = Mathf.CeilToInt((vec.z - tiles[0, 0].transform.position.z) / VisualPrefab.transform.localScale.z) + 1;
             ux = Mathf.Clamp(ux, 0, mapSizeX - 1);
             uy = Mathf.Clamp(uy, 0, mapSizeY - 1);
             int tx = ux, ty = uy;
@@ -159,6 +184,7 @@ public class TileMap : MonoBehaviour {
             u.tileY = uy;
             u.MoveToPos(new Vector3(tiles[ux, uy].transform.position.x, u.transform.position.y, tiles[ux, uy].transform.position.z));
             Debug.Log("asign" + ux.ToString() + uy.ToString());
+            u.NewRound();
         }
         EnemyEndTurn();
     }
@@ -205,7 +231,7 @@ public class TileMap : MonoBehaviour {
     }
 
     public void AtackMode(int k) {
-        if (selectedUnit == null) {
+        if (selectedUnit == null || k <3 && !selectedUnit.CanAct) {
             return;
         }
         selectedSkill = selectedUnit.GetSkill(k);
@@ -538,10 +564,8 @@ public class TileMap : MonoBehaviour {
         p.executor.AP -= p.useSkill.Cost;
         p.executor.CanAct = false;
         Vector2 AtackPoint = p.target;
-        if (p.executor.animated) {
-            wait = true;
-            p.executor.CastSkill(p);
-        }
+        wait = true;
+        p.executor.CastSkill(p);
         yield return new WaitUntil(() => wait == false);
         float TLuck = p.executor.TestLuck();
 

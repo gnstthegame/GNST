@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
+  m_Name: Shield
+  m_EditorClassIdentifier: 
+  id: 3848034699e541d40a6c2b18548e1085
+  Name: Tarcza
+  Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  BuyValue: 0
+  SellValue: 0
+  Strength: 0
+  Agility: 0
+  Stamina: 0
+  Luck: 0
+  Armor: 0
+  equipmentType: 3
+  Opis: "Na 1 tur\u0119 zwi\u0119ksza pancerz o 2"
+  Area:
+  - {x: 0, y: -1}
+  Dmg: {x: 0, y: 0}
+  Cost: 1
+  AnimTrigger: Shield
+  AttackRange: 0
+  Model3d: {fileID: 0}
+  positive: 1
+  Efekt: 1
+  OnDestroy: 2
+  EfektPower: 2
+  EffectTriggered: 2
+  CzasTrwania: 1

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
+  m_Name: Bow
+  m_EditorClassIdentifier: 
+  id: e3c30281ce5751e4e881ea555485d2c6
+  Name: "\u0141uk"
+  Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  BuyValue: 0
+  SellValue: 0
+  Strength: 0
+  Agility: 0
+  Stamina: 0
+  Luck: 0
+  Armor: 0
+  equipmentType: 3
+  Opis: 
+  Area:
+  - {x: 0, y: 0}
+  Dmg: {x: 3, y: 4}
+  Cost: 2
+  AnimTrigger: Shoot
+  AttackRange: 5
+  Model3d: {fileID: 0}
+  positive: 0
+  Efekt: 0
+  OnDestroy: 0
+  EfektPower: 0
+  EffectTriggered: 2
+  CzasTrwania: 0

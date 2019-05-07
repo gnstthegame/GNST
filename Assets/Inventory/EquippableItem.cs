@@ -20,23 +20,20 @@ public class EquippableItem : Item {
     public int Luck;
     public int Armor;
     public EquipmentType equipmentType;
-    public bool Weapon;
-    [System.Serializable]
-    public class weapo {
-        public Vector2[] Area;
-        public Vector2 Dmg;
-        public int Cost;
-        public string AnimTrigger;
-        public int AttackRange;
-        public GameObject Model3d;
+    public string Opis;
 
-        public bool positive;
-        Effect.EffectType Efekt, OnDestroy;
-        int EfektPower;
-        Effect.trig EffectTriggered;
-        int CzasTrwania;
-    }
-    public weapo[] w;
+    public Vector2[] Area;
+    public Vector2 Dmg;
+    public int Cost;
+    public string AnimTrigger;
+    public int AttackRange;
+    public GameObject Model3d;
+
+    public bool positive;
+    public Effect.EffectType Efekt, OnDestroy;
+    public int EfektPower;
+    public Effect.trig EffectTriggered;
+    public int CzasTrwania;
     //public Skill(Vector2[] AtackArea, Vector2 Damage, int cost, string AnimationTrigger, Effect.trig trigg, int duration = 0, int value = 0, Effect.DelegationType Function = 0, Effect.DelegationType onDestroy = 0, bool Positive = false, int Range = 0) {
 
 
@@ -53,13 +50,12 @@ public class EquippableItem : Item {
         if (Armor != 0)
             c.Armor.AddModifier(new StatModifier(Armor, StatModType.Flat, this));
     }
-    //public override Skill getskill() {
-    //    Skill skl = new Skill(Area, Dmg, Cost, AnimTrigger Sprite, Model3d,effec
-    //    };
-    //    return skl;
-    //}
+    public override Skill getskill() {
+        Skill skl = new Skill(Area, Dmg, Cost, AnimTrigger, Sprite, Model3d, EffectTriggered, CzasTrwania, EfektPower, Efekt, OnDestroy, positive, AttackRange);
+        return skl;
+    }
 
-    public void Unequip(InventoryManager c) {
+public void Unequip(InventoryManager c) {
         c.Strength.RemoveAllModifiersFromSource(this);
         c.Agility.RemoveAllModifiersFromSource(this);
         c.Stamina.RemoveAllModifiersFromSource(this);

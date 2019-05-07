@@ -227,6 +227,47 @@ ModelImporter:
     4300076: box14
     4300078: ladder
     4300080: fence
+    6400000: 1 lights
+    6400002: 2 lights
+    6400004: 3 lights
+    6400006: box1
+    6400008: box10
+    6400010: box11
+    6400012: box12
+    6400014: box13
+    6400016: box14
+    6400018: box15
+    6400020: box16
+    6400022: box17
+    6400024: box18
+    6400026: box19
+    6400028: box2
+    6400030: box20
+    6400032: box21
+    6400034: box22
+    6400036: box23
+    6400038: box24
+    6400040: box25
+    6400042: box3
+    6400044: box4
+    6400046: box5
+    6400048: box6
+    6400050: box7
+    6400052: box8
+    6400054: box9
+    6400056: fence
+    6400058: fireplace
+    6400060: fireplace.001
+    6400062: ladder
+    6400064: pot_4.001
+    6400066: pot_4.003
+    6400068: pot_4.004
+    6400070: pot_4.005
+    6400072: Sewers
+    6400074: tire
+    6400076: trash
+    6400078: trash.001
+    6400080: trash.002
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -345,7 +386,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1

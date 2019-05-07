@@ -10,9 +10,6 @@ public class Unit : MonoBehaviour {
     public int ArmorBase = 0, APaccBase = 2;//private
     public int ArmorMod = 0, APaccMod = 2;
     public int LuckMod = 0,  luckBase = 0;
-    /// <summary>
-    /// ///////////////////////////////////////////////////////////
-    /// </summary>
     public int ap = 2;//private
     public int MovRange = 3, MovMod=0;
     public Transform Hand;
@@ -21,13 +18,13 @@ public class Unit : MonoBehaviour {
     internal TileMap map;
     public Pole[,] mapa;
     internal List<Effect> Effects = new List<Effect>();
-    public bool animated = false;
     public bool CanMove = true;
     public bool CanAct = true;
     internal int lastUsedSkill;
     internal Animator anim;
     public bool agresive = true;//defense offens
     public List<Skill> Skile = new List<Skill>();
+    public List<Item> Items = new List<Item>();
     Coroutine rut;
     GameObject weapon;
 
@@ -65,9 +62,7 @@ public class Unit : MonoBehaviour {
         CanAct = false;
     }
     private void Start() {
-        if (animated) {
             anim = GetComponent<Animator>();
-        }
     }
 
 
@@ -82,15 +77,15 @@ public class Unit : MonoBehaviour {
             }
         }
         Effects.RemoveAll(item => item.Duration <= 0);
-
+        HP = HP;
         AP += APacc;
         CanMove = true;
         CanAct = true;
-
+        hud.Upd();
     }
     public Skill GetSkill(int k) {
-        if (k >= Skile.Count) {
-            return null;
+        if (k >2) {
+            return Items[k - 3].getskill();
         }
         lastUsedSkill = k;
         return Skile[k];
@@ -98,7 +93,7 @@ public class Unit : MonoBehaviour {
     void Die() {
         map.UnitDie(this);
         anim.SetTrigger("Die");
-        Destroy(this);
+        hud.Deactiv();
     }
     public void GetAttack(int dmg, Effect e = null) {
         if (e != null) {
@@ -125,7 +120,6 @@ public class Unit : MonoBehaviour {
         hud.Upd();
     }
     public float TestLuck() {
-        Vector2 dmg = new Vector2(2, 5);
         float RandomValue = Random.value;
         float luckNorm = (float)(10 - Luck) / 10f;
         if (RandomValue > luckNorm) {
@@ -143,6 +137,7 @@ public class Unit : MonoBehaviour {
         CanMove = false;
         anim.SetTrigger(p.useSkill.trigger);
         map.ClearTiles(true);
+        hud.Upd();
         Destroy(weapon);
         if (p.useSkill.Model!=null) weapon = Instantiate(p.useSkill.Model,Hand.position,Hand.rotation,Hand);
         StartCoroutine(RotateTowards(map.tiles[(int)p.target.x, (int)p.target.y].transform.position));
@@ -150,7 +145,7 @@ public class Unit : MonoBehaviour {
     }
     IEnumerator Steps(Queue<Pole> v) {
         if (v != null) {
-            if (animated && v.Count > 0) {
+            if (v.Count > 0) {
                 if (map != null && map.tiles != null && map.tiles[tileX, tileY] != null) {
                     map.tiles[tileX, tileY].Unit = null;
                 }

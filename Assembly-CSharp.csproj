@@ -75,6 +75,7 @@
     <Compile Include="Assets\Battle\ClickableTile.cs" />
     <Compile Include="Assets\Battle\Hud.cs" />
     <Compile Include="Assets\Battle\PlayerUnit.cs" />
+    <Compile Include="Assets\Battle\RewardMenu.cs" />
     <Compile Include="Assets\Battle\Skill.cs" />
     <Compile Include="Assets\Battle\TileMap.cs" />
     <Compile Include="Assets\Battle\Trigger.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="Assets\Levels\ShadowRealm\FallingBlock.cs" />
     <Compile Include="Assets\Levels\ShadowRealm\FallingTrigger.cs" />
     <Compile Include="Assets\Levels\ShadowRealm\ShadowRealm.cs" />
+    <Compile Include="Assets\Menu\InputMenager.cs" />
     <Compile Include="Assets\Menu\MainMenu.cs" />
     <Compile Include="Assets\Menu\PauseMenu.cs" />
     <Compile Include="Assets\Menu\SettingsMenu.cs" />

@@ -26,7 +26,7 @@ public class Effect {
     public enum EffectType {
         Null,
         ArmorPlus,
-        Armor,
+        ArmorMinus,
         APPlus,
         APMinus,
         APaccPlus,
