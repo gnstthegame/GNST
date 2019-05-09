@@ -1,0 +1,396 @@
+fileFormatVersion: 2
+guid: 851658a2a9fd2a14fac7667bd8b40b6c
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: 1 lights
+    100002: 2 lights
+    100004: 3 lights
+    100006: box1
+    100008: box10
+    100010: box11
+    100012: box12
+    100014: box13
+    100016: box14
+    100018: box15
+    100020: box16
+    100022: box17
+    100024: box18
+    100026: box19
+    100028: box2
+    100030: box20
+    100032: box21
+    100034: box22
+    100036: box23
+    100038: box24
+    100040: box25
+    100042: box3
+    100044: box4
+    100046: box5
+    100048: box6
+    100050: box7
+    100052: box8
+    100054: box9
+    100056: fence
+    100058: fireplace
+    100060: fireplace.001
+    100062: ladder
+    100064: //RootNode
+    100066: pot_4.001
+    100068: pot_4.003
+    100070: pot_4.004
+    100072: pot_4.005
+    100074: Sewers
+    100076: tire
+    100078: trash
+    100080: trash.001
+    100082: trash.002
+    400000: 1 lights
+    400002: 2 lights
+    400004: 3 lights
+    400006: box1
+    400008: box10
+    400010: box11
+    400012: box12
+    400014: box13
+    400016: box14
+    400018: box15
+    400020: box16
+    400022: box17
+    400024: box18
+    400026: box19
+    400028: box2
+    400030: box20
+    400032: box21
+    400034: box22
+    400036: box23
+    400038: box24
+    400040: box25
+    400042: box3
+    400044: box4
+    400046: box5
+    400048: box6
+    400050: box7
+    400052: box8
+    400054: box9
+    400056: fence
+    400058: fireplace
+    400060: fireplace.001
+    400062: ladder
+    400064: //RootNode
+    400066: pot_4.001
+    400068: pot_4.003
+    400070: pot_4.004
+    400072: pot_4.005
+    400074: Sewers
+    400076: tire
+    400078: trash
+    400080: trash.001
+    400082: trash.002
+    2100000: Sewers
+    2100002: Bin
+    2100004: Box3
+    2100006: Pot
+    2100008: Cable
+    2100010: Bulb
+    2100012: Box5
+    2100014: Box2
+    2100016: Box6
+    2100018: Box4
+    2100020: Fire
+    2100022: Box
+    2100024: Tire
+    2100026: Ladder
+    2100028: Ground
+    2100030: Bulb2
+    2100032: Bulb3
+    2300000: 1 lights
+    2300002: 2 lights
+    2300004: 3 lights
+    2300006: box1
+    2300008: box10
+    2300010: box11
+    2300012: box12
+    2300014: box13
+    2300016: box14
+    2300018: box15
+    2300020: box16
+    2300022: box17
+    2300024: box18
+    2300026: box19
+    2300028: box2
+    2300030: box20
+    2300032: box21
+    2300034: box22
+    2300036: box23
+    2300038: box24
+    2300040: box25
+    2300042: box3
+    2300044: box4
+    2300046: box5
+    2300048: box6
+    2300050: box7
+    2300052: box8
+    2300054: box9
+    2300056: fence
+    2300058: fireplace
+    2300060: fireplace.001
+    2300062: ladder
+    2300064: pot_4.001
+    2300066: pot_4.003
+    2300068: pot_4.004
+    2300070: pot_4.005
+    2300072: Sewers
+    2300074: tire
+    2300076: trash
+    2300078: trash.001
+    2300080: trash.002
+    3300000: 1 lights
+    3300002: 2 lights
+    3300004: 3 lights
+    3300006: box1
+    3300008: box10
+    3300010: box11
+    3300012: box12
+    3300014: box13
+    3300016: box14
+    3300018: box15
+    3300020: box16
+    3300022: box17
+    3300024: box18
+    3300026: box19
+    3300028: box2
+    3300030: box20
+    3300032: box21
+    3300034: box22
+    3300036: box23
+    3300038: box24
+    3300040: box25
+    3300042: box3
+    3300044: box4
+    3300046: box5
+    3300048: box6
+    3300050: box7
+    3300052: box8
+    3300054: box9
+    3300056: fence
+    3300058: fireplace
+    3300060: fireplace.001
+    3300062: ladder
+    3300064: pot_4.001
+    3300066: pot_4.003
+    3300068: pot_4.004
+    3300070: pot_4.005
+    3300072: Sewers
+    3300074: tire
+    3300076: trash
+    3300078: trash.001
+    3300080: trash.002
+    4300000: Sewers
+    4300002: trash.002
+    4300004: trash.001
+    4300006: box19
+    4300008: pot_4.005
+    4300010: pot_4.004
+    4300012: pot_4.003
+    4300014: pot_4.001
+    4300016: 1 lights
+    4300018: 2 lights
+    4300020: 3 lights
+    4300022: box25
+    4300024: box24
+    4300026: box23
+    4300028: box22
+    4300030: box21
+    4300032: box18
+    4300034: box17
+    4300036: box16
+    4300038: box15
+    4300040: box13
+    4300042: box8
+    4300044: box9
+    4300046: box7
+    4300048: box6
+    4300050: box5
+    4300052: box4
+    4300054: box3
+    4300056: box2
+    4300058: box1
+    4300060: fireplace.001
+    4300062: fireplace
+    4300064: box12
+    4300066: box11
+    4300068: box10
+    4300070: tire
+    4300072: trash
+    4300074: box20
+    4300076: box14
+    4300078: ladder
+    4300080: fence
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bin
+    second: {fileID: 2100000, guid: acb13195e7f4a4449a9158486f17ef5c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Box
+    second: {fileID: 2100000, guid: 5a6aadbb1629ccd4c9582df056911e89, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Box2
+    second: {fileID: 2100000, guid: 9d88d39d6013797438c12af363ff202e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Box3
+    second: {fileID: 2100000, guid: 91632c4cbef16834ea415e18e75e4e6e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Box4
+    second: {fileID: 2100000, guid: f50c485feb3c6a1439a42ae09b8cf90d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Box5
+    second: {fileID: 2100000, guid: b9f05f31f5979b849abc7cf26f098bf6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Box6
+    second: {fileID: 2100000, guid: 29968d440543ab84c9cd1d8be6addb9d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bulb
+    second: {fileID: 2100000, guid: 64b14faf5cb18f14e8eee6417c554fb2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bulb2
+    second: {fileID: 2100000, guid: 1f6fba63a0795d04c8cabcfcbb3ebde0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bulb3
+    second: {fileID: 2100000, guid: 30f84b3f294ea7d4689ef4a783bcfb8e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cable
+    second: {fileID: 2100000, guid: 1f8aaebc9098b8c4cb9af9814c453f71, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fire
+    second: {fileID: 2100000, guid: eaae0c558a2ec504bb0982f71b3a6097, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ground
+    second: {fileID: 2100000, guid: e17be1b2a34e04a458580278f1c5a7f7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ladder
+    second: {fileID: 2100000, guid: 875626a60db0dc64cb827a9b226d265c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pot
+    second: {fileID: 2100000, guid: 279c9cdda10d04c4586df8cfb255cfc9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sewers
+    second: {fileID: 2100000, guid: 213be2c281890b942b668c0b64cc8694, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tire
+    second: {fileID: 2100000, guid: f1ae7d1a8688b5146a918791b6f05500, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
