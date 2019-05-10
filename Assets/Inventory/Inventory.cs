@@ -6,7 +6,7 @@ using System;
 
 public class Inventory : MonoBehaviour, IItemContainter {
     //przedmioty startowe
-    [SerializeField] List<Item> startingItems;
+    [SerializeField] Item[] startingItems;
     [SerializeField] Transform itemsParent;
     [SerializeField] public ItemSlot[] itemSlots;
     public Text moneyText;
@@ -53,14 +53,16 @@ public class Inventory : MonoBehaviour, IItemContainter {
     private void SetStartingItems()
     {
         int i = 0;
-        for(; i < startingItems.Count && i < itemSlots.Length; i++)
+        for(; i < startingItems.Length && i < itemSlots.Length; i++)
         {
-            itemSlots[i].Item = Instantiate(startingItems[i]);
+            itemSlots[i].Item = startingItems[i].GetCopy();
+            itemSlots[i].Amount = 1;
         }
 
         for (; i < itemSlots.Length; i++)
         {
             itemSlots[i].Item = null;
+            itemSlots[i].Amount = 0;
         }
     }
 
@@ -68,9 +70,10 @@ public class Inventory : MonoBehaviour, IItemContainter {
     {
         for (int i = 0; i < itemSlots.Length; i++)
         {
-            if(itemSlots[i].Item == null)
+            if (itemSlots[i].Item == null || itemSlots[i].CanAddStack(itemSlots[i].Item))
             {
                 itemSlots[i].Item = item;
+                itemSlots[i].Amount++;
                 return true;
             }
         }
@@ -84,7 +87,11 @@ public class Inventory : MonoBehaviour, IItemContainter {
             Item item = itemSlots[i].Item;
             if (item != null && item.ID == itemID)
             {
-                itemSlots[i].Item = null;
+                itemSlots[i].Amount--;
+                if (itemSlots[i].Amount == 0)
+                {
+                    itemSlots[i].Item = null;
+                }
                 return item;
             }
         }
@@ -107,12 +114,29 @@ public class Inventory : MonoBehaviour, IItemContainter {
     {
         for (int i = 0; i < itemSlots.Length; i++)
         {
-            if (item != null)
+            if (itemSlots[i].Item == item)
             {
-                itemSlots[i].Item = null;
-                return item;
+                itemSlots[i].Amount--;
+                if(itemSlots[i].Amount == 0)
+                {
+                    itemSlots[i].Item = null;
+                }            
+                return true;
             }
         }
         return false;
+    }
+
+    public int ItemCount(string itemID)
+    {
+        int amount = 0;
+        for (int i = 0; i < itemSlots.Length; i++)
+        {
+            if (itemSlots[i].Item.ID == itemID)
+            {
+                amount++;
+            }
+        }
+        return amount;
     }
 }

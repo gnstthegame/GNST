@@ -1,16 +1,15 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 
-public enum EquipmentType {
+public enum EquipmentType
+{
     Helmet,
     Chest,
-    Melee,
+    Meele,
     Ranged,
     Usable1,
     Usable2,
     Usable3
 }
-
 
 [CreateAssetMenu]
 public class EquippableItem : Item {
@@ -19,26 +18,22 @@ public class EquippableItem : Item {
     public int Stamina;
     public int Luck;
     public int Armor;
+    public int Crit;
+    public int Hit;
     public EquipmentType equipmentType;
-    public string Opis;
 
-    public Vector2[] Area;
-    public Vector2 Dmg;
-    public int Cost;
-    public string AnimTrigger;
-    public int AttackRange;
-    public GameObject Model3d;
+    public override Item GetCopy()
+    {
+        return Instantiate(this);
+    }
 
-    public bool positive;
-    public Effect.EffectType Efekt, OnDestroy;
-    public int EfektPower;
-    public Effect.trig EffectTriggered;
-    public int CzasTrwania;
-    //public Skill(Vector2[] AtackArea, Vector2 Damage, int cost, string AnimationTrigger, Effect.trig trigg, int duration = 0, int value = 0, Effect.DelegationType Function = 0, Effect.DelegationType onDestroy = 0, bool Positive = false, int Range = 0) {
-
-
+    public override void Destroy()
+    {
+        Destroy(this);
+    }
     //Tutaj beda modyfikatory statystyk
-    public void Equip(InventoryManager c) {
+    public void Equip(InventoryManager c)
+    {
         if (Strength != 0)
             c.Strength.AddModifier(new StatModifier(Strength, StatModType.Flat, this));
         if (Agility != 0)
@@ -49,17 +44,20 @@ public class EquippableItem : Item {
             c.Luck.AddModifier(new StatModifier(Luck, StatModType.Flat, this));
         if (Armor != 0)
             c.Armor.AddModifier(new StatModifier(Armor, StatModType.Flat, this));
-    }
-    public override Skill getskill() {
-        Skill skl = new Skill(Area, Dmg, Cost, AnimTrigger, Sprite, Model3d, EffectTriggered, CzasTrwania, EfektPower, Efekt, OnDestroy, positive, AttackRange);
-        return skl;
+        if (Crit != 0)
+            c.Crit.AddModifier(new StatModifier(Crit, StatModType.Flat, this));
+        if (Hit != 0)
+            c.Hit.AddModifier(new StatModifier(Hit, StatModType.Flat, this));
     }
 
-public void Unequip(InventoryManager c) {
+    public void Unequip(InventoryManager c)
+    {
         c.Strength.RemoveAllModifiersFromSource(this);
         c.Agility.RemoveAllModifiersFromSource(this);
         c.Stamina.RemoveAllModifiersFromSource(this);
         c.Luck.RemoveAllModifiersFromSource(this);
         c.Armor.RemoveAllModifiersFromSource(this);
+        c.Crit.RemoveAllModifiersFromSource(this);
+        c.Hit.RemoveAllModifiersFromSource(this);
     }
 }

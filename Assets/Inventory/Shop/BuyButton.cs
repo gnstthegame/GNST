@@ -3,67 +3,93 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
-public class BuyButton : MonoBehaviour {
+public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     [SerializeField] public Image image;
     [SerializeField] public Item item;
     [SerializeField] Button button;
     [SerializeField] Inventory inventory;
     [SerializeField] Shop shop;
-    [SerializeField] ItemTooltip shopTooltip;
     [SerializeField] GameObject shopPanel;
+    [SerializeField] ItemTooltip shopTooltip;
+    public int stackSize;
+    [SerializeField] public Text stackText;
 
-	// Use this for initialization
-	void Start () {
+    public event Action<BuyButton> OnPointerEnterEvent;
+    public event Action<BuyButton> OnPointerExitEvent;
+
+    // Use this for initialization
+    void Start () {
         image = GetComponent<Image>();
         button = GetComponent<Button>();
         button.onClick.AddListener(Buy);
 	}
+
+    private void OnValidate()
+    {
+        stackText = GetComponentInChildren<Text>();
+    }
 
     private void Update()
     {
         if (item == null)
         {
             image.color = new Color(0, 0, 0, 0);
+            stackText.enabled = false;
         }
         else
         {
             image.color = Color.white;
             image.sprite = item.Sprite;
-        }
-
-        if (EventSystem.current.IsPointerOverGameObject())
-        {
-            if(item != null && shopPanel.activeInHierarchy)
+            if(stackSize > 1)
             {
-                if (item is EquippableItem)
-                    shopTooltip.ShowTooltip((EquippableItem)item);
-                else if (item is UsableItem)
-                    shopTooltip.ShowTooltip((UsableItem)item);
+                stackText.enabled = true;
+                stackText.text = stackSize.ToString();
+            }
+            else
+            {
+                stackText.enabled = false;
             }
         }
-        else
-        {
-            shopTooltip.HideTooltip();
-        }
     }
-
+    //nie stackuje
     public void Buy()
     {
-        if(item != null && item.BuyValue <= inventory.money && shop.sellItems.Count > 0)
+        if(item != null && item.BuyValue <= inventory.money)
         {
             for (int i = 0; i < shop.sellItems.Count - 1; i++)
             {
                 if (shop.sellItems[i] == item)
                 {
+                    stackSize--;
                     inventory.AddItem(item);
-                    shop.sellItems[i] = null;
                     inventory.money -= item.BuyValue;
-                    item = null;
+                    if (stackSize == 0)
+                    {
+                        shop.sellItems[i] = null;
+                        item = null;
+                    }
                     break;
                 }
             }            
         }
         Debug.Log("Zakupiono");
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (OnPointerExitEvent != null)
+        {
+            OnPointerExitEvent(this);
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (OnPointerEnterEvent != null)
+        {
+            OnPointerEnterEvent(this);
+        }
     }
 }

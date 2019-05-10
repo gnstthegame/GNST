@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 114236014537014894}
   - component: {fileID: 114578926186285642}
   m_Layer: 5
-  m_Name: Melee Slot
+  m_Name: Meele Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1302,7 +1302,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: STRENGTH
+  m_Text: strength
 --- !u!114 &114281042275950118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1395,7 +1395,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: AGILITY
+  m_Text: agility
 --- !u!114 &114333415003892558
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1778,7 +1778,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: LUCK
+  m_Text: luck
 --- !u!114 &114596191875229316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1895,7 +1895,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: ARMOR
+  m_Text: armor
 --- !u!114 &114615410298446744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2043,7 +2043,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: LEVEL
+  m_Text: level
 --- !u!114 &114710903552699584
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2209,7 +2209,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: CRIT CHANCE
+  m_Text: crit chance
 --- !u!114 &114797830635944336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2242,7 +2242,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: STAMINA
+  m_Text: stamina
 --- !u!114 &114816067054469204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2348,7 +2348,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: HIT RATING
+  m_Text: hit rating
 --- !u!114 &114918224714556380
 MonoBehaviour:
   m_ObjectHideFlags: 1

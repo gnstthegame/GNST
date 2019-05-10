@@ -11,30 +11,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  id: 60e7c0c9c4348474c9a0c5672d54c7ba
-  Name: Ognisty Miecz
+  Id: 2
+  Name: Meele Sword
   Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  BuyValue: 0
-  SellValue: 0
   Strength: 0
   Agility: 0
   Stamina: 0
   Luck: 0
   Armor: 0
-  equipmentType: 2
-  Opis: Atakuje 3 pola i podpala cele na 3 tury
+  Crit: 0
+  Hit: 0
+  Dmg: {x: 2, y: 4}
   Area:
-  - {x: -1, y: 0}
-  - {x: 0, y: 0}
-  - {x: 1, y: 0}
-  Dmg: {x: 2, y: 5}
-  Cost: 2
-  AnimTrigger: Punch
+  - {x: 0, y: 1}
+  Cost: 1
   AttackRange: 0
-  Model3d: {fileID: 0}
+  AnimTrigger: Dash
+  Model3d: {fileID: 1261094532972180, guid: fcd7fc46184d7be4883442d00e2933ac, type: 2}
   positive: 0
-  Efekt: 8
-  OnDestroy: 0
-  EfektPower: 2
-  EffectTriggered: 1
-  CzasTrwania: 3
+  equipmentType: 2

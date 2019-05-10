@@ -29,7 +29,7 @@ public class StatDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         get { return _name; }
         set {
             _name = value;
-            //nameText.text = _name.ToUpper();
+            nameText.text = _name.ToLower();
         }
     }
 

@@ -9,6 +9,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
     private Item _item;
     [SerializeField] Image image;
+    [SerializeField] Text amountText;
     Vector2 originalPosition;
 
     //zdarzenie ktore sprawdza czy kliknieto prawy przycisk myszy 
@@ -42,17 +43,46 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         }
     }
 
+    private int _amount;
+    public int Amount {
+        get { return _amount; }
+        set{
+            _amount = value;
+            if (_amount < 0) _amount = 0;
+            if (_amount == 0) Item = null;
+
+            if (amountText != null)
+            {
+                amountText.enabled = _item != null && _amount > 1;
+                if (amountText.enabled)
+                {
+                    amountText.text = _amount.ToString();
+                }
+            }            
+        }
+    }
+
     protected virtual void OnValidate()
     {
         if(image == null)
         {
             image = GetComponent<Image>();
         }
+
+        if(amountText == null)
+        {
+            amountText = GetComponentInChildren<Text>();
+        }
     }
 
     public virtual bool CanReceiveItem(Item item)
     {
         return true;
+    }
+
+    public bool CanAddStack(Item item, int amount = 1)
+    {
+        return (Item != null && Item.ID == item.ID && Amount + amount <= item.MaximumStacks);
     }
 
     //Klikniecie w slot

@@ -696,7 +696,7 @@ GameObject:
   - component: {fileID: 114102979600223110}
   - component: {fileID: 114645930026490580}
   m_Layer: 5
-  m_Name: Melee Slot
+  m_Name: Meele Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1376,6 +1376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114015997541516190}
+  amountText: {fileID: 0}
 --- !u!114 &114043319691108492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1388,6 +1389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114850722305470088}
+  amountText: {fileID: 0}
 --- !u!114 &114045662958845824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1487,8 +1489,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114343530365210672}
+  amountText: {fileID: 0}
   equipmentType: 6
-  equippableItem: {fileID: 0}
 --- !u!114 &114070093872469646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1547,6 +1549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114441467247038318}
+  amountText: {fileID: 0}
 --- !u!114 &114102979600223110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1613,6 +1616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114926557558972758}
+  amountText: {fileID: 0}
 --- !u!114 &114126062568700182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1625,6 +1629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114331419830850418}
+  amountText: {fileID: 0}
 --- !u!114 &114135655490348474
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1657,7 +1662,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: STAMINA
+  m_Text: stamina
 --- !u!114 &114149904799010978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1697,6 +1702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114060925110296394}
+  amountText: {fileID: 0}
 --- !u!114 &114184051693383630
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1729,7 +1735,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: CRIT CHANCE
+  m_Text: crit chance
 --- !u!114 &114185863201134338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1776,7 +1782,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: AGILITY
+  m_Text: agility
 --- !u!114 &114197338394980722
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1843,8 +1849,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114111757589726456}
+  amountText: {fileID: 0}
   equipmentType: 3
-  equippableItem: {fileID: 0}
 --- !u!114 &114213847117995034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1877,7 +1883,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: LUCK
+  m_Text: luck
 --- !u!114 &114237348553935818
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1923,8 +1929,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114367267835120600}
+  amountText: {fileID: 0}
   equipmentType: 0
-  equippableItem: {fileID: 0}
 --- !u!114 &114244600689729444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1991,6 +1997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114727047216268694}
+  amountText: {fileID: 0}
 --- !u!114 &114268105746689634
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2043,7 +2050,10 @@ MonoBehaviour:
     BaseValue: 5
   Armor:
     BaseValue: 5
-  fist: {fileID: 0}
+  Crit:
+    BaseValue: 5
+  Hit:
+    BaseValue: 5
   statPanel: {fileID: 114647733741113456}
   itemTooltip: {fileID: 0}
   draggableItem: {fileID: 0}
@@ -2624,6 +2634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114282517448024606}
+  amountText: {fileID: 0}
 --- !u!114 &114515457398976660
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2655,8 +2666,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114615478202592180}
+  amountText: {fileID: 0}
   equipmentType: 1
-  equippableItem: {fileID: 0}
 --- !u!114 &114535390966647914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2729,6 +2740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114070093872469646}
+  amountText: {fileID: 0}
 --- !u!114 &114576307505892826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2768,6 +2780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114014223666297688}
+  amountText: {fileID: 0}
 --- !u!114 &114592019382345584
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2876,8 +2889,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114197338394980722}
+  amountText: {fileID: 0}
   equipmentType: 4
-  equippableItem: {fileID: 0}
 --- !u!114 &114645930026490580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2890,8 +2903,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114102979600223110}
+  amountText: {fileID: 0}
   equipmentType: 2
-  equippableItem: {fileID: 0}
 --- !u!114 &114647733741113456
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2933,6 +2946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114432546113182694}
+  amountText: {fileID: 0}
 --- !u!114 &114681942392203370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3042,6 +3056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114831352723261848}
+  amountText: {fileID: 0}
 --- !u!114 &114739752250278676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3093,7 +3108,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: LEVEL
+  m_Text: level
 --- !u!114 &114748320584222732
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3140,7 +3155,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: HIT RATING
+  m_Text: hit rating
 --- !u!114 &114769826435075020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3153,6 +3168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114955580344677518}
+  amountText: {fileID: 0}
 --- !u!114 &114775314404449710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3184,6 +3200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114254087662326302}
+  amountText: {fileID: 0}
 --- !u!114 &114790015951296078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3237,6 +3254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114323678813521854}
+  amountText: {fileID: 0}
 --- !u!114 &114831352723261848
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3317,6 +3335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114471179133980564}
+  amountText: {fileID: 0}
 --- !u!114 &114859002153985668
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3329,6 +3348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114922018291852148}
+  amountText: {fileID: 0}
 --- !u!114 &114867574808985044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3380,7 +3400,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: ARMOR
+  m_Text: armor
 --- !u!114 &114905860826201624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3393,8 +3413,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114918576052495830}
+  amountText: {fileID: 0}
   equipmentType: 5
-  equippableItem: {fileID: 0}
 --- !u!114 &114906200885830250
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3434,6 +3454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114790015951296078}
+  amountText: {fileID: 0}
 --- !u!114 &114918576052495830
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3607,7 +3628,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: STRENGTH
+  m_Text: strength
 --- !u!114 &114997002451083014
 MonoBehaviour:
   m_ObjectHideFlags: 1

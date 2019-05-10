@@ -38,6 +38,8 @@ public class Shop : MonoBehaviour {
                 {
                     Debug.Log("Test");
                     shop.canvasGroup.alpha = 1;
+                    shop.canvasGroup.interactable = true;
+                    shop.canvasGroup.blocksRaycasts = true;
                     //canvasGroup.alpha = 0;
                 }
             }
@@ -54,7 +56,9 @@ public class Shop : MonoBehaviour {
     private void OnTriggerExit(Collider other)
     {
         isInRange = false;
-        shop.canvasGroup.alpha = 0; 
+        shop.canvasGroup.alpha = 0;
+        shop.canvasGroup.interactable = false;
+        shop.canvasGroup.blocksRaycasts = false;
     }
 
    
