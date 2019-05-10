@@ -15,7 +15,7 @@ public class PlayerUnit : Unit {
         AP = 0;
         APacc = (int)Inv.Stamina.Value;
         Armor = (int)Inv.Armor.Value;
-        Skile = Inv.GetSkills();
+        //Skile = Inv.GetSkills();
 
 
     }

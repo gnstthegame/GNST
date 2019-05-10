@@ -83,6 +83,29 @@
     <Compile Include="Assets\Invector-3rdPersonController\Scripts\Generic\vDestroyGameObject.cs" />
     <Compile Include="Assets\Invector-3rdPersonController\Scripts\Generic\vExtensions.cs" />
     <Compile Include="Assets\Invector-3rdPersonController\Scripts\Generic\vPickupItem.cs" />
+    <Compile Include="Assets\Inventory\Collectable.cs" />
+    <Compile Include="Assets\Inventory\EquipmentPanel.cs" />
+    <Compile Include="Assets\Inventory\EquipmentSlot.cs" />
+    <Compile Include="Assets\Inventory\EquippableItem.cs" />
+    <Compile Include="Assets\Inventory\ExampleItem.cs" />
+    <Compile Include="Assets\Inventory\IItemContainter.cs" />
+    <Compile Include="Assets\Inventory\Inventory.cs" />
+    <Compile Include="Assets\Inventory\InventoryInput.cs" />
+    <Compile Include="Assets\Inventory\InventoryManager.cs" />
+    <Compile Include="Assets\Inventory\Item.cs" />
+    <Compile Include="Assets\Inventory\ItemSlot.cs" />
+    <Compile Include="Assets\Inventory\ItemTooltip.cs" />
+    <Compile Include="Assets\Inventory\Shop\BuyButton.cs" />
+    <Compile Include="Assets\Inventory\Shop\PanelOpener.cs" />
+    <Compile Include="Assets\Inventory\Shop\SellButton.cs" />
+    <Compile Include="Assets\Inventory\Shop\Shop.cs" />
+    <Compile Include="Assets\Inventory\Shop\ShopManager.cs" />
+    <Compile Include="Assets\Inventory\StatDisplay.cs" />
+    <Compile Include="Assets\Inventory\StatPanel.cs" />
+    <Compile Include="Assets\Inventory\Stats\CharacterStat.cs" />
+    <Compile Include="Assets\Inventory\Stats\StatModifier.cs" />
+    <Compile Include="Assets\Inventory\StatTooltip.cs" />
+    <Compile Include="Assets\Inventory\UsableItem.cs" />
     <Compile Include="Assets\Menu\MainMenu.cs" />
     <Compile Include="Assets\Menu\PauseMenu.cs" />
     <Compile Include="Assets\Menu\SettingsMenu.cs" />
@@ -137,27 +160,7 @@
     <Compile Include="Assets\Scripts\CharacterMotor.cs" />
     <Compile Include="Assets\Scripts\DamageReciver.cs" />
     <Compile Include="Assets\Scripts\DoorTrigger.cs" />
-    <Compile Include="Assets\Scripts\Inventory\Collectable.cs" />
-    <Compile Include="Assets\Scripts\Inventory\EquipmentPanel.cs" />
-    <Compile Include="Assets\Scripts\Inventory\EquipmentSlot.cs" />
-    <Compile Include="Assets\Scripts\Inventory\EquippableItem.cs" />
-    <Compile Include="Assets\Scripts\Inventory\Inventory.cs" />
-    <Compile Include="Assets\Scripts\Inventory\InventoryInput.cs" />
-    <Compile Include="Assets\Scripts\Inventory\InventoryManager.cs" />
-    <Compile Include="Assets\Scripts\Inventory\Item.cs" />
-    <Compile Include="Assets\Scripts\Inventory\ItemSlot.cs" />
-    <Compile Include="Assets\Scripts\Inventory\ItemTooltip.cs" />
-    <Compile Include="Assets\Scripts\Inventory\Shop\BuyButton.cs" />
-    <Compile Include="Assets\Scripts\Inventory\Shop\PanelOpener.cs" />
-    <Compile Include="Assets\Scripts\Inventory\Shop\SellButton.cs" />
-    <Compile Include="Assets\Scripts\Inventory\Shop\Shop.cs" />
-    <Compile Include="Assets\Scripts\Inventory\Shop\ShopManager.cs" />
-    <Compile Include="Assets\Scripts\Inventory\StatDisplay.cs" />
-    <Compile Include="Assets\Scripts\Inventory\StatPanel.cs" />
-    <Compile Include="Assets\Scripts\Inventory\StatTooltip.cs" />
     <Compile Include="Assets\Scripts\RandomSlide.cs" />
-    <Compile Include="Assets\Scripts\Stats\CharacterStat.cs" />
-    <Compile Include="Assets\Scripts\Stats\StatModifier.cs" />
     <Compile Include="Assets\Scripts\Weapon.cs" />
     <Compile Include="Assets\ShadowRealm\FallingBlock.cs" />
     <Compile Include="Assets\ShadowRealm\FallingTrigger.cs" />
@@ -213,40 +216,40 @@
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
     <None Include="Assets\Editor Default Resources\UMotionEditor\Shaders\CameraLit.shader" />
     <Reference Include="Unity.RenderPipelines.Core.Editor">
-      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
+      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Lightweight.Runtime">
-      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.RenderPipelines.Lightweight.Runtime.dll</HintPath>
+      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.RenderPipelines.Lightweight.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Lightweight.Editor">
-      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.RenderPipelines.Lightweight.Editor.dll</HintPath>
+      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.RenderPipelines.Lightweight.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
-      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
+      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.IncludePaths">
-      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.RenderPipelines.Core.IncludePaths.dll</HintPath>
+      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.RenderPipelines.Core.IncludePaths.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Staff/Unity2018.2/2018.2.19f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -447,7 +450,7 @@
       <HintPath>D:/Staff/Unity2018.2/2018.2.19f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UMotionApplication">
-      <HintPath>D:/inf/Unity/GNST/Assets/Editor Default Resources/UMotionEditor/Plugins/Application/UMotionApplication.dll</HintPath>
+      <HintPath>D:/GNST/GNST/Assets/Editor Default Resources/UMotionEditor/Plugins/Application/UMotionApplication.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/Artur/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
