@@ -113,6 +113,9 @@
     <Compile Include="Assets\Menu\InputMenager.cs" />
     <Compile Include="Assets\Menu\MainMenu.cs" />
     <Compile Include="Assets\Menu\PauseMenu.cs" />
+    <Compile Include="Assets\Menu\Player.cs" />
+    <Compile Include="Assets\Menu\savedata.cs" />
+    <Compile Include="Assets\Menu\saveSystem.cs" />
     <Compile Include="Assets\Menu\SettingsMenu.cs" />
     <Compile Include="Assets\PostProcessing\invert.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
