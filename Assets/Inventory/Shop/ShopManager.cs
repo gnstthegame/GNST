@@ -27,6 +27,10 @@ public class ShopManager : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
+        shop = FindObjectOfType<Shop>();
+        if (shop == null) {
+            return;
+        }
         for (int i = 0; i < shop.sellItems.Count; i++)
         {
             if(shop.sellItems[i] != null)
@@ -68,6 +72,18 @@ public class ShopManager : MonoBehaviour {
         
     }
 
+    public void Show() {
+        GetComponent<CanvasGroup>().alpha = 1;
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
+    }
+    public void Hide() {
+        GetComponent<CanvasGroup>().alpha = 0;
+        GetComponent<CanvasGroup>().blocksRaycasts = false;
+    }
+    public void ToggleShow() {
+        GetComponent<CanvasGroup>().alpha = 1- GetComponent<CanvasGroup>().alpha;
+        GetComponent<CanvasGroup>().blocksRaycasts = !GetComponent<CanvasGroup>().blocksRaycasts;
+    }
     // Update is called once per frame
     void Update () {
         int i = 0;

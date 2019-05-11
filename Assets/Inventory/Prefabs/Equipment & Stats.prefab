@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 114236014537014894}
   - component: {fileID: 114578926186285642}
   m_Layer: 5
-  m_Name: Meele Slot
+  m_Name: Melee Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1643,8 +1643,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114422875097058246}
+  amountText: {fileID: 0}
   equipmentType: 1
-  equippableItem: {fileID: 0}
 --- !u!114 &114503315291575974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1717,8 +1717,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114236014537014894}
+  amountText: {fileID: 0}
   equipmentType: 2
-  equippableItem: {fileID: 0}
 --- !u!114 &114579355028559674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1847,8 +1847,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114973292185331126}
+  amountText: {fileID: 0}
   equipmentType: 3
-  equippableItem: {fileID: 0}
 --- !u!114 &114608956121485802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1861,8 +1861,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114056991163973756}
+  amountText: {fileID: 0}
   equipmentType: 5
-  equippableItem: {fileID: 0}
 --- !u!114 &114612153916288102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2009,8 +2009,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114175342999864896}
+  amountText: {fileID: 0}
   equipmentType: 4
-  equippableItem: {fileID: 0}
 --- !u!114 &114700799712602882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2075,8 +2075,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114503315291575974}
+  amountText: {fileID: 0}
   equipmentType: 0
-  equippableItem: {fileID: 0}
 --- !u!114 &114736980945296056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2415,8 +2415,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114146192421305398}
+  amountText: {fileID: 0}
   equipmentType: 6
-  equippableItem: {fileID: 0}
 --- !u!114 &114953535643916492
 MonoBehaviour:
   m_ObjectHideFlags: 1

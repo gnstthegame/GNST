@@ -21,20 +21,16 @@ public class SellButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public event Action<SellButton> OnPointerEnterEvent;
     public event Action<SellButton> OnPointerExitEvent;
 
-    // Use this for initialization
-    void Start()
-    {
+    private void OnValidate() {
         image = GetComponent<Image>();
         button = GetComponent<Button>();
         button.onClick.AddListener(Sell);
-    }
-
-    private void OnValidate()
-    {
         stackText = GetComponentInChildren<Text>();
-        //buyButtons = shopManager.buyButtons;
+        inventory = FindObjectOfType<Inventory>();
     }
-
+    private void Awake() {
+        shop = FindObjectOfType<Shop>();
+    }
     private void Update()
     {
         if(item == null)

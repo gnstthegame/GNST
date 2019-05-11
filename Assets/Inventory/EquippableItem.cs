@@ -4,7 +4,7 @@ public enum EquipmentType
 {
     Helmet,
     Chest,
-    Meele,
+    Melee,
     Ranged,
     Usable1,
     Usable2,
@@ -66,7 +66,5 @@ public class EquippableItem : Item {
         c.Stamina.RemoveAllModifiersFromSource(this);
         c.Luck.RemoveAllModifiersFromSource(this);
         c.Armor.RemoveAllModifiersFromSource(this);
-        c.Crit.RemoveAllModifiersFromSource(this);
-        c.Hit.RemoveAllModifiersFromSource(this);
     }
 }

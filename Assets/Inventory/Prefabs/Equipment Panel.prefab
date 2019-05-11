@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 114929489566596998}
   - component: {fileID: 114510566227022442}
   m_Layer: 5
-  m_Name: Meele Slot
+  m_Name: Melee Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,8 +166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114918566788914442}
+  amountText: {fileID: 0}
   equipmentType: 1
-  equippableItem: {fileID: 0}
 --- !u!114 &114114030648005364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,8 +180,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114726910699421198}
+  amountText: {fileID: 0}
   equipmentType: 3
-  equippableItem: {fileID: 0}
 --- !u!114 &114185566321490656
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -221,8 +221,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114606408517474682}
+  amountText: {fileID: 0}
   equipmentType: 6
-  equippableItem: {fileID: 0}
 --- !u!114 &114510566227022442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -235,8 +235,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114929489566596998}
+  amountText: {fileID: 0}
   equipmentType: 2
-  equippableItem: {fileID: 0}
 --- !u!114 &114550667236001050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -323,8 +323,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114620349687198256}
+  amountText: {fileID: 0}
   equipmentType: 4
-  equippableItem: {fileID: 0}
 --- !u!114 &114724228691072562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -337,8 +337,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114185566321490656}
+  amountText: {fileID: 0}
   equipmentType: 0
-  equippableItem: {fileID: 0}
 --- !u!114 &114726910699421198
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -378,8 +378,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 114904416090467190}
+  amountText: {fileID: 0}
   equipmentType: 5
-  equippableItem: {fileID: 0}
 --- !u!114 &114904416090467190
 MonoBehaviour:
   m_ObjectHideFlags: 1

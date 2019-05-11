@@ -8,7 +8,7 @@ public class Collectable : MonoBehaviour {
     public Inventory inventory;
     public Item[] items;
     public Transform playerTransform;
-    public float distance = 1f;
+    public float distance = 3f;
     private void Awake() {
         inventory = FindObjectOfType<Inventory>();
         playerTransform = FindObjectOfType<CharacterMotor>().transform;

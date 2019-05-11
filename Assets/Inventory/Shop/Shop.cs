@@ -8,59 +8,32 @@ public class Shop : MonoBehaviour {
     [SerializeField] public List<Item> sellItems;
     [SerializeField] Transform playerTransform;
     [SerializeField] ShopManager shop;
+    bool show = false;
 
+    public float distance = 3f;
 
-    bool isInRange;
-    Ray ray;
-    RaycastHit hit;
-
-    private void OnValidate()
-    {
+    private void Awake() {
+        shop = FindObjectOfType<ShopManager>();
         inventory = FindObjectOfType<Inventory>();
+        playerTransform = FindObjectOfType<CharacterMotor>().transform;
     }
-
-    // Use this for initialization
-    void Start () {
-        shop.canvasGroup.alpha = 0;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-        if (isInRange && Input.GetMouseButtonDown(0))
-        {
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
-            {
-                Debug.Log(hit.transform.name);
-                //do pomyslenia
-                if (hit.transform.tag == "Shop")
-                {
-                    Debug.Log("Test");
-                    shop.canvasGroup.alpha = 1;
-                    shop.canvasGroup.interactable = true;
-                    shop.canvasGroup.blocksRaycasts = true;
-                    //canvasGroup.alpha = 0;
+    private void Update() {
+        if (Input.GetButtonDown("Interact")) {
+            if (Vector3.Distance(playerTransform.position, transform.position) < distance) {
+                if (!show) {
+                    show = true;
+                    shop.Show();
+                    return;
                 }
             }
+            if (show) {
+                show = false;
+                shop.Hide();
+            }
+        }
+        if (show && Vector3.Distance(playerTransform.position, transform.position) > distance) {
+            show = false;
+            shop.Hide();
         }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        isInRange = true;
-        Debug.Log("In range");
-        
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        isInRange = false;
-        shop.canvasGroup.alpha = 0;
-        shop.canvasGroup.interactable = false;
-        shop.canvasGroup.blocksRaycasts = false;
-    }
-
-   
 }
-

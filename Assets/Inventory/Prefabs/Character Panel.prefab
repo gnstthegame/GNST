@@ -696,7 +696,7 @@ GameObject:
   - component: {fileID: 114102979600223110}
   - component: {fileID: 114645930026490580}
   m_Layer: 5
-  m_Name: Meele Slot
+  m_Name: Melee Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2050,10 +2050,7 @@ MonoBehaviour:
     BaseValue: 5
   Armor:
     BaseValue: 5
-  Crit:
-    BaseValue: 5
-  Hit:
-    BaseValue: 5
+  fist: {fileID: 0}
   statPanel: {fileID: 114647733741113456}
   itemTooltip: {fileID: 0}
   draggableItem: {fileID: 0}

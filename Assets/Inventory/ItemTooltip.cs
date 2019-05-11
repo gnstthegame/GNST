@@ -24,8 +24,6 @@ public class ItemTooltip : MonoBehaviour {
         AddStat(item.Agility, "Agility");
         AddStat(item.Stamina, "Stamina");
         AddStat(item.Luck, "Luck");
-        AddStat(item.Crit, "CritChance");
-        AddStat(item.Hit, "HitRatio");
         AddStat(item.BuyValue, "BuyValue");
         AddStat(item.SellValue, "SellValue");
 

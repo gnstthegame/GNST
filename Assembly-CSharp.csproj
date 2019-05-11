@@ -61,11 +61,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\3rdPersonController\Scripts\Camera\vThirdPersonCamera.cs" />
+    <Compile Include="Assets\3rdPersonController\Scripts\CharacterController\vThirdPersonAnimator.cs" />
+    <Compile Include="Assets\3rdPersonController\Scripts\CharacterController\vThirdPersonController.cs" />
+    <Compile Include="Assets\3rdPersonController\Scripts\CharacterController\vThirdPersonInput.cs" />
+    <Compile Include="Assets\3rdPersonController\Scripts\CharacterController\vThirdPersonMotor.cs" />
+    <Compile Include="Assets\3rdPersonController\Scripts\Generic\vComment.cs" />
+    <Compile Include="Assets\3rdPersonController\Scripts\Generic\vDestroyGameObject.cs" />
+    <Compile Include="Assets\3rdPersonController\Scripts\Generic\vExtensions.cs" />
+    <Compile Include="Assets\3rdPersonController\Scripts\Generic\vPickupItem.cs" />
     <Compile Include="Assets\Battle\Ai.cs" />
     <Compile Include="Assets\Battle\CameraRaycast.cs" />
     <Compile Include="Assets\Battle\ClickableTile.cs" />
     <Compile Include="Assets\Battle\Hud.cs" />
     <Compile Include="Assets\Battle\PlayerUnit.cs" />
+    <Compile Include="Assets\Battle\RewardMenu.cs" />
     <Compile Include="Assets\Battle\Skill.cs" />
     <Compile Include="Assets\Battle\TileMap.cs" />
     <Compile Include="Assets\Battle\Trigger.cs" />
@@ -74,15 +84,6 @@
     <Compile Include="Assets\Editor Default Resources\UMotionEditor\Scripts\Application\CameraCompatibilityUtility.cs" />
     <Compile Include="Assets\Editor Default Resources\UMotionEditor\Scripts\Application\TimelineClipWrapper.cs" />
     <Compile Include="Assets\Editor Default Resources\UMotionEditor\Scripts\Application\VersionCompatibilityUtility.cs" />
-    <Compile Include="Assets\Invector-3rdPersonController\Scripts\Camera\vThirdPersonCamera.cs" />
-    <Compile Include="Assets\Invector-3rdPersonController\Scripts\CharacterController\vThirdPersonAnimator.cs" />
-    <Compile Include="Assets\Invector-3rdPersonController\Scripts\CharacterController\vThirdPersonController.cs" />
-    <Compile Include="Assets\Invector-3rdPersonController\Scripts\CharacterController\vThirdPersonInput.cs" />
-    <Compile Include="Assets\Invector-3rdPersonController\Scripts\CharacterController\vThirdPersonMotor.cs" />
-    <Compile Include="Assets\Invector-3rdPersonController\Scripts\Generic\vComment.cs" />
-    <Compile Include="Assets\Invector-3rdPersonController\Scripts\Generic\vDestroyGameObject.cs" />
-    <Compile Include="Assets\Invector-3rdPersonController\Scripts\Generic\vExtensions.cs" />
-    <Compile Include="Assets\Invector-3rdPersonController\Scripts\Generic\vPickupItem.cs" />
     <Compile Include="Assets\Inventory\Collectable.cs" />
     <Compile Include="Assets\Inventory\EquipmentPanel.cs" />
     <Compile Include="Assets\Inventory\EquipmentSlot.cs" />
@@ -106,8 +107,15 @@
     <Compile Include="Assets\Inventory\Stats\StatModifier.cs" />
     <Compile Include="Assets\Inventory\StatTooltip.cs" />
     <Compile Include="Assets\Inventory\UsableItem.cs" />
+    <Compile Include="Assets\Levels\ShadowRealm\FallingBlock.cs" />
+    <Compile Include="Assets\Levels\ShadowRealm\FallingTrigger.cs" />
+    <Compile Include="Assets\Levels\ShadowRealm\ShadowRealm.cs" />
+    <Compile Include="Assets\Menu\InputMenager.cs" />
     <Compile Include="Assets\Menu\MainMenu.cs" />
     <Compile Include="Assets\Menu\PauseMenu.cs" />
+    <Compile Include="Assets\Menu\Player.cs" />
+    <Compile Include="Assets\Menu\savedata.cs" />
+    <Compile Include="Assets\Menu\saveSystem.cs" />
     <Compile Include="Assets\Menu\SettingsMenu.cs" />
     <Compile Include="Assets\PostProcessing\invert.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
@@ -161,15 +169,12 @@
     <Compile Include="Assets\Scripts\DamageReciver.cs" />
     <Compile Include="Assets\Scripts\DoorTrigger.cs" />
     <Compile Include="Assets\Scripts\RandomSlide.cs" />
-    <Compile Include="Assets\Scripts\Weapon.cs" />
-    <Compile Include="Assets\ShadowRealm\FallingBlock.cs" />
-    <Compile Include="Assets\ShadowRealm\FallingTrigger.cs" />
-    <Compile Include="Assets\ShadowRealm\ShadowRealm.cs" />
     <Compile Include="Assets\UMotion Examples\Miscellaneous\Scripts\ResetPosition.cs" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
     <None Include="Assets\Editor Default Resources\UMotionEditor\Shaders\UnlitDashedLine.shader" />
     <None Include="Assets\Editor Default Resources\UMotionEditor\Shaders\VertexColorUnlit.shader" />
     <None Include="Assets\Scripts\CharacterMotor2.txt" />
+    <None Include="Assets\Inventory\Collectable1.txt" />
     <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Fog.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\ParadeRender.shader" />
@@ -216,40 +221,40 @@
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
     <None Include="Assets\Editor Default Resources\UMotionEditor\Shaders\CameraLit.shader" />
     <Reference Include="Unity.RenderPipelines.Core.Editor">
-      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
+      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Lightweight.Runtime">
-      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.RenderPipelines.Lightweight.Runtime.dll</HintPath>
+      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.RenderPipelines.Lightweight.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Lightweight.Editor">
-      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.RenderPipelines.Lightweight.Editor.dll</HintPath>
+      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.RenderPipelines.Lightweight.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
-      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
+      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.IncludePaths">
-      <HintPath>D:/GNST/GNST/Library/ScriptAssemblies/Unity.RenderPipelines.Core.IncludePaths.dll</HintPath>
+      <HintPath>D:/inf/Unity/GNST/Library/ScriptAssemblies/Unity.RenderPipelines.Core.IncludePaths.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Staff/Unity2018.2/2018.2.19f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -450,7 +455,7 @@
       <HintPath>D:/Staff/Unity2018.2/2018.2.19f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UMotionApplication">
-      <HintPath>D:/GNST/GNST/Assets/Editor Default Resources/UMotionEditor/Plugins/Application/UMotionApplication.dll</HintPath>
+      <HintPath>D:/inf/Unity/GNST/Assets/Editor Default Resources/UMotionEditor/Plugins/Application/UMotionApplication.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/Artur/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
