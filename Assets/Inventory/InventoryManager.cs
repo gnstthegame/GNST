@@ -8,8 +8,8 @@ using UnityEngine.UI;
 /// </summary>
 /// Character
 public class InventoryManager : MonoBehaviour {
-    [SerializeField] Inventory inventory;
-    [SerializeField] EquipmentPanel equipmentPanel;
+    [SerializeField] public Inventory inventory;
+    [SerializeField] public EquipmentPanel equipmentPanel;
     public CharacterStat Level;
     public CharacterStat Strength;
     public CharacterStat Agility;
@@ -32,9 +32,8 @@ public class InventoryManager : MonoBehaviour {
     }
 
     private void Awake() {
-        statPanel.SetStats(Level, Strength, Agility, Stamina, Luck, Armor);
-        statPanel.UpdateStatValues();
-        //statPanel.UpdateStatNames();
+        ReloadStats();
+        statPanel.UpdateStatNames();
 
         inventory.OnRightClickEvent += InventoryRightClick;
         equipmentPanel.OnRightClickEvent += EquipmentPanelRightClick;
@@ -232,5 +231,8 @@ public class InventoryManager : MonoBehaviour {
             statPanel.UpdateStatValues();
             inventory.AddItem(item);
         }
+    }
+    public void ReloadStats() {
+        statPanel.SetStats(Level, Strength, Agility, Stamina, Luck, Armor);
     }
 }

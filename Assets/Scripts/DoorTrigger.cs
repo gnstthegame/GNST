@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class DoorTrigger : MonoBehaviour {
     public Transform pos;
-    public ChangeCameraPosition cam;
+    public Vector3 distance;
+    public bool x, y, z;
+    public bool ThirdPerson;
+    CameraFollow cam;
 
     private void Awake() {
         if (cam == null) {
-            cam = Camera.main.GetComponent<ChangeCameraPosition>();
+            cam = Camera.main.GetComponent<CameraFollow>();
         }
     }
 
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Player") {
-            cam.MoveCamera(pos);
+            if (ThirdPerson) {
+                cam.MoveCamera(distance);
+            } else {
+                cam.MoveCamera(pos,distance,x,y,z);
+            }
         }
     }
 }

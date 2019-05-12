@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 
 [Serializable]
 public class CharacterStat {
-    public float BaseValue;
+    public int BaseValue;
     //czy trzeba obliczac wartosci statystyk ponownie
     protected bool isDirty = true;
     //ostatnia wyliczona wartosc statystyki
@@ -31,7 +31,7 @@ public class CharacterStat {
         StatModifiers = statModifiers.AsReadOnly();
     }
 
-    public CharacterStat(float baseValue)
+    public CharacterStat(int baseValue)
     {
         //isDirty = true;
         BaseValue = baseValue;

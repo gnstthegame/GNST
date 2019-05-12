@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
+[System.Serializable]
 public class Inventory : MonoBehaviour, IItemContainter {
     //przedmioty startowe
-    [SerializeField] Item[] startingItems;
+    [SerializeField] public Item[] startingItems;
     [SerializeField] Transform itemsParent;
     [SerializeField] public ItemSlot[] itemSlots;
     public Text moneyText;
@@ -50,7 +51,7 @@ public class Inventory : MonoBehaviour, IItemContainter {
         SetStartingItems();
     }
 
-    private void SetStartingItems()
+    public void SetStartingItems()
     {
         int i = 0;
         for(; i < startingItems.Length && i < itemSlots.Length; i++)
@@ -66,18 +67,23 @@ public class Inventory : MonoBehaviour, IItemContainter {
         }
     }
 
-    public bool AddItem(Item item)
-    {
-        for (int i = 0; i < itemSlots.Length; i++)
-        {
-            if (itemSlots[i].Item == null || itemSlots[i].CanAddStack(itemSlots[i].Item))
-            {
+    public bool AddItem(Item item) {
+        for (int i = 0; i < itemSlots.Length; i++) {
+            if (itemSlots[i].Item == null || itemSlots[i].CanAddStack(itemSlots[i].Item)) {
                 itemSlots[i].Item = item;
                 itemSlots[i].Amount++;
                 return true;
             }
         }
         return false;
+    }
+    public bool AddItem(Item item, int stack) {
+        for (int j = 0; j < stack; j++) {
+            if (AddItem(item) == false) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public Item RemoveItem(string itemID)

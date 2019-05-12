@@ -70,6 +70,8 @@
     <Compile Include="Assets\3rdPersonController\Scripts\Generic\vDestroyGameObject.cs" />
     <Compile Include="Assets\3rdPersonController\Scripts\Generic\vExtensions.cs" />
     <Compile Include="Assets\3rdPersonController\Scripts\Generic\vPickupItem.cs" />
+    <Compile Include="Assets\Audio\AudioManager.cs" />
+    <Compile Include="Assets\Audio\MusicScript.cs" />
     <Compile Include="Assets\Battle\Ai.cs" />
     <Compile Include="Assets\Battle\CameraRaycast.cs" />
     <Compile Include="Assets\Battle\ClickableTile.cs" />

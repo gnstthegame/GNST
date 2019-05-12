@@ -4,11 +4,12 @@ using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu]
+[System.Serializable]
 public class Item : ScriptableObject
 {
     [SerializeField] string id;
     public string ID { get { return id; } }
-    public string Name;
+    [SerializeField] public string Name;
     public Sprite Sprite;
     public int BuyValue;
     public int SellValue;

@@ -5,12 +5,14 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
+
 public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler {
 
     private Item _item;
+    private int _amount;
     [SerializeField] Image image;
     [SerializeField] Text amountText;
-    Vector2 originalPosition;
+    //Vector2 originalPosition;
 
     //zdarzenie ktore sprawdza czy kliknieto prawy przycisk myszy 
     public event Action<ItemSlot> OnPointerEnterEvent;
@@ -43,7 +45,6 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         }
     }
 
-    private int _amount;
     public int Amount {
         get { return _amount; }
         set{

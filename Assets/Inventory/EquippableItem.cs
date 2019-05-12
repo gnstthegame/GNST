@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[System.Serializable]
 public enum EquipmentType
 {
     Helmet,
@@ -12,6 +13,7 @@ public enum EquipmentType
 }
 
 [CreateAssetMenu]
+[System.Serializable]
 public class EquippableItem : Item {
     public int Strength;
     public int Agility;

@@ -63,9 +63,11 @@ public class TileMap : MonoBehaviour {
 
     InputMenager IM;
     RewardMenu RM;
+    AudioManager AM;
     private void OnValidate() {
         IM = FindObjectOfType<InputMenager>();
         RM = FindObjectOfType<RewardMenu>();
+        AM = FindObjectOfType<AudioManager>();
     }
 
 
@@ -80,11 +82,14 @@ public class TileMap : MonoBehaviour {
             IM.BlockMenu();
         }
         if (EnemyUnits.Count < 1) {
-            //Battle end
+            //Battle end finish 
             List<Ai.Loot> reward = new List<Ai.Loot>();
             foreach (Ai a in DeadUnits) {
                 reward.Add(a.Clear());
             }
+            AM.PlayMusic("Victory");
+            AM.PlayMusic("ThemeTutorial");
+            AM.StopMusic("Battle");
             RM.Show(reward);
             PlayerUnits[0].GetComponent<CharacterMotor>().enabled = true;
             Destroy(gameObject);
@@ -94,6 +99,8 @@ public class TileMap : MonoBehaviour {
     private void Start() {
         far = mapSizeX + mapSizeY;
         tiles = new ClickableTile[mapSizeX, mapSizeY];
+        AM.PlayMusic("Battle");
+        AM.StopMusic("ThemeTutorial");
         MakeTiles();
     }
     public void PlayerEndTurn() {

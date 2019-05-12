@@ -20,11 +20,9 @@ public class InputMenager : MonoBehaviour {
                 IM.Hide();
             } else {
                 if (pause) {
-                    pause = false;
-                    PM.Resume();
+                    Resume();
                 } else {
-                    pause = true;
-                    PM.Pause();
+                    Pause();
                 }
             }
         }
@@ -37,6 +35,15 @@ public class InputMenager : MonoBehaviour {
                 IM.Show();
             }
         }
+    }
+    public void Resume() {
+        pause = false;
+        PM.Resume();
+    }
+
+    public void Pause() {
+        pause = true;
+        PM.Pause();
     }
     public void BlockInventory() {
         BlockI = true;

@@ -30,6 +30,7 @@ public class StatPanel : MonoBehaviour {
             if(i < stats.Length)
                 statDisplays[i].Stat = stats[i];
         }
+        UpdateStatValues();
     }
 
     public void UpdateStatValues()

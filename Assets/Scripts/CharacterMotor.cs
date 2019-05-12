@@ -5,6 +5,9 @@ using UnityEngine;
 public class CharacterMotor : MonoBehaviour {
     public float maxDist = 0.5f, armLength = 1f, prepereSpeed = 2, climbDistans = 14;
     public float moc;
+    public float BaseRotationSpeed = 10f;
+    float RotationSpeed = 10f;
+    public bool thirdP = false;
     Animator anim;
     Vector3 LevelForward, dir = Vector3.forward;
     public bool frez = false, draging = false, prepere = false; //private
@@ -27,6 +30,9 @@ public class CharacterMotor : MonoBehaviour {
     }
 
     void Update() {
+        if (thirdP) {
+            LevelDir();
+        }
         if (!draging) {
             if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) {
                 if (Input.GetButton("Sprint")) {
@@ -34,13 +40,23 @@ public class CharacterMotor : MonoBehaviour {
                 } else {
                     anim.SetFloat("Forward", 1f, 0.1f, Time.deltaTime);
                 }
-                dir = LevelForward * Input.GetAxis("Vertical") + Vector3.Cross(LevelForward, transform.up) * -Input.GetAxis("Horizontal");
+                float vert = Input.GetAxis("Vertical");
+                float hor = Input.GetAxis("Horizontal");
+                if (thirdP) {
+                    RotationSpeed = BaseRotationSpeed / 5f;
+                    if (Input.GetAxis("Vertical") < 0) {
+                        vert = 0;
+                        hor = 1;
+                    }
+                } else {
+                    RotationSpeed = BaseRotationSpeed;
+                }
+                dir = LevelForward * vert + Vector3.Cross(LevelForward, transform.up) * -hor;
                 if (!frez) {
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(dir), 10f);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(dir), RotationSpeed*Time.deltaTime);
                 }
             } else {
                 anim.SetFloat("Forward", 0, 0.2f, Time.deltaTime);
-                anim.SetFloat("InputVertical", 0, 0.2f, Time.deltaTime);
             }
         }
 
@@ -53,13 +69,6 @@ public class CharacterMotor : MonoBehaviour {
 
         if (Input.GetButtonDown("Jump") && routine == null) {
             routine = StartCoroutine(Climb());
-        }
-        if (Input.GetButtonDown("Fire1")) {
-            anim.SetBool("LeftAtack", true);
-        }
-        if (Input.GetButtonDown("Fire2")) {
-            Debug.Log("fire2");
-            anim.SetBool("RightAtack", true);
         }
 
         Debug.DrawRay(transform.position, dir, Color.red);
@@ -140,7 +149,7 @@ public class CharacterMotor : MonoBehaviour {
                 transform.rotation = Quaternion.Lerp(beg, Quaternion.LookRotation(-rail), betwen);
                 yield return null;
             }
-            colider.center = new Vector3(0,4,-0.7f);
+            colider.center = new Vector3(0, 4, -0.7f);
             while (true) {
                 float differende = Vector3.Distance(go.transform.position, transform.position);
                 go.transform.parent.GetComponent<Rigidbody>().velocity = transform.forward * (armLength - differende) * moc;
