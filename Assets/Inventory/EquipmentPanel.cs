@@ -9,6 +9,7 @@ using System;
 public class EquipmentPanel : MonoBehaviour {
     [SerializeField] Transform equipmentSlotsParent;
     public EquipmentSlot[] equipmentSlots;
+    [SerializeField] Inventory inventory;
 
     public event Action<ItemSlot> OnPointerEnterEvent;
     public event Action<ItemSlot> OnPointerExitEvent;
@@ -47,6 +48,7 @@ public class EquipmentPanel : MonoBehaviour {
             {
                 previousItem = (EquippableItem)equipmentSlots[i].Item;
                 equipmentSlots[i].Item = item;
+                equipmentSlots[i].Amount = 1;
                 return true;
             }
         }
@@ -61,6 +63,7 @@ public class EquipmentPanel : MonoBehaviour {
             if (equipmentSlots[i].Item == item)
             {
                 equipmentSlots[i].Item = null;
+                equipmentSlots[i].Amount = 0;
                 return true;
             }
         }
