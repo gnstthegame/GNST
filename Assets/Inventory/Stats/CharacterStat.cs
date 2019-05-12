@@ -108,7 +108,7 @@ public class CharacterStat {
             {
                 finalValue *= 1 + mod.Value;
             }
-            //Wrocic do tut character stat i zobaczyc gdzie to jest
+            
             //finalValue += statModifiers[i].Value;
         }
 

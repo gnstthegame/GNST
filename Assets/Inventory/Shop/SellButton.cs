@@ -27,6 +27,7 @@ public class SellButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         button.onClick.AddListener(Sell);
         stackText = GetComponentInChildren<Text>();
         inventory = FindObjectOfType<Inventory>();
+        buyButtons = FindObjectsOfType<BuyButton>();
     }
     private void Awake() {
         shop = FindObjectOfType<Shop>();
@@ -56,34 +57,54 @@ public class SellButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     //cos nie tak ze stack size
     public void Sell()
     {
-        if(item != null)
+        if (item != null)
         {
-            inventory.RemoveItem(item.ID);
-            inventory.money += item.SellValue;
-
-            for (int i = 0; i < buyButtons.Length; i++)
-            {
-                if(buyButtons[i].item == item)
-                {
-                    stackSize--;
-                    if (stackSize == 0)
-                        item = null;
-                    buyButtons[i].stackSize++;
-                    return;
-                }
-            }
+            //inventory.RemoveItem(item.ID);
 
             for (int i = 0; i < shop.sellItems.Count; i++)
             {
-                if (shop.sellItems[i] == null)
+                if(inventory.itemSlots[i].Item == item && inventory.itemSlots[i].Amount < item.MaximumStacks)
                 {
+                    inventory.itemSlots[i].Amount--;
                     stackSize--;
-                    shop.sellItems[i] = item;
-                    if (stackSize == 0)
+                    inventory.money += item.SellValue;
+                    for (int j = 0; j < shop.sellItems.Count; j++)
+                    {
+                        if (shop.sellItems[j].item == item)
+                        {
+                            shop.sellItems[j].amount++;
+                            break;
+                        }
+                    }
+                    if (stackSize <= 0)
+                    {
+                        shop.sellItems[i] = new Pair();
                         item = null;
+                    }
                     return;
                 }
-            }
+                else if(inventory.itemSlots[i].Item == item && inventory.itemSlots[i].Amount == item.MaximumStacks)
+                {
+                    inventory.RemoveItem(item);
+                    stackSize--;
+                    inventory.money += item.SellValue;
+                    for (int j = 0; j < shop.sellItems.Count; j++)
+                    {
+                        if (shop.sellItems[j].item == null)
+                        {
+                            shop.sellItems[i].item = item;
+                            shop.sellItems[j].amount = 1;
+                            break;
+                        }
+                    }
+                    if (stackSize <= 0)
+                    {
+                        shop.sellItems[i] = new Pair();
+                        item = null;
+                    }
+                    return;
+                }
+            }          
         }
         Debug.Log("Sprzedano");
     }

@@ -72,6 +72,7 @@ public class Inventory : MonoBehaviour, IItemContainter {
         {
             if (itemSlots[i].Item == null || itemSlots[i].CanAddStack(itemSlots[i].Item))
             {
+                Debug.Log(item.MaximumStacks + " " + item.name);
                 itemSlots[i].Item = item;
                 itemSlots[i].Amount++;
                 return true;
