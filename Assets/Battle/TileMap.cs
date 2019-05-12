@@ -79,7 +79,7 @@ public class TileMap : MonoBehaviour {
         tiles[u.tileX, u.tileY].Unit = null;
         if (PlayerUnits.Count < 1) {
             //game Over
-            IM.BlockMenu();
+            //IM.BlockMenu();
         }
         if (EnemyUnits.Count < 1) {
             //Battle end finish 
@@ -91,6 +91,7 @@ public class TileMap : MonoBehaviour {
             AM.PlayMusic("ThemeTutorial");
             AM.StopMusic("Battle");
             RM.Show(reward);
+            IM.UnblockInventory();
             PlayerUnits[0].GetComponent<CharacterMotor>().enabled = true;
             Destroy(gameObject);
         }
@@ -101,6 +102,7 @@ public class TileMap : MonoBehaviour {
         tiles = new ClickableTile[mapSizeX, mapSizeY];
         AM.PlayMusic("Battle");
         AM.StopMusic("ThemeTutorial");
+        IM.BlockInventory();
         MakeTiles();
     }
     public void PlayerEndTurn() {
@@ -156,6 +158,9 @@ public class TileMap : MonoBehaviour {
         }
         Units = FindObjectsOfType<Unit>().ToList();
         foreach (Unit u in Units) {
+            if (!u.gameObject.activeSelf) {
+                continue;
+            }
             Vector3 vec = u.transform.position;
             Vector3 center = tiles[mapSizeX / 2, mapSizeY / 2].transform.position;
             if (Mathf.Abs(vec.x - center.x) > VisualPrefab.transform.localScale.x * (mapSizeX / 2 + 2) || Mathf.Abs(vec.z - center.z) > VisualPrefab.transform.localScale.z * (mapSizeY / 2 + 2)) {

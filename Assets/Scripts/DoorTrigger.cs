@@ -5,7 +5,7 @@ using UnityEngine;
 public class DoorTrigger : MonoBehaviour {
     public Transform pos;
     public Vector3 distance;
-    public bool x, y, z;
+    public bool x=true, y=true, z=true;
     public bool ThirdPerson;
     CameraFollow cam;
 

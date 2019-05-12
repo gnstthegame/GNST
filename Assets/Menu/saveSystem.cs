@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class saveSystem{
 
-    public static void SavePlayer(Player player)
+    public static void SavePlayer(SaveLinker player)
     {
         BinaryFormatter formatter = new BinaryFormatter();
 
@@ -20,7 +20,7 @@ public class saveSystem{
     }
 
 
-    public static savedata Loaddata (Player player)
+    public static savedata Loaddata (SaveLinker player)
     {
         string path = Application.persistentDataPath + "/player.fun";
         if(File.Exists(path))

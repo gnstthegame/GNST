@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 222610330821752610}
   - component: {fileID: 114947736457363784}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: PauseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4827,14 +4827,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114933831323713410}
         m_MethodName: LoadPlayer
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 114553998948581118}
         m_MethodName: Resume
@@ -15370,11 +15370,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3a9e1ee8ff5454eb1dc6056efa3ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
-  health: 40
   player: {fileID: 0}
   saveTrigger: 0
   IM: {fileID: 114966239831606170}
+  newScene: 1
 --- !u!114 &114934692994353894
 MonoBehaviour:
   m_ObjectHideFlags: 1

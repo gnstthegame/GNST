@@ -8,7 +8,6 @@ public class FallingTrigger : MonoBehaviour {
     float speed;
     public float BaseSpeed = 0.1f;
     bool stop = false;
-    public Transform cylinder;
 
     // Use this for initialization
     void Awake() {
@@ -57,10 +56,8 @@ public class FallingTrigger : MonoBehaviour {
                 GetComponent<Collider>().enabled = true;
                 speed = (BaseRadius - radius) / BaseRadius + 0.3f;
                 radius -= Time.deltaTime * speed;
-                //cylinder.transform.localScale = new Vector3(4 * radius, 0.1f, 4 * radius);
             }
             if (transform.position.y < -3) {
-                Debug.Log("die");
                 //fall anim
                 Lose();
             }

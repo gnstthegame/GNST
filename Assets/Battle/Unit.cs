@@ -9,9 +9,9 @@ public class Unit : MonoBehaviour {
     public int MaxHP = 5, MaxAP = 10;//private
     public int ArmorBase = 0, APaccBase = 2;//private
     public int ArmorMod = 0, APaccMod = 2;
-    public int LuckMod = 0,  luckBase = 0;
+    public int LuckMod = 0, luckBase = 0;
     public int ap = 2;//private
-    public int MovRange = 3, MovMod=0;
+    public int MovRange = 3, MovMod = 0;
     public Transform Hand;
     public Hud hud;
 
@@ -62,7 +62,7 @@ public class Unit : MonoBehaviour {
         CanAct = false;
     }
     private void Start() {
-            anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
 
@@ -84,7 +84,7 @@ public class Unit : MonoBehaviour {
         hud.Upd();
     }
     public Skill GetSkill(int k) {
-        if (k >2) {
+        if (k > 2) {
             return Items[k - 3].getskill();
         }
         lastUsedSkill = k;
@@ -139,9 +139,13 @@ public class Unit : MonoBehaviour {
         map.ClearTiles(true);
         hud.Upd();
         Destroy(weapon);
-        if (p.useSkill.Model!=null) weapon = Instantiate(p.useSkill.Model,Hand.position,Hand.rotation,Hand);
-        StartCoroutine(RotateTowards(map.tiles[(int)p.target.x, (int)p.target.y].transform.position));
-        StartCoroutine(WaitForAnim());
+        if (p.useSkill.trigger != "Wait") {
+            if (p.useSkill.Model != null) weapon = Instantiate(p.useSkill.Model, Hand.position, Hand.rotation, Hand);
+            StartCoroutine(RotateTowards(map.tiles[(int)p.target.x, (int)p.target.y].transform.position));
+            StartCoroutine(WaitForAnim());
+        } else {
+            map.wait = false;
+        }
     }
     IEnumerator Steps(Queue<Pole> v) {
         if (v != null) {
@@ -156,7 +160,7 @@ public class Unit : MonoBehaviour {
                 rut = StartCoroutine(GoTo(vec));
                 while (v.Count > 0) {
                     vec.y = transform.position.y;
-                    if (Vector3.Distance(vec, transform.position) < 0.2f) {
+                    if (Vector3.Distance(vec, transform.position) < 0.21f) {
                         v.Dequeue();
                         if (v.Count > 0) {
                             map.tiles[tileX, tileY].Unit = null;
@@ -187,11 +191,14 @@ public class Unit : MonoBehaviour {
         map.wait = false;
     }
     public void MoveToPos(Vector3 pos) {
+        if (rut != null) {
+            StopCoroutine(rut);
+        }
         rut = StartCoroutine(GoTo(pos));
     }
     IEnumerator GoTo(Vector3 pos) {
         pos.y = transform.position.y;
-        while (Vector3.Distance(pos, transform.position) > 0.2f) {
+        while (Vector3.Distance(pos, transform.position) > 0.22f) {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(pos - transform.position), 8f);
             anim.SetFloat("Forward", 1f, 0.1f, Time.deltaTime);
             yield return 0;
@@ -214,7 +221,7 @@ public class Unit : MonoBehaviour {
     }
     IEnumerator RotateTowards(Vector3 target) {
         Quaternion to = Quaternion.LookRotation(target - transform.position);
-        while (Quaternion.Angle(transform.rotation, to)>1f){
+        while (Quaternion.Angle(transform.rotation, to) > 1f) {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, to, 8f);
             yield return 0;
         }

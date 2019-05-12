@@ -86,6 +86,9 @@ public class ShopManager : MonoBehaviour {
     }
     // Update is called once per frame
     void Update () {
+        if (shop == null) {
+            return;
+        }
         int i = 0;
         for (i = 0; i < buyButtons.Length - 1; i++)
         {
