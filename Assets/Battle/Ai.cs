@@ -10,14 +10,17 @@ public class Ai : Unit {
         public Item[] Rewards;
     }
     public enum Personality {
+        lil,
         Boss
     }
     public Personality Person;
     public GameObject chest;
     public Loot reward;
-    // Use this for initialization
+    /// <summary>
+    /// przypisuje umiejętności zgodnie z klasą postaci 
+    /// </summary>
     void Awake() {
-        Vector2[] fwd = new Vector2[1] { new Vector2(0, 1) };
+        Vector2[] fwd = new Vector2[1] { Vector2.zero };
         Vector2[] self = new Vector2[1] { new Vector2(0, -1) };//.
         Vector2[] tmp = new Vector2[4];
         tmp = new Vector2[4]{ //T
@@ -29,9 +32,14 @@ public class Ai : Unit {
 
         Effect rest = new Effect(Effect.trig.OnApply, 1, (int dmg, Unit u) => { u.AP += 2; return 0; });
         switch (Person) {
+            case Personality.lil:
+                Skile.Add(new Skill(self, Vector2.zero, 0, "Wait", 3, rest, true));
+                Skile.Add(new Skill(fwd, new Vector2(1, 2), 0, "Punch", 1));
+
+                break;
             case Personality.Boss:
                 Skile.Add(new Skill(self, Vector2.zero, 0, "Wait", 3, rest, true));
-                Skile.Add(new Skill(fwd, new Vector2(1, 3), 0, "Punch", 1));
+                Skile.Add(new Skill(fwd, new Vector2(1, 2), 0, "Punch", 1));
                 Skile.Add(new Skill(tmp, new Vector2(2, 4), 4, "Slam", 1));
                 break;
             default:
@@ -48,6 +56,10 @@ public class Ai : Unit {
         //Effect f = new Effect(Effect.trig.OnApply, 1, (int dmg, Unit u) => { u.AP += 2; return 0; });
         //Skile.Add(new Skill(self, Vector2.zero, 0, "Wait", 3, f));
     }
+    /// <summary>
+    /// usówa model jednostki i zastępuje go skrzynią z nagrodą, a także dodaje punkty doświadczenia i plusz bohaterowi
+    /// </summary>
+    /// <returns></returns>
     public Loot Clear() {
         if (reward.Rewards.Length > 0) {
             GameObject go = Instantiate(chest, transform.position, transform.rotation);

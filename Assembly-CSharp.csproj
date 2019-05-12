@@ -98,6 +98,9 @@
     <Compile Include="Assets\Inventory\Item.cs" />
     <Compile Include="Assets\Inventory\ItemSlot.cs" />
     <Compile Include="Assets\Inventory\ItemTooltip.cs" />
+    <Compile Include="Assets\Inventory\Loot\Chest.cs" />
+    <Compile Include="Assets\Inventory\Loot\LootPanel.cs" />
+    <Compile Include="Assets\Inventory\Loot\LootSlot.cs" />
     <Compile Include="Assets\Inventory\Shop\BuyButton.cs" />
     <Compile Include="Assets\Inventory\Shop\PanelOpener.cs" />
     <Compile Include="Assets\Inventory\Shop\SellButton.cs" />

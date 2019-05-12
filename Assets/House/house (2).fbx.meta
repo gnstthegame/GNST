@@ -481,6 +481,93 @@ ModelImporter:
     4300168: 1Walls
     4300170: C_cupboard
     4300172: O_cupboard
+    6400000: 1Walls
+    6400002: C_carpet
+    6400004: C_cupboard
+    6400006: C_leaf.001
+    6400008: C_pot
+    6400010: chest
+    6400012: Cube
+    6400014: Door.0
+    6400016: Door.002
+    6400018: Door.007
+    6400020: Door.009
+    6400022: DoorFrame
+    6400024: DoorFrame.001
+    6400026: DoorFrame.005
+    6400028: DoorFrame.006
+    6400030: Handle_Front
+    6400032: Handle_Front.001
+    6400034: Handle_Front.005
+    6400036: Handle_Front.006
+    6400038: Handle_Front001
+    6400040: Handle_Front001.001
+    6400042: Handle_Front001.002
+    6400044: Handle_Front001.003
+    6400046: K_bed
+    6400048: K_blankets
+    6400050: K_carpet
+    6400052: K_chair
+    6400054: K_desk
+    6400056: K_library
+    6400058: K_pillow
+    6400060: K_shelf
+    6400062: K_shelf.001
+    6400064: K_whiteboard
+    6400066: M_bed
+    6400068: M_blankets
+    6400070: M_carpet
+    6400072: M_LampStanding
+    6400074: M_lampTest
+    6400076: M_nightStand2
+    6400078: M_nightStand2.001
+    6400080: M_photo.001
+    6400082: M_photo.002
+    6400084: M_pillow
+    6400086: M_waredrobe
+    6400088: miara
+    6400090: O_chair
+    6400092: O_computer
+    6400094: O_computer.001
+    6400096: O_computer.002
+    6400098: O_computer.003
+    6400100: O_cup
+    6400102: O_cupboard
+    6400104: O_desk
+    6400106: O_library
+    6400108: O_papers
+    6400110: O_table
+    6400112: O_trash
+    6400114: Window.L
+    6400116: Window.L.001
+    6400118: Window.L.002
+    6400120: Window.L.003
+    6400122: Window.L.004
+    6400124: Window.L.005
+    6400126: Window.L.012
+    6400128: Window.L.013
+    6400130: Window.L.014
+    6400132: Window.L.015
+    6400134: Window.R
+    6400136: Window.R.001
+    6400138: Window.R.002
+    6400140: Window.R.003
+    6400142: Window.R.004
+    6400144: Window.R.005
+    6400146: Window.R.012
+    6400148: Window.R.013
+    6400150: Window.R.014
+    6400152: Window.R.015
+    6400154: WindowFrame.000
+    6400156: WindowFrame.001
+    6400158: WindowFrame.002
+    6400160: WindowFrame.003
+    6400162: WindowFrame.004
+    6400164: WindowFrame.005
+    6400166: WindowFrame.006
+    6400168: WindowFrame.007
+    6400170: WindowFrame.010
+    6400172: WindowFrame.012
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -719,7 +806,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1

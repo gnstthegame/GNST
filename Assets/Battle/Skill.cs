@@ -10,7 +10,14 @@ public class Effect {
     public int Duration;
     public delegate int delegacja(int dmg, Unit u);
     public delegacja Func, OnDestroy;
+
+    /// <summary>
+    /// konstuktor efektu
+    /// </summary>
     /// <param name="trigger">0-BeforeGetHit, 1-OnTurnStart, 2-OnApply</param>
+    /// <param name="duration">czas trwania</param>
+    /// <param name="Function">delegacja wywoływana zgodnie z triggerem</param>
+    /// <param name="onDestroy">delegacja wywoływana po skończeniu czasu trwania</param>
     public Effect(trig trigger, int duration, delegacja Function = null, delegacja onDestroy = null) {
         Triger = trigger;
         Duration = duration;
@@ -40,6 +47,12 @@ public class Effect {
         ClearEffects,
         DmgMultiplayer
     }
+    /// <summary>
+    /// zwraca popularne delegacje 
+    /// </summary>
+    /// <param name="id">enum</param>
+    /// <param name="value">wartość modyfikatora</param>
+    /// <returns></returns>
     delegacja Eff(EffectType id, int value = 0) {
         int it = (int)id;
         switch (it) {
@@ -124,9 +137,17 @@ public class Skill {/*
         maxDist = 1;
         Calculate();
     }
-
-    /// <param name="Damage">przedział [min, max)</param>
+    /// <summary>
+    /// konstruktor umiejętności
+    /// </summary>
+    /// <param name="AtackArea">tablica miejsc ataku</param>
+    /// <param name="Damage">obrażenia przedział [min, max)</param>
+    /// <param name="cost">koszt punktów akcji</param>
+    /// <param name="AnimationTriggerName">nazwa animacji</param>
     /// <param name="Moment">0-begin, 1-normal, 2-end, 3-self</param>
+    /// <param name="Efect">efekt</param>
+    /// <param name="Positive">pozytywny</param>
+    /// <param name="Range">zasieg</param>
     public Skill(Vector2[] AtackArea, Vector2 Damage, int cost = 0, string AnimationTriggerName = "Punch", int Moment = 1, Effect Efect = null, bool Positive = false, int Range = 0) {
         Area = AtackArea;
         Dmg = Damage;
@@ -150,7 +171,9 @@ public class Skill {/*
         trigger = AnimationTrigger;
         Calculate();
     }
-
+    /// <summary>
+    /// przelicza informacje dodatkowe
+    /// </summary>
     void Calculate() {
         Vector2 s = new Vector2(0, -1);
         foreach (Vector2 v in Area) {

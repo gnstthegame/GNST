@@ -5276,7 +5276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5518,7 +5518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6480,7 +6480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7031,7 +7031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7306,18 +7306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cfb2c65a9e126742962d34078107193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingItems:
-  - {fileID: 11400000, guid: ad86aafbcb7623147a8d9bd43ca5217b, type: 2}
-  - {fileID: 11400000, guid: 332beb139e539d14c835a682acab31f0, type: 2}
-  - {fileID: 11400000, guid: 736d7991f1f02844dbbc4981db236082, type: 2}
-  - {fileID: 11400000, guid: ad86aafbcb7623147a8d9bd43ca5217b, type: 2}
-  - {fileID: 11400000, guid: 2932a2a7276ec6541939ec05a12ee5c8, type: 2}
-  - {fileID: 11400000, guid: e3c30281ce5751e4e881ea555485d2c6, type: 2}
-  - {fileID: 11400000, guid: 60e7c0c9c4348474c9a0c5672d54c7ba, type: 2}
-  - {fileID: 11400000, guid: db8f947d1f0ec0c479bf9459c723e625, type: 2}
-  - {fileID: 11400000, guid: 3848034699e541d40a6c2b18548e1085, type: 2}
-  - {fileID: 11400000, guid: a3135823b47c23c4b8a85d86afd73719, type: 2}
-  - {fileID: 11400000, guid: a3135823b47c23c4b8a85d86afd73719, type: 2}
+  startingItems: []
   itemsParent: {fileID: 224368778306586570}
   itemSlots:
   - {fileID: 114915951814902194}
@@ -7686,7 +7675,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7873,7 +7862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8627,7 +8616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -10169,7 +10158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -10229,7 +10218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -13108,7 +13097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -15052,7 +15041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -15373,7 +15362,7 @@ MonoBehaviour:
   player: {fileID: 0}
   saveTrigger: 0
   IM: {fileID: 114966239831606170}
-  newScene: 1
+  newScene: 0
 --- !u!114 &114934692994353894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15820,15 +15809,15 @@ MonoBehaviour:
   inventory: {fileID: 114219917094623690}
   equipmentPanel: {fileID: 114923694091891324}
   Level:
-    BaseValue: 0
+    BaseValue: 1
   Strength:
-    BaseValue: 0
+    BaseValue: 1
   Agility:
-    BaseValue: 0
+    BaseValue: 1
   Stamina:
-    BaseValue: 0
+    BaseValue: 1
   Luck:
-    BaseValue: 0
+    BaseValue: 1
   Armor:
     BaseValue: 0
   fist: {fileID: 21300000, guid: 6d4f5c3b4fb54214cbcdea36ce9c9f63, type: 3}

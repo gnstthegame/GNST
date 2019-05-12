@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+/// <summary>
+/// Klasa jednostek bojowych
+/// </summary>
 public class Unit : MonoBehaviour {
     public int tileX;
     public int tileY;
@@ -56,7 +59,9 @@ public class Unit : MonoBehaviour {
         get { return Mathf.Max(0, MovRange + MovMod); }
         set { MovRange = Mathf.Max(0, value); }
     }
-
+    /// <summary>
+    /// kończy ture i blokuje ruchy jednostki
+    /// </summary>
     public void EndRound() {
         CanMove = false;
         CanAct = false;
@@ -65,7 +70,9 @@ public class Unit : MonoBehaviour {
         anim = GetComponent<Animator>();
     }
 
-
+    /// <summary>
+    /// nowa runda odnawia Punkty Akcji umożliwia ruch jednostki i aktywuje niektóre nałożone efekty
+    /// </summary>
     public void NewRound() {
         foreach (Effect i in Effects) {
             if (i.Triger == Effect.trig.OnTurnStart) {
@@ -83,6 +90,11 @@ public class Unit : MonoBehaviour {
         CanAct = true;
         hud.Upd();
     }
+    /// <summary>
+    /// zwraca umiejętność z pozycja k
+    /// </summary>
+    /// <param name="k">pozycja</param>
+    /// <returns>umiejętność</returns>
     public Skill GetSkill(int k) {
         if (k > 2) {
             return Items[k - 3].getskill();
@@ -90,11 +102,19 @@ public class Unit : MonoBehaviour {
         lastUsedSkill = k;
         return Skile[k];
     }
+    /// <summary>
+    /// jednostka umiera
+    /// </summary>
     void Die() {
         map.UnitDie(this);
         anim.SetTrigger("Die");
         hud.Deactiv();
     }
+    /// <summary>
+    /// funkcja otrzymywania obrażeń i efektów
+    /// </summary>
+    /// <param name="dmg">obrażenia</param>
+    /// <param name="e">efekt</param>
     public void GetAttack(int dmg, Effect e = null) {
         if (e != null) {
             Effect prim = Effects.Find(item => item.Func == e.Func);
@@ -119,6 +139,10 @@ public class Unit : MonoBehaviour {
         anim.SetTrigger("Hit");
         hud.Upd();
     }
+    /// <summary>
+    /// zwraca prawdopodobieństwo zadania obrażeń krytycznych
+    /// </summary>
+    /// <returns>prawdopodobieństwo</returns>
     public float TestLuck() {
         float RandomValue = Random.value;
         float luckNorm = (float)(10 - Luck) / 10f;
@@ -127,19 +151,27 @@ public class Unit : MonoBehaviour {
         }
         return RandomValue / luckNorm;
     }
+    /// <summary>
+    /// rozpoczyna rutyne przejścia po polach walki
+    /// </summary>
+    /// <param name="v">kolejka pól</param>
     public void MovingOnTiles(Queue<Pole> v) {
         CanMove = false;
         StartCoroutine(Steps(v));
     }
+    /// <summary>
+    /// prezentacja wizualna wykorzystania umiejętności i blokowanie dalszych działań do jej końca
+    /// </summary>
+    /// <param name="p">dostępna możliwość</param>
     public void CastSkill(Posibilieties p) {
         AP -= p.useSkill.Cost;
         CanAct = false;
         CanMove = false;
-        anim.SetTrigger(p.useSkill.trigger);
         map.ClearTiles(true);
         hud.Upd();
         Destroy(weapon);
         if (p.useSkill.trigger != "Wait") {
+            anim.SetTrigger(p.useSkill.trigger);
             if (p.useSkill.Model != null) weapon = Instantiate(p.useSkill.Model, Hand.position, Hand.rotation, Hand);
             StartCoroutine(RotateTowards(map.tiles[(int)p.target.x, (int)p.target.y].transform.position));
             StartCoroutine(WaitForAnim());
@@ -147,6 +179,10 @@ public class Unit : MonoBehaviour {
             map.wait = false;
         }
     }
+    /// <summary>
+    /// rutyna przejścia po kolejce pól
+    /// </summary>
+    /// <param name="v">kolejka pól</param>
     IEnumerator Steps(Queue<Pole> v) {
         if (v != null) {
             if (v.Count > 0) {
@@ -190,12 +226,20 @@ public class Unit : MonoBehaviour {
         }
         map.wait = false;
     }
+    /// <summary>
+    /// rozpoczyna rutyne przejścia do pozycji w świecie
+    /// </summary>
+    /// <param name="pos">pozycja</param>
     public void MoveToPos(Vector3 pos) {
         if (rut != null) {
             StopCoroutine(rut);
         }
         rut = StartCoroutine(GoTo(pos));
     }
+    /// <summary>
+    /// rutyna przejścia do pozycji w świecie
+    /// </summary>
+    /// <param name="pos">pozycja</param>
     IEnumerator GoTo(Vector3 pos) {
         pos.y = transform.position.y;
         while (Vector3.Distance(pos, transform.position) > 0.22f) {
@@ -209,7 +253,9 @@ public class Unit : MonoBehaviour {
         }
         anim.SetFloat("Forward", 0);
     }
-
+    /// <summary>
+    /// rutyna blokująca inne działania do czasu wykonania połowy animacji
+    /// </summary>
     IEnumerator WaitForAnim() {
         AnimatorClipInfo cl = anim.GetCurrentAnimatorClipInfo(0)[0];
         while (anim.GetCurrentAnimatorClipInfo(0)[0].clip == cl.clip) {
@@ -219,6 +265,10 @@ public class Unit : MonoBehaviour {
         yield return new WaitForSeconds(d);
         map.wait = false;
     }
+    /// <summary>
+    /// rutyna obracająca postać w kierunku celu
+    /// </summary>
+    /// <param name="target">cel</param>
     IEnumerator RotateTowards(Vector3 target) {
         Quaternion to = Quaternion.LookRotation(target - transform.position);
         while (Quaternion.Angle(transform.rotation, to) > 1f) {

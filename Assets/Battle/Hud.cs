@@ -13,6 +13,11 @@ public class Hud : MonoBehaviour {
     public GameObject[] Buttons;
     bool act = false;
 
+    /// <summary>
+    /// aktywuje HUD(Head-Up Display)
+    /// </summary>
+    /// <param name="uu">jednostka</param>
+    /// <param name="pla">gracz</param>
     public void Activ(Unit uu, bool pla) {
         act = true;
         u = uu;
@@ -21,6 +26,9 @@ public class Hud : MonoBehaviour {
         Panel.gameObject.SetActive(true);
         Upd();
     }
+    /// <summary>
+    /// deaktywuje HUD
+    /// </summary>
     public void Deactiv() {
         act = false;
         Panel.gameObject.SetActive(false);
@@ -28,13 +36,21 @@ public class Hud : MonoBehaviour {
             ButtonsMenu.SetActive(false);
         }
     }
+    /// <summary>
+    /// aktywuje przyciski umiejętności
+    /// </summary>
     public void Select() {
         ButtonsMenu.SetActive(true);
     }
+    /// <summary>
+    /// deaktywuje przyciski umiejętności
+    /// </summary>
     public void Unselect() {
         ButtonsMenu.SetActive(false);
     }
-
+    /// <summary>
+    /// auktualnij wyświetlane informacje
+    /// </summary>
     public void Upd() {
         HPBar.maxValue = u.MaxHP;
         HPText.text = u.HP.ToString();
@@ -75,11 +91,17 @@ public class Hud : MonoBehaviour {
             }
         }
     }
-
+    /// <summary>
+    /// uaktualnij pozycje na ekranie
+    /// </summary>
     void Update() {
         if(act)
         Panel.transform.position = Camera.main.WorldToScreenPoint(u.transform.position);
     }
+    /// <summary>
+    /// rutyna zmieniająca pasek życia
+    /// </summary>
+    /// <param name="hp">życie</param>
     IEnumerator HPChange(int hp) {
         HPText.text = hp.ToString();
         float old = HPBar.value;

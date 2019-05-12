@@ -7,11 +7,16 @@ public class CameraRaycast : MonoBehaviour {
     RaycastHit hit;
     Collider col, old;
     int mask;
+    /// <summary>
+    /// przypisuje startowe komponenty
+    /// </summary>
     private void Awake() {
         cam = GetComponent<Camera>();
         mask = LayerMask.GetMask("UI");
     }
-    // Update is called once per frame
+    /// <summary>
+    /// śledzi ruchy myszy względem pól walki
+    /// </summary>
     void Update () {
 
         if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, mask)) {

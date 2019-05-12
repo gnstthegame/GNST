@@ -14,6 +14,13 @@ public class Pole {
         path = new Queue<Pole>();
         X = xx; Y = yy; dist = 0;
     }
+    /// <summary>
+    /// konstruktor pola
+    /// </summary>
+    /// <param name="xx">pozycja x</param>
+    /// <param name="yy">pozycja y</param>
+    /// <param name="p">kolejka prześcia pól</param>
+    /// <param name="d">koszt przejścia</param>
     public Pole(int xx, int yy, Queue<Pole> p, float d) {
         path = new Queue<Pole>(p);
         path.Enqueue(this);
@@ -28,6 +35,10 @@ public class Posibilieties {
     public Vector2 target;
     public Pole pole;
     public Posibilieties CoordinatedWith;
+    /// <summary>
+    /// oblicza wartość tej możliwości ataku
+    /// </summary>
+    /// <returns>wartość</returns>
     public float SumPoints() {
         float odp = Points + pole.PosPoints;
         if (CoordinatedWith != null) {
@@ -70,7 +81,10 @@ public class TileMap : MonoBehaviour {
         AM = FindObjectOfType<AudioManager>();
     }
 
-
+    /// <summary>
+    /// rejestruje śmierć jednostki i wykonuje jej następstwa
+    /// </summary>
+    /// <param name="u">jednostka</param>
     public void UnitDie(Unit u) {
         DeadUnits.Add(u);
         Units.Remove(u);
@@ -92,11 +106,14 @@ public class TileMap : MonoBehaviour {
             AM.StopMusic("Battle");
             RM.Show(reward);
             IM.UnblockInventory();
+            PlayerUnits[0].hud.Deactiv();
             PlayerUnits[0].GetComponent<CharacterMotor>().enabled = true;
             Destroy(gameObject);
         }
     }
-
+    /// <summary>
+    /// inicjuje rozpoczęcie walki
+    /// </summary>
     private void Start() {
         far = mapSizeX + mapSizeY;
         tiles = new ClickableTile[mapSizeX, mapSizeY];
@@ -105,6 +122,9 @@ public class TileMap : MonoBehaviour {
         IM.BlockInventory();
         MakeTiles();
     }
+    /// <summary>
+    /// rozsyła informacje jednostkom o zakończeniu tury gracza
+    /// </summary>
     public void PlayerEndTurn() {
         playerTurn = false;
         foreach (Unit u in PlayerUnits) {
@@ -118,6 +138,9 @@ public class TileMap : MonoBehaviour {
         }
         AiBehavior();
     }
+    /// <summary>
+    /// rozsyła informacje jednostkom o zakończeniu tury AI
+    /// </summary>
     public void EnemyEndTurn() {
         playerTurn = true;
         foreach (Unit u in EnemyUnits) {
@@ -133,13 +156,19 @@ public class TileMap : MonoBehaviour {
             ClearTiles();
         }
     }
+    /// <summary>
+    /// śledzi przwy przycisk myszy
+    /// </summary>
     void Update() {
         if (Input.GetButtonDown("Fire2")) {
             selectedSkill = null;
             ClearTiles();
         }
     }
-    void MakeTiles() {// tworzy objekty pól
+    /// <summary>
+    /// tworzy pole walki i przypisuje do nich jednostki
+    /// </summary>
+    void MakeTiles() {
         Quaternion rem = transform.rotation;
         transform.rotation = Quaternion.identity;
         for (int x = 0; x < mapSizeX; x++) {
@@ -200,6 +229,11 @@ public class TileMap : MonoBehaviour {
         }
         EnemyEndTurn();
     }
+    /// <summary>
+    /// sprawdza czy współrzędne wychodzą poza pole walki
+    /// </summary>
+    /// <param name="a">współrzędne</param>
+    /// <returns>fałsz, gdy poza polem</returns>
     bool NotOutOfRange(Vector2 a) {
         return NotOutOfRange((int)a.x, (int)a.y);
     }
@@ -209,7 +243,6 @@ public class TileMap : MonoBehaviour {
         }
         return true;
     }
-
     public void AtackMode() {
         if (playerTurn == false || selectedUnit == null || selectedSkill == null) {
             return;
@@ -241,14 +274,22 @@ public class TileMap : MonoBehaviour {
             }
         }
     }
-
+    /// <summary>
+    /// podświetla pola w zasięgu ataku
+    /// </summary>
+    /// <param name="k">umiejętność</param>
     public void AtackMode(int k) {
-        if (selectedUnit == null || k <3 && !selectedUnit.CanAct) {
+        if (selectedUnit == null || k < 3 && !selectedUnit.CanAct) {
             return;
         }
         selectedSkill = selectedUnit.GetSkill(k);
         AtackMode();
     }
+    /// <summary>
+    /// zaznacza i obraca odpowiednio, atakowany obszar na czerwono
+    /// </summary>
+    /// <param name="x">pozycja x</param>
+    /// <param name="y">pozycja y</param>
     public void MarkAtack(int x, int y) {//zaznacza obraca odpowiednio atakowany obszar na czerwono
 
         if (playerTurn == false || selectedUnit == null || selectedSkill == null) {
@@ -265,6 +306,11 @@ public class TileMap : MonoBehaviour {
             }
         }
     }
+    /// <summary>
+    /// wykonuje konsekwencje wybrania pola walki
+    /// </summary>
+    /// <param name="x">pozycja x</param>
+    /// <param name="y">pozycja y</param>
     public void TileClicked(int x, int y) {
         if (playerTurn == false) {
             return;
@@ -313,6 +359,12 @@ public class TileMap : MonoBehaviour {
     public static int IntDistance(int x1, int y1, Vector2 b) {
         return IntDistance(x1, y1, (int)b.x, (int)b.y);
     }
+    /// <summary>
+    /// oblicz dystans pól w int
+    /// </summary>
+    /// <param name="a">pozycja a</param>
+    /// <param name="b">pozycja b</param>
+    /// <returns>odległość</returns>
     public static int IntDistance(Vector2 a, Vector2 b) {
         return IntDistance((int)a.x, (int)a.y, (int)b.x, (int)b.y);
     }
@@ -321,7 +373,11 @@ public class TileMap : MonoBehaviour {
         int yy = y1 - y2;
         return Mathf.Abs(xx) + Mathf.Abs(yy);
     }
-
+    /// <summary>
+    /// zwraca ćwiartkę, którą wyznacza wektor
+    /// </summary>
+    /// <param name="a">wektor</param>
+    /// <returns>ćwiartka</returns>
     public int GetQuoter(Vector2 a) {
         // 003
         // 2 3

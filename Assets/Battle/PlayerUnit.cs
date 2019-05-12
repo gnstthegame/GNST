@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class PlayerUnit : Unit {
     public InventoryManager Inv;
-
+    
+    /// <summary>
+    /// importuje przelicza atrybuty gracza 
+    /// </summary>
     public void Activ() {
         GetComponent<CharacterMotor>().enabled = false;
         MaxAP = 2+ (int)Inv.Stamina.Value;

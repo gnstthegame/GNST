@@ -9,6 +9,11 @@ public class SceneLoader : MonoBehaviour {
     private void OnValidate() {
         SL = FindObjectOfType<SaveLinker>();
     }
+    private void Start() {
+        if (SL == null) {
+            SL = FindObjectOfType<SaveLinker>();
+        }
+    }
 
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Player") {

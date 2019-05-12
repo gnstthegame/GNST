@@ -6,15 +6,17 @@ using UnityEngine.UI;
 public class RewardMenu : MonoBehaviour {
     public Text EXP,Plusz;
     //quest menu
-	
-	// Update is called once per frame
-	void Update () {
-
-    }
+	/// <summary>
+    /// wyświetl panel
+    /// </summary>
     public void Show() {
         GetComponent<CanvasGroup>().alpha = 1;
         GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
+    /// <summary>
+    /// wyświetl panel z informacjami
+    /// </summary>
+    /// <param name="rew">nagroda</param>
     public void Show(List<Ai.Loot> rew) {
         GetComponent<CanvasGroup>().alpha = 1;
         GetComponent<CanvasGroup>().blocksRaycasts = true;
@@ -28,6 +30,9 @@ public class RewardMenu : MonoBehaviour {
         EXP.text = exp.ToString();
         Plusz.text = pl.ToString();
     }
+    /// <summary>
+    /// ukryj panel
+    /// </summary>
     public void Hide() {
         GetComponent<CanvasGroup>().alpha = 0;
         GetComponent<CanvasGroup>().blocksRaycasts = false;

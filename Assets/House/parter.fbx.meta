@@ -538,6 +538,104 @@ ModelImporter:
     4300190: WindowFrame.020
     4300192: Window.L.020
     4300194: Window.R.020
+    6400000: 1Walls.001
+    6400002: C_carpet.001
+    6400004: D_Books.000
+    6400006: D_Books.001
+    6400008: D_Books.002
+    6400010: D_Books.003
+    6400012: D_Books.004
+    6400014: D_Books.005
+    6400016: D_Books.006
+    6400018: D_Books.007
+    6400020: D_Books.008
+    6400022: D_Books.009
+    6400024: D_Books.010
+    6400026: D_Books.011
+    6400028: D_Books.012
+    6400030: D_Books.013
+    6400032: D_carpet
+    6400034: D_papers.001
+    6400036: D_Table
+    6400038: Door.003
+    6400040: Door.004
+    6400042: Door.011
+    6400044: DoorFrame.003
+    6400046: DoorFrame.004
+    6400048: Handle_Front.007
+    6400050: Handle_Front001.004
+    6400052: Handle_Front001.005
+    6400054: Handle_Front001.006
+    6400056: Handle_Front001.007
+    6400058: Handle_Front001.008
+    6400060: K_chair.001
+    6400062: K_chair.002
+    6400064: K_chair.003
+    6400066: K_chair.004
+    6400068: K_counter
+    6400070: K_Fridge
+    6400072: K_KitchenBoard
+    6400074: K_library.001
+    6400076: L_Couch
+    6400078: L_cupboard
+    6400080: L_Table
+    6400082: L_TV
+    6400084: M_LampStanding.001
+    6400086: M_photo.000
+    6400088: O_cup.001
+    6400090: O_cup.002
+    6400092: O_cupboard.001
+    6400094: O_library.001
+    6400096: O_papers.001
+    6400098: O_table.001
+    6400100: O_trash.001
+    6400102: S_Bottle.000
+    6400104: S_Bottle.001
+    6400106: S_Bottle.003
+    6400108: S_Bottle.004
+    6400110: S_Box.001
+    6400112: S_Box.002
+    6400114: S_Box.003
+    6400116: S_Can.000
+    6400118: S_Can.001
+    6400120: S_Can.002
+    6400122: S_Can.003
+    6400124: S_Can.005
+    6400126: S_Can.006
+    6400128: S_chest
+    6400130: S_paintings
+    6400132: S_pillow.001
+    6400134: S_pillow.002
+    6400136: S_pillow.003
+    6400138: S_shelf
+    6400140: S_shelf.002
+    6400142: Window.L.007
+    6400144: Window.L.019
+    6400146: Window.L.020
+    6400148: Window.L.022
+    6400150: Window.L.023
+    6400152: Window.L.024
+    6400154: Window.L.025
+    6400156: Window.L.026
+    6400158: Window.L.027
+    6400160: Window.R.007
+    6400162: Window.R.019
+    6400164: Window.R.020
+    6400166: Window.R.022
+    6400168: Window.R.023
+    6400170: Window.R.024
+    6400172: Window.R.025
+    6400174: Window.R.026
+    6400176: Window.R.027
+    6400178: WindowFrame.008
+    6400180: WindowFrame.019
+    6400182: WindowFrame.020
+    6400184: WindowFrame.022
+    6400186: WindowFrame.023
+    6400188: WindowFrame.024
+    6400190: WindowFrame.025
+    6400192: WindowFrame.026
+    6400194: WindowFrame.027
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -786,7 +884,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
