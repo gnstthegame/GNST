@@ -20,6 +20,26 @@ public class CharacterMotor : MonoBehaviour {
     bool grounded = false;
     static Vector3 UpOfset = new Vector3(0, 0.2f, 0);
 
+    //==========================================================
+    public GameObject triggeringNPC;
+    public bool triggering;
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.tag == "NPC") {
+            triggering = true;
+            triggeringNPC = other.gameObject;
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if (other.tag == "NPC") {
+            triggering = false;
+            triggeringNPC = null;
+
+        }
+    }
+    //==========================================================
+
     void Start() {
         if (cam == null) {
             cam = Camera.main;
@@ -53,7 +73,7 @@ public class CharacterMotor : MonoBehaviour {
                 }
                 dir = LevelForward * vert + Vector3.Cross(LevelForward, transform.up) * -hor;
                 if (!frez) {
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(dir), RotationSpeed*Time.deltaTime);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(dir), RotationSpeed * Time.deltaTime);
                 }
             } else {
                 anim.SetFloat("Forward", 0, 0.2f, Time.deltaTime);

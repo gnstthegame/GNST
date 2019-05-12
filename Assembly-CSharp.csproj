@@ -170,6 +170,17 @@
     <Compile Include="Assets\Scripts\CharacterMotor.cs" />
     <Compile Include="Assets\Scripts\DamageReciver.cs" />
     <Compile Include="Assets\Scripts\DoorTrigger.cs" />
+    <Compile Include="Assets\Scripts\E.cs" />
+    <Compile Include="Assets\Scripts\Quests\Dialogue\DialogueSystem.cs" />
+    <Compile Include="Assets\Scripts\Quests\GatherGoal.cs" />
+    <Compile Include="Assets\Scripts\Quests\Goal.cs" />
+    <Compile Include="Assets\Scripts\Quests\KillGoal.cs" />
+    <Compile Include="Assets\Scripts\Quests\NPC\Interactable.cs" />
+    <Compile Include="Assets\Scripts\Quests\NPC\NPC.cs" />
+    <Compile Include="Assets\Scripts\Quests\Quest.cs" />
+    <Compile Include="Assets\Scripts\Quests\QuestGiver.cs" />
+    <Compile Include="Assets\Scripts\Quests\QuestGoal.cs" />
+    <Compile Include="Assets\Scripts\Quests\Quests\PrzykladowyQuest.cs" />
     <Compile Include="Assets\Scripts\RandomSlide.cs" />
     <Compile Include="Assets\UMotion Examples\Miscellaneous\Scripts\ResetPosition.cs" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
