@@ -54,24 +54,69 @@ public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     //nie stackuje
     public void Buy()
     {
-        if(item != null && item.BuyValue <= inventory.money)
+        if (inventory.IsFull())
         {
-            for (int i = 0; i < shop.sellItems.Count - 1; i++)
-            {
-                if (shop.sellItems[i] == item)
-                {
-                    stackSize--;
-                    inventory.AddItem(item);
-                    inventory.money -= item.BuyValue;
-                    if (stackSize == 0)
-                    {
-                        shop.sellItems[i] = null;
-                        item = null;
-                    }
-                    break;
-                }
-            }            
+            return;
         }
+        if (item != null && item.BuyValue <= inventory.money)
+        {
+            if (inventory.IsFull())
+            {
+                return;
+            }
+            if (item != null)
+            {
+                inventory.money -= item.BuyValue;
+                for (int i = 0; i < shop.sellItems.Count; i++)
+                {
+                    if (shop.sellItems[i].item == item)
+                    {
+                        if (item != null && item.MaximumStacks > 1)
+                        {
+                            stackSize--;
+                            shop.sellItems[i].amount--;
+                            Debug.Log("A: " + shop.sellItems[i].amount);
+                            for (int j = 0; j < inventory.itemSlots.Length; j++)
+                            {
+                                if (inventory.itemSlots[j].Item == null)
+                                {
+                                    inventory.itemSlots[j].Item = item;
+                                    inventory.itemSlots[j].Amount = 1;
+                                    break;
+                                }
+                            }
+                            if (stackSize <= 0)
+                            {
+                                shop.sellItems[i] = new Pair();
+                                item = null;
+                            }
+                            return;
+                        }
+                        else if (item != null && item.MaximumStacks == 1)
+                        {
+                            shop.sellItems[i].amount--;
+                            stackSize--;
+                            for (int j = 0; j < inventory.itemSlots.Length; j++)
+                            {
+                                if (inventory.itemSlots[j].Item == null)
+                                {
+                                    inventory.itemSlots[j].Item = item;
+                                    inventory.itemSlots[j].Amount = 1;
+                                    break;
+                                }
+                            }
+                            if (stackSize == 0)
+                            {
+                                shop.sellItems[i] = new Pair();
+                                item = null;
+                            }
+                            return;
+                        }
+                    }
+                }
+
+            }
+        }       
         Debug.Log("Zakupiono");
     }
 

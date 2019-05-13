@@ -64,8 +64,10 @@ public class InventoryManager : MonoBehaviour {
 
             if (usableItem.isConsumable) {
                 inventory.RemoveItem(usableItem.ID);
+                usableItem.Destroy();
             }
         }
+        Debug.Log(Strength.Value);
     }
 
     private void EquipmentPanelRightClick(ItemSlot itemSlot) {

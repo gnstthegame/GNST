@@ -31,21 +31,16 @@ public class ShopManager : MonoBehaviour {
         if (shop == null) {
             return;
         }
-        for (int i = 0; i < shop.sellItems.Count; i++)
-        {
-            if(shop.sellItems[i] != null)
-                shop.sellItems[i] = shop.sellItems[i];
-        }
 
-        for (int i = 0; i < buyButtons.Length - 1; i++)
+        for (int i = 0; i < buyButtons.Length; i++)
         {
             buyButtons[i].OnPointerEnterEvent += ShowTooltip;
             buyButtons[i].OnPointerExitEvent += HideTooltip;
             
             if (shop.sellItems[i] != null)
             {
-                buyButtons[i].item = shop.sellItems[i];
-                buyButtons[i].stackSize = 1;
+                buyButtons[i].item = shop.sellItems[i].item;
+                buyButtons[i].stackSize = shop.sellItems[i].amount;
                 //Debug.Log(buyButtons[i].item.ID);
             }
             else
@@ -55,7 +50,7 @@ public class ShopManager : MonoBehaviour {
             }
         }
 
-        for (int i = 0; i < sellButtons.Length - 1; i++)
+        for (int i = 0; i < sellButtons.Length; i++)
         {
             sellButtons[i].OnPointerEnterEvent += ShowTooltip;
             sellButtons[i].OnPointerExitEvent += HideTooltip;
@@ -67,6 +62,7 @@ public class ShopManager : MonoBehaviour {
             else
             {
                 sellButtons[i].item = null;
+                sellButtons[i].stackSize = 0;
             }
         }
         
@@ -90,12 +86,12 @@ public class ShopManager : MonoBehaviour {
             return;
         }
         int i = 0;
-        for (i = 0; i < buyButtons.Length - 1; i++)
+        for (i = 0; i < buyButtons.Length; i++)
         {
             if (shop.sellItems[i] != null)
             {
-                buyButtons[i].item = shop.sellItems[i];
-                buyButtons[i].stackSize = 1;
+                buyButtons[i].item = shop.sellItems[i].item;
+                buyButtons[i].stackSize = shop.sellItems[i].amount;
             }
             else
             {
@@ -105,7 +101,7 @@ public class ShopManager : MonoBehaviour {
         }
 
 
-        for (i = 0; i < sellButtons.Length - 1; i++)
+        for (i = 0; i < sellButtons.Length; i++)
         {
             if (inventory.itemSlots[i].Item != null)
             {
@@ -115,6 +111,7 @@ public class ShopManager : MonoBehaviour {
             else
             {
                 sellButtons[i].item = null;
+                sellButtons[i].stackSize = 0;
             }
         }
     }

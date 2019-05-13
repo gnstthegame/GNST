@@ -5,7 +5,8 @@ using UnityEngine;
 public class Shop : MonoBehaviour {
 
     [SerializeField] Inventory inventory;
-    [SerializeField] public List<Item> sellItems;
+    //Pair
+    [SerializeField] public List<Pair> sellItems;
     [SerializeField] Transform playerTransform;
     [SerializeField] ShopManager shop;
     bool show = false;
@@ -17,6 +18,7 @@ public class Shop : MonoBehaviour {
         inventory = FindObjectOfType<Inventory>();
         playerTransform = FindObjectOfType<CharacterMotor>().transform;
     }
+
     private void Update() {
         if (Input.GetButtonDown("Interact")) {
             if (Vector3.Distance(playerTransform.position, transform.position) < distance) {
