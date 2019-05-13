@@ -7,7 +7,7 @@ public class Interactable : MonoBehaviour {
     internal CharacterMotor player;
     protected bool hasInteracted;
     public string name;
-    private void OnValidate() {
+    private void Awake() {
         player = FindObjectOfType<CharacterMotor>();
     }
 

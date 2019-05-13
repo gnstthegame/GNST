@@ -9,9 +9,9 @@ public class EquipmentSlot : ItemSlot
 {
     public EquipmentType equipmentType;
 
-    protected override void OnValidate()
+    protected override void Awake()
     {
-        base.OnValidate();
+        base.Awake();
         gameObject.name = equipmentType.ToString() + " Slot";
     }
 

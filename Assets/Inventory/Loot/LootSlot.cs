@@ -16,7 +16,7 @@ public class LootSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public event Action<LootSlot> OnPointerEnterEvent;
     public event Action<LootSlot> OnPointerExitEvent;
 
-    private void OnValidate()
+    private void Awake()
     {
         inventory = FindObjectOfType<Inventory>();
         stackText = GetComponentInChildren<Text>();

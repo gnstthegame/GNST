@@ -2490,6 +2490,11 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114933831323713410, guid: 95c436b2d2544f741b4a5f92e5785842,
+        type: 2}
+      propertyPath: newScene
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95c436b2d2544f741b4a5f92e5785842, type: 2}
   m_IsPrefabAsset: 0

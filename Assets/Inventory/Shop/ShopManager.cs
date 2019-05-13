@@ -19,7 +19,7 @@ public class ShopManager : MonoBehaviour {
     public event Action<SellButton> OnSellPointerEnterEvent;
     public event Action<SellButton> OnSellPointerExitEvent;
 
-    private void OnValidate()
+    private void Awake()
     {
         buyButtons = buttonsParent.GetComponentsInChildren<BuyButton>();
         sellButtons = buttonsParent.GetComponentsInChildren<SellButton>();

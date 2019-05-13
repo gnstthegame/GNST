@@ -7,7 +7,7 @@ public class InputMenager : MonoBehaviour {
     PauseMenu PM;
     InventoryManager IM;
 
-    private void OnValidate() {
+    private void Awake() {
         PM = GetComponentInChildren<PauseMenu>();
         IM = GetComponentInChildren<InventoryManager>();
     }

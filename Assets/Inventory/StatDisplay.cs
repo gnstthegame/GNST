@@ -34,7 +34,7 @@ public class StatDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     }
 
 
-    private void OnValidate()
+    private void Awake()
     {
         Text[] texts = GetComponentsInChildren<Text>();
         nameText = texts[0];

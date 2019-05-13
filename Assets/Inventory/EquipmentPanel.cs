@@ -33,7 +33,7 @@ public class EquipmentPanel : MonoBehaviour {
         }
     }
 
-    private void OnValidate()
+    private void Awake()
     {
         equipmentSlots = equipmentSlotsParent.GetComponentsInChildren<EquipmentSlot>();
     }

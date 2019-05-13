@@ -6,13 +6,8 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour {
     public string scene;
     SaveLinker SL;
-    private void OnValidate() {
+    private void Awake() {
         SL = FindObjectOfType<SaveLinker>();
-    }
-    private void Start() {
-        if (SL == null) {
-            SL = FindObjectOfType<SaveLinker>();
-        }
     }
 
     private void OnTriggerEnter(Collider other) {

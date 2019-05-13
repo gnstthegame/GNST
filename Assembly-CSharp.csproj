@@ -115,6 +115,7 @@
     <Compile Include="Assets\Levels\ShadowRealm\FallingBlock.cs" />
     <Compile Include="Assets\Levels\ShadowRealm\FallingTrigger.cs" />
     <Compile Include="Assets\Levels\ShadowRealm\ShadowRealm.cs" />
+    <Compile Include="Assets\Menu\Checkpoint.cs" />
     <Compile Include="Assets\Menu\InputMenager.cs" />
     <Compile Include="Assets\Menu\MainMenu.cs" />
     <Compile Include="Assets\Menu\PauseMenu.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Assets\Menu\saveSystem.cs" />
     <Compile Include="Assets\Menu\SceneLoader.cs" />
     <Compile Include="Assets\Menu\SettingsMenu.cs" />
+    <Compile Include="Assets\Menu\SpriteChange.cs" />
     <Compile Include="Assets\PostProcessing\invert.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />

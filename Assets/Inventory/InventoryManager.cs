@@ -24,14 +24,12 @@ public class InventoryManager : MonoBehaviour {
     [SerializeField] Image draggableItem;
 
     private ItemSlot draggedSlot;
+    
 
-    private void OnValidate() {
+    private void Awake() {
         if (itemTooltip == null) {
             itemTooltip = FindObjectOfType<ItemTooltip>();
         }
-    }
-
-    private void Awake() {
         ReloadStats();
         statPanel.UpdateStatNames();
 

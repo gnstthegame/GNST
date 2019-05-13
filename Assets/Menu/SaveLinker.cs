@@ -8,9 +8,9 @@ public class SaveLinker : MonoBehaviour {
     public Transform player;
     public bool saveTrigger = false;
     public InventoryManager IM;
-    public bool newScene = true;
+    bool newScene = true;
 
-    private void OnValidate() {
+    private void Awake() {
         IM = GetComponentInChildren<InventoryManager>();
     }
     private void Start() {

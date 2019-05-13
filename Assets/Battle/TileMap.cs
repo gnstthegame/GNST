@@ -75,7 +75,7 @@ public class TileMap : MonoBehaviour {
     InputMenager IM;
     RewardMenu RM;
     AudioManager AM;
-    private void OnValidate() {
+    private void Awake() {
         IM = FindObjectOfType<InputMenager>();
         RM = FindObjectOfType<RewardMenu>();
         AM = FindObjectOfType<AudioManager>();
@@ -108,6 +108,7 @@ public class TileMap : MonoBehaviour {
             IM.UnblockInventory();
             PlayerUnits[0].hud.Deactiv();
             PlayerUnits[0].GetComponent<CharacterMotor>().enabled = true;
+            FindObjectOfType<SaveLinker>().SavePlayer();
             Destroy(gameObject);
         }
     }

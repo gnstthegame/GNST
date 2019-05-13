@@ -34,7 +34,7 @@ public class LootPanel : MonoBehaviour {
     public event Action<LootSlot> OnPointerEnterEvent;
     public event Action<LootSlot> OnPointerExitEvent;
 
-    private void OnValidate()
+    private void Awake()
     {
         lootSlots = lootSlotsParent.GetComponentsInChildren<LootSlot>();
     }

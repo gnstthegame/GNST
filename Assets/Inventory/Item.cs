@@ -18,8 +18,9 @@ public class Item : ScriptableObject
 
     private void OnValidate()
     {
-        string path = AssetDatabase.GetAssetPath(this);
-        id = AssetDatabase.AssetPathToGUID(path);
+        //    string path = AssetDatabase.GetAssetPath(this);
+        //    id = AssetDatabase.AssetPathToGUID(path);
+        id = (Random.value * 10000).ToString();
     }
 
     public virtual Item GetCopy()

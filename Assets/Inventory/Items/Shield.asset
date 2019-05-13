@@ -11,11 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: 
-  id: 3848034699e541d40a6c2b18548e1085
+  id: 1372.558
   Name: Tarcza
-  Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  Sprite: {fileID: 21300000, guid: ddc46577f97fa9548bc96cf9344e1515, type: 3}
   BuyValue: 0
   SellValue: 0
+  MaximumStacks: 1
   Strength: 0
   Agility: 0
   Stamina: 0
@@ -29,7 +30,7 @@ MonoBehaviour:
   Cost: 1
   AnimTrigger: Shield
   AttackRange: 0
-  Model3d: {fileID: 0}
+  Model3d: {fileID: 100000, guid: 068353abeca5eea448c53561ec6ddf67, type: 3}
   positive: 1
   Efekt: 1
   OnDestroy: 2

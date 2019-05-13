@@ -42,7 +42,7 @@ public class Inventory : MonoBehaviour, IItemContainter {
         moneyText.text = "Plusz: " + money.ToString();
     }
 
-    private void OnValidate()
+    private void Awake()
     {
         if(itemsParent != null)
         {
