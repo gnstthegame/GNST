@@ -22,7 +22,9 @@ public class SpriteChange : MonoBehaviour {
         count++;
         if(count == images.Length)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            LevelLoader load = gameObject.GetComponent<LevelLoader>();
+            load.LoadLevel(1);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         } else {
             image_set.image.sprite = images[count];
         }

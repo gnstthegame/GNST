@@ -17,6 +17,10 @@ public class ShadowRealm : MonoBehaviour {
     bool win = false;
 
     void Awake() {
+        FindObjectOfType<AudioManager>().PlayMusic("ThemeShadowRealm");
+        FindObjectOfType<AudioManager>().StopMusic("ThemeTutorial");
+        FindObjectOfType<AudioManager>().StopMusic("AmbientTutorial");
+
         triger = Player.GetComponent<FallingTrigger>();
         for (int i = 0; i < segments && i < 5; i++) {
             int sym = BSym[Random.Range(0, BSym.Count)];

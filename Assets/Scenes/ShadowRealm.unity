@@ -90,7 +90,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -7333,6 +7333,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114163686762997960, guid: 95c436b2d2544f741b4a5f92e5785842,
+        type: 2}
+      propertyPath: sounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224993954843501106, guid: 95c436b2d2544f741b4a5f92e5785842,
         type: 2}
       propertyPath: m_RootOrder
@@ -9457,6 +9462,72 @@ Prefab:
       propertyPath: newScene
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 82663459376550114, guid: 95c436b2d2544f741b4a5f92e5785842,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114163686762997960, guid: 95c436b2d2544f741b4a5f92e5785842,
+        type: 2}
+      propertyPath: sounds.Array.data[1].name
+      value: ThemeTutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 114163686762997960, guid: 95c436b2d2544f741b4a5f92e5785842,
+        type: 2}
+      propertyPath: sounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1f7891e5feef8364ea08fa28a032fe7f, type: 3}
+    - target: {fileID: 114163686762997960, guid: 95c436b2d2544f741b4a5f92e5785842,
+        type: 2}
+      propertyPath: sounds.Array.data[1].volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114163686762997960, guid: 95c436b2d2544f741b4a5f92e5785842,
+        type: 2}
+      propertyPath: sounds.Array.data[1].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114163686762997960, guid: 95c436b2d2544f741b4a5f92e5785842,
+        type: 2}
+      propertyPath: sounds.Array.data[1].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114163686762997960, guid: 95c436b2d2544f741b4a5f92e5785842,
+        type: 2}
+      propertyPath: sounds.Array.data[2].name
+      value: Victory
+      objectReference: {fileID: 0}
+    - target: {fileID: 114163686762997960, guid: 95c436b2d2544f741b4a5f92e5785842,
+        type: 2}
+      propertyPath: sounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: d6173fc6a45fabc419be02d7dc62d2aa, type: 3}
+    - target: {fileID: 114163686762997960, guid: 95c436b2d2544f741b4a5f92e5785842,
+        type: 2}
+      propertyPath: sounds.Array.data[2].volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114163686762997960, guid: 95c436b2d2544f741b4a5f92e5785842,
+        type: 2}
+      propertyPath: sounds.Array.data[2].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114163686762997960, guid: 95c436b2d2544f741b4a5f92e5785842,
+        type: 2}
+      propertyPath: sounds.Array.data[0].name
+      value: ThemeShadowRealm
+      objectReference: {fileID: 0}
+    - target: {fileID: 114163686762997960, guid: 95c436b2d2544f741b4a5f92e5785842,
+        type: 2}
+      propertyPath: sounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9c906a7cb86c24242a2edb13dfb194aa, type: 3}
+    - target: {fileID: 114163686762997960, guid: 95c436b2d2544f741b4a5f92e5785842,
+        type: 2}
+      propertyPath: sounds.Array.data[0].output
+      value: 
+      objectReference: {fileID: 24300002, guid: 18359ef6ee5a91c479266ddc834ba0cb,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95c436b2d2544f741b4a5f92e5785842, type: 2}
   m_IsPrefabAsset: 0

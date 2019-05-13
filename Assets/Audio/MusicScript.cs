@@ -13,7 +13,7 @@ public class MusicScript {
     public float volume;
     [Range(0f, 1f)]
     public float pitch;
-
+    public AudioMixerGroup output;
     public bool loop;
 
     [HideInInspector]
