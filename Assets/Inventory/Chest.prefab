@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4739248713926230}
-  - component: {fileID: 114627589933150228}
+  - component: {fileID: 114685020132566666}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
@@ -52,7 +52,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1032309159447036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.622238, y: 11.661495, z: -8.160344}
+  m_LocalPosition: {x: -15.12, y: 0, z: -3.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4785077696922406}
@@ -126,7 +126,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.029850734, y: 0.02255078, z: 0.024853205}
   m_Center: {x: 0, y: -0.0007479157, z: 0.012311018}
---- !u!114 &114627589933150228
+--- !u!114 &114685020132566666
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,10 +134,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1032309159447036}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81326c22ef7a21849a0bea6d5d4fbd6a, type: 3}
+  m_Script: {fileID: 11500000, guid: a981e68898655714ca735cf7b526eec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
-  items: []
-  playerTransform: {fileID: 0}
+  plusz: 0
+  lootItems:
+  - item: {fileID: 11400000, guid: 2932a2a7276ec6541939ec05a12ee5c8, type: 2}
+    amount: 5
+  - item: {fileID: 11400000, guid: 2932a2a7276ec6541939ec05a12ee5c8, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: 2932a2a7276ec6541939ec05a12ee5c8, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: 2932a2a7276ec6541939ec05a12ee5c8, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: 2932a2a7276ec6541939ec05a12ee5c8, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: 2932a2a7276ec6541939ec05a12ee5c8, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: 2932a2a7276ec6541939ec05a12ee5c8, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: 2932a2a7276ec6541939ec05a12ee5c8, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: 2932a2a7276ec6541939ec05a12ee5c8, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: 2932a2a7276ec6541939ec05a12ee5c8, type: 2}
+    amount: 1
+  DestroyEmpty: 0
   distance: 3

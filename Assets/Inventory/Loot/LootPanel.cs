@@ -26,7 +26,7 @@ public class Pair
 public class LootPanel : MonoBehaviour {
 
     [SerializeField] Inventory inventory;
-    [SerializeField] LootSlot[] lootSlots;
+    LootSlot[] lootSlots;
     [SerializeField] GameObject lootSlotsParent;
     [SerializeField] ItemTooltip itemTooltip;
     [SerializeField] public Chest chest;
@@ -53,17 +53,34 @@ public class LootPanel : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        for (int i = 0; i < lootSlots.Length; i++)
-        {
+        for (int i = 0; i < lootSlots.Length; i++) {
             lootSlots[i].OnPointerEnterEvent += ShowTooltip;
             lootSlots[i].OnPointerExitEvent += HideTooltip;
         }
+        if (chest != null) {
+            for (int i = 0; i < chest.lootItems.Count; i++) {
+                if (chest.lootItems[i].item != null) {
+                    lootSlots[i].item = chest.lootItems[i].item;
+                    lootSlots[i].amount = chest.lootItems[i].amount;
+                } else {
+                    lootSlots[i].item = null;
+                    lootSlots[i].amount = 0;
+                }
+            }
+        }
+
+    }
+	
+	// Update is called once per frame
+	void Update () {
         if(chest != null)
         {
+            bool empty = true;
             for (int i = 0; i < chest.lootItems.Count; i++)
             {
                 if (chest.lootItems[i].item != null)
                 {
+                    empty = false;
                     lootSlots[i].item = chest.lootItems[i].item;
                     lootSlots[i].amount = chest.lootItems[i].amount;
                 }
@@ -73,26 +90,8 @@ public class LootPanel : MonoBehaviour {
                     lootSlots[i].amount = 0;
                 }
             }
-        }
-        
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        if(chest != null)
-        {
-            for (int i = 0; i < chest.lootItems.Count; i++)
-            {
-                if (chest.lootItems[i].item != null)
-                {
-                    lootSlots[i].item = chest.lootItems[i].item;
-                    lootSlots[i].amount = chest.lootItems[i].amount;
-                }
-                else
-                {
-                    lootSlots[i].item = null;
-                    lootSlots[i].amount = 0;
-                }
+            if (empty) {
+                chest.Destr();
             }
         }
         

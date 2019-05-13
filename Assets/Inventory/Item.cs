@@ -5,31 +5,28 @@ using UnityEngine;
 
 [CreateAssetMenu]
 [System.Serializable]
-public class Item : ScriptableObject
-{
+public class Item : ScriptableObject {
     [SerializeField] string id;
     public string ID { get { return id; } }
     [SerializeField] public string Name;
     public Sprite Sprite;
     public int BuyValue;
     public int SellValue;
-    [Range(1,999)]
+    [Range(1, 999)]
     public int MaximumStacks = 1;
 
-    private void OnValidate()
-    {
+    private void OnValidate() {
         //    string path = AssetDatabase.GetAssetPath(this);
         //    id = AssetDatabase.AssetPathToGUID(path);
-        id = (Random.value * 10000).ToString();
+        //id = (Random.value * 10000).ToString();
+        id = System.Guid.NewGuid().ToString();
     }
 
-    public virtual Item GetCopy()
-    {
+    public virtual Item GetCopy() {
         return this;
     }
 
-    public virtual void Destroy()
-    {
+    public virtual void Destroy() {
 
     }
     public virtual Skill getskill() {

@@ -9,7 +9,7 @@ using System;
 public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler {
 
     private Item _item;
-    private int _amount;
+    public int _amount;
     [SerializeField] Image image;
     [SerializeField] Text amountText;
     //Vector2 originalPosition;

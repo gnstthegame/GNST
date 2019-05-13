@@ -16,120 +16,73 @@ public class LootSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public event Action<LootSlot> OnPointerEnterEvent;
     public event Action<LootSlot> OnPointerExitEvent;
 
-    private void Awake()
-    {
+    private void Awake() {
+        lootPanel = FindObjectOfType<LootPanel>();
         inventory = FindObjectOfType<Inventory>();
         stackText = GetComponentInChildren<Text>();
         image = GetComponent<Image>();
     }
 
     // Use this for initialization
-    void Start () {
-	    	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (item == null)
-        {
+    void Start() {
+
+    }
+
+    // Update is called once per frame
+    void Update() {
+        if (item == null) {
             image.color = new Color(0, 0, 0, 0);
             stackText.enabled = false;
-        }
-        else
-        {
+        } else {
             image.color = Color.white;
             image.sprite = item.Sprite;
-            if (amount > 1)
-            {
+            if (amount > 1) {
                 stackText.enabled = true;
                 stackText.text = amount.ToString();
-            }
-            else
-            {
+            } else {
                 stackText.enabled = false;
             }
         }
     }
 
     //Poprawic dla niestackujacych sie itemow, wytyczne.txt
-    //Dodac podobne do BuyButton
-    public void GetItem()
-    {
-        if (inventory.IsFull())
-        {
+    //AD Uproszczenie
+    public void GetItem() {
+        if (inventory.IsFull()) {
             return;
         }
-        if (item != null)
-        {
-            for (int i = 0; i < lootPanel.chest.lootItems.Count; i++)
-            {
-                if (lootPanel.chest.lootItems[i].item == item)
-                {
-                    if(item != null && item.MaximumStacks > 1)
-                    {
-                        amount--;
-                        lootPanel.chest.lootItems[i].amount--;
-                        Debug.Log("A: " + amount);
-                        for (int j = 0; j < inventory.itemSlots.Length; j++)
-                        {
-                            if (inventory.itemSlots[j].Item == null)
-                            {
-                                inventory.itemSlots[j].Item = item;
-                                inventory.itemSlots[j].Amount = 1;
-                                break;
-                            }
-                        }
-                        if (amount == 0)
-                        {
-                            lootPanel.chest.lootItems[i] = new Pair();
-                            item = null;
-                        }
-                        break;
+        for (int i = 0; i < lootPanel.chest.lootItems.Count; i++) {
+            if (lootPanel.chest.lootItems[i].item == item) {
+                if (item != null && item.MaximumStacks > 1) {
+                    inventory.AddItem(item);
+                    amount--;
+                    lootPanel.chest.lootItems[i].amount--;
+                    if (lootPanel.chest.lootItems[i].amount == 0) {
+                        lootPanel.chest.lootItems[i] = new Pair();
+                        item = null;
                     }
-                    else if(item != null && item.MaximumStacks == 1)
-                    {
-                        amount--;
-                        lootPanel.chest.lootItems[i].amount--;                        
-                        for (int j = 0; j < inventory.itemSlots.Length; j++)
-                        {
-                            if (inventory.itemSlots[j].Item == null)
-                            {
-                                inventory.itemSlots[j].Item = item;
-                                inventory.itemSlots[j].Amount = 1;
-                                break;
-                            }
-                        }
-                        if (amount == 0)
-                        {
-                            lootPanel.chest.lootItems[i] = new Pair();
-                            item = null;
-                        }
-                    }
-                }              
+                    break;
+                }
             }
         }
     }
 
-    public void TakeAllFromSlot()
-    {
+    public void TakeAllFromSlot() {
         int pom = amount;
-        for (int i = 0; i < pom; i++)
-        {
-            GetItem();            
+        for (int i = 0; i < pom; i++) {
+            GetItem();
         }
-        if(amount == 0)
+        if (amount == 0)
             item = null;
     }
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if(OnPointerExitEvent != null)
+    public void OnPointerExit(PointerEventData eventData) {
+        if (OnPointerExitEvent != null)
             OnPointerExitEvent(this);
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if(OnPointerEnterEvent != null)
+    public void OnPointerEnter(PointerEventData eventData) {
+        if (OnPointerEnterEvent != null)
             OnPointerEnterEvent(this);
     }
 }
