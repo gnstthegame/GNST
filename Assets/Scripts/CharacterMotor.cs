@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterMotor : MonoBehaviour {
-    public float maxDist = 0.5f, armLength = 1f, prepereSpeed = 2, climbDistans = 14;
+    public float maxDist = 0.5f, armLength = 1f, prepereSpeed = 2, climbDistans = 1.5f;
     public float moc;
     public float BaseRotationSpeed = 10f;
     float RotationSpeed = 10f;
@@ -55,21 +55,28 @@ public class CharacterMotor : MonoBehaviour {
         }
         if (!draging) {
             if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) {
-                if (Input.GetButton("Sprint")) {
-                    anim.SetFloat("Forward", 2f, 0.2f, Time.deltaTime);
-                } else {
-                    anim.SetFloat("Forward", 1f, 0.1f, Time.deltaTime);
-                }
                 float vert = Input.GetAxis("Vertical");
                 float hor = Input.GetAxis("Horizontal");
                 if (thirdP) {
                     RotationSpeed = BaseRotationSpeed / 5f;
                     if (Input.GetAxis("Vertical") < 0) {
-                        vert = 0;
-                        hor = 1;
+                        anim.SetFloat("Forward", -1f, 0.1f, Time.deltaTime);
+                    } else if (Input.GetAxis("Vertical") == 0) {
+                        anim.SetFloat("Forward", 0, 0.2f, Time.deltaTime);
+                    } else {
+                        if (Input.GetButton("Sprint")) {
+                            anim.SetFloat("Forward", 2f, 0.2f, Time.deltaTime);
+                        } else {
+                            anim.SetFloat("Forward", 1f, 0.05f, Time.deltaTime);
+                        }
                     }
                 } else {
                     RotationSpeed = BaseRotationSpeed;
+                    if (Input.GetButton("Sprint")) {
+                        anim.SetFloat("Forward", 2f, 0.2f, Time.deltaTime);
+                    } else {
+                        anim.SetFloat("Forward", 1f, 0.05f, Time.deltaTime);
+                    }
                 }
                 dir = LevelForward * vert + Vector3.Cross(LevelForward, transform.up) * -hor;
                 if (!frez) {
@@ -102,10 +109,11 @@ public class CharacterMotor : MonoBehaviour {
 
 
     IEnumerator Climb() {
+        frez = true;
         RaycastHit hit, hit2;
         prepere = true;
-        if (Physics.Raycast(transform.position + UpOfset, transform.forward, out hit, climbDistans) && (hit.transform.tag == "Climbable" || hit.transform.tag == "CliMov")) {
-            if (Physics.Raycast(transform.position + UpOfset, -hit.normal, out hit2, climbDistans)) {
+        if (Physics.Raycast(transform.position + UpOfset, transform.forward, out hit, maxDist) && (hit.transform.tag == "Climbable" || hit.transform.tag == "CliMov")) {
+            if (Physics.Raycast(transform.position + UpOfset, -hit.normal, out hit2, maxDist)) {
                 hit = hit2;
             }
             Debug.Log("cli");
@@ -121,6 +129,8 @@ public class CharacterMotor : MonoBehaviour {
             }
             prepere = false;
             anim.SetTrigger("Climb");
+        } else {
+            anim.SetTrigger("jump");
         }
         routine = null;
     }

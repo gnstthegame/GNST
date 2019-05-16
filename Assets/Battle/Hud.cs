@@ -7,6 +7,7 @@ public class Hud : MonoBehaviour {
     public Slider HPBar;
     public Text HPText,ArmorText,APtext;
     public Transform Panel;
+    TileMap map;
     Unit u;
     bool Player = false;
     public GameObject ButtonsMenu,Armor;
@@ -18,8 +19,9 @@ public class Hud : MonoBehaviour {
     /// </summary>
     /// <param name="uu">jednostka</param>
     /// <param name="pla">gracz</param>
-    public void Activ(Unit uu, bool pla) {
+    public void Activ(Unit uu, TileMap mapp, bool pla) {
         act = true;
+        map = mapp;
         u = uu;
         Player = pla;
         HPBar.value = u.HP;
@@ -36,6 +38,13 @@ public class Hud : MonoBehaviour {
             ButtonsMenu.SetActive(false);
         }
     }
+    public void Atack(int i) {
+        if (i == 10) {
+            map.PlayerEndTurn();
+        } else {
+            map.AtackMode(i);
+        }
+    }
     /// <summary>
     /// aktywuje przyciski umiejętności
     /// </summary>
@@ -49,7 +58,7 @@ public class Hud : MonoBehaviour {
         ButtonsMenu.SetActive(false);
     }
     /// <summary>
-    /// auktualnij wyświetlane informacje
+    /// uaktualnij wyświetlane informacje
     /// </summary>
     public void Upd() {
         HPBar.maxValue = u.MaxHP;
@@ -99,7 +108,7 @@ public class Hud : MonoBehaviour {
         Panel.transform.position = Camera.main.WorldToScreenPoint(u.transform.position);
     }
     /// <summary>
-    /// rutyna zmieniająca pasek życia
+    /// rutyna płynnie zmieniająca vartość paseka życia
     /// </summary>
     /// <param name="hp">życie</param>
     IEnumerator HPChange(int hp) {

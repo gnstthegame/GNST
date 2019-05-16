@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour {
+public class SceneLoader : LevelLoader {
     public string scene;
+    bool inside=false;
     SaveLinker SL;
     private void Awake() {
         SL = FindObjectOfType<SaveLinker>();
@@ -12,8 +13,20 @@ public class SceneLoader : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Player") {
+            inside = true;
             SL.SavePlayer();
-            SceneManager.LoadScene(scene);
+            LoadLevel(scene);
+        }
+    }
+    private void OnTriggerExit(Collider other) {
+        if (other.tag == "Player") {
+            inside = false;
+        }
+    }
+    private void Update() {
+        if(inside && Input.GetButtonDown("Interact")) {
+            SL.SavePlayer();
+            LoadLevel(scene);
         }
     }
 }

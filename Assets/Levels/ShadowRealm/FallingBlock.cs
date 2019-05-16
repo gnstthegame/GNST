@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// klasa ruchomych płyt
+/// </summary>
 public class FallingBlock : MonoBehaviour {
     public bool fall = true;
     bool infall = true;
@@ -18,6 +21,9 @@ public class FallingBlock : MonoBehaviour {
     Vector3 down;
     Vector3 temp = Vector3.zero;
 
+    /// <summary>
+    /// oblicza pozycje startową
+    /// </summary>
     void Awake() {
         if (!DontRotate) {
             transform.Rotate(transform.up, Random.Range(0, 5) * 90f);
@@ -32,10 +38,17 @@ public class FallingBlock : MonoBehaviour {
             Rend.enabled = false;
         }
     }
+    /// <summary>
+    /// ustaw płytę w pozycji uniesionej
+    /// </summary>
     public void upPose() {
         tr.position = startPos;
         tr.rotation = startRot;
     }
+    /// <summary>
+    /// oznacz symbolem granicznym i obróć płytę
+    /// </summary>
+    /// <param name="s">kierunek</param>
     public void Mark(int s) {
         Rend.enabled = true;
         if (s < 4) {
@@ -46,7 +59,9 @@ public class FallingBlock : MonoBehaviour {
             Rend.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -startRot.eulerAngles.y));
         }
     }
-    
+    /// <summary>
+    /// kontrola rutyn
+    /// </summary>
     void Update() {
         if (fall != infall) {
             infall = fall;
@@ -58,6 +73,9 @@ public class FallingBlock : MonoBehaviour {
             }
         }
     }
+    /// <summary>
+    /// rutyna opadania płyty
+    /// </summary>
     IEnumerator Falling() {
         float grav = 0;
         Vector3 tarPos = startPos + down;
@@ -72,6 +90,9 @@ public class FallingBlock : MonoBehaviour {
         }
 
     }
+    /// <summary>
+    /// rutyna podnoszenia płyty
+    /// </summary>
     IEnumerator Rising() {
         float dist = Vector3.Distance(startPos, tr.position);
         float diff = Vector3.Distance(startPos, tr.position);

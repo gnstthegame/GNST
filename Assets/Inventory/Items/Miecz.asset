@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
+  m_Name: Miecz
+  m_EditorClassIdentifier: 
+  id: d67e8b67-dbd3-4b68-b30f-83b2b8c13456
+  Name: Meele Sword
+  Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  BuyValue: 0
+  SellValue: 0
+  MaximumStacks: 1
+  Strength: 0
+  Agility: 0
+  Stamina: 0
+  Luck: 0
+  Armor: 0
+  equipmentType: 2
+  Opis: 
+  Area:
+  - {x: 0, y: 1}
+  Dmg: {x: 2, y: 4}
+  Cost: 1
+  AnimTrigger: Dash
+  AttackRange: 0
+  Model3d: {fileID: 1423939346964840, guid: 4c99cb0af50a25e4e8fe847d22402d86, type: 2}
+  positive: 0
+  Efekt: 0
+  OnDestroy: 0
+  EfektPower: 0
+  EffectTriggered: 0
+  CzasTrwania: 0

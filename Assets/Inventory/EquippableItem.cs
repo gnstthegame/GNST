@@ -9,7 +9,11 @@ public enum EquipmentType
     Ranged,
     Usable1,
     Usable2,
-    Usable3
+    Sticker,
+    Quest1,
+    Quest2,
+    Quest3,
+    Quest4
 }
 
 [CreateAssetMenu]

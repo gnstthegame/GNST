@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
+  m_Name: Molo
+  m_EditorClassIdentifier: 
+  id: 440dcb02-416b-4168-bbba-26a46feeeed6
+  Name: "Mo\u0142otow"
+  Sprite: {fileID: 21300000, guid: e3839d0f77ca848449b6a7b93b6a00fe, type: 3}
+  BuyValue: 0
+  SellValue: 0
+  MaximumStacks: 9
+  Strength: 0
+  Agility: 0
+  Stamina: 0
+  Luck: 0
+  Armor: 0
+  equipmentType: 5
+  Opis: "Zadaje obra\u017Cenia i podpala cele zadaj\u0105c 2 dmg przez 2 tury"
+  Area:
+  - {x: 1, y: 0}
+  - {x: 0, y: 0}
+  - {x: 1, y: -1}
+  - {x: 0, y: -1}
+  Dmg: {x: 4, y: 5}
+  Cost: 0
+  AnimTrigger: Throw
+  AttackRange: 5
+  Model3d: {fileID: 1292832893148396, guid: 70086c1ce9e1116408741c05ea504dd2, type: 2}
+  positive: 0
+  Efekt: 7
+  OnDestroy: 0
+  EfektPower: 2
+  EffectTriggered: 1
+  CzasTrwania: 3

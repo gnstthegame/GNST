@@ -9,7 +9,6 @@ using System;
 public class EquipmentPanel : MonoBehaviour {
     [SerializeField] Transform equipmentSlotsParent;
     public EquipmentSlot[] equipmentSlots;
-    [SerializeField] Inventory inventory;
 
     public event Action<ItemSlot> OnPointerEnterEvent;
     public event Action<ItemSlot> OnPointerExitEvent;
@@ -56,12 +55,9 @@ public class EquipmentPanel : MonoBehaviour {
         return false;
     }
     //Zdjecie z panelu do inventory
-    public bool RemoveItem(EquippableItem item)
-    {
-        for (int i = 0; i < equipmentSlots.Length; i++)
-        {
-            if (equipmentSlots[i].Item == item)
-            {
+    public bool RemoveItem(EquippableItem item) {
+        for (int i = 0; i < equipmentSlots.Length; i++) {
+            if (equipmentSlots[i].Item == item) {
                 equipmentSlots[i].Item = null;
                 equipmentSlots[i].Amount = 0;
                 return true;

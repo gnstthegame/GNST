@@ -1,7 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+/// <summary>
+/// klasa wrogich jednostek bojowych
+/// </summary>
 public class Ai : Unit {
+    /// <summary>
+    /// klasa nagród
+    /// </summary>
     [System.Serializable]
     public class Loot {
         public string Name = "Szperacz";
@@ -11,7 +18,8 @@ public class Ai : Unit {
     }
     public enum Personality {
         lil,
-        Boss
+        Boss,
+        slime
     }
     public Personality Person;
     public GameObject chest;
@@ -42,6 +50,10 @@ public class Ai : Unit {
                 Skile.Add(new Skill(fwd, new Vector2(1, 2), 0, "Punch", 1));
                 Skile.Add(new Skill(tmp, new Vector2(2, 4), 4, "Slam", 1));
                 break;
+            case Personality.slime:
+                Skile.Add(new Skill(self, Vector2.zero, 0, "Wait", 3, rest, true));
+                Skile.Add(new Skill(fwd, new Vector2(1, 2), 0, "atack", 1));
+                break;
             default:
                 break;
         }
@@ -67,5 +79,11 @@ public class Ai : Unit {
         }
         Destroy(gameObject);
         return reward;
+    }
+    public override void Activ() {
+        if (Person == Personality.slime) {
+            anim= GetComponent<Animator>();
+            anim.SetTrigger("Exp");
+        }
     }
 }

@@ -48,28 +48,30 @@ public class Inventory : MonoBehaviour, IItemContainter {
         {
             itemSlots = itemsParent.GetComponentsInChildren<ItemSlot>();
         }
-        SetStartingItems();
     }
 
     public void SetStartingItems()
     {
-        int i = 0;
-        for(; i < startingItems.Length && i < itemSlots.Length; i++)
-        {
-            itemSlots[i].Item = startingItems[i].GetCopy();
-            itemSlots[i].Amount = 1;
+        foreach(Item i in startingItems) {
+            AddItem(i);
         }
+        //int i = 0;
+        //for(; i < startingItems.Length && i < itemSlots.Length; i++)
+        //{
+        //    itemSlots[i].Item = startingItems[i].GetCopy();
+        //    itemSlots[i].Amount = 1;
+        //}
 
-        for (; i < itemSlots.Length; i++)
-        {
-            itemSlots[i].Item = null;
-            itemSlots[i].Amount = 0;
-        }
+        //for (; i < itemSlots.Length; i++)
+        //{
+        //    itemSlots[i].Item = null;
+        //    itemSlots[i].Amount = 0;
+        //}
     }
 
     public bool AddItem(Item item) {
         for (int i = 0; i < itemSlots.Length; i++) {
-            if (itemSlots[i].Item == null || itemSlots[i].CanAddStack(itemSlots[i].Item)) {
+            if (itemSlots[i].Item == null || itemSlots[i].CanAddStack(item)) {
                 itemSlots[i].Item = item;
                 itemSlots[i].Amount++;
                 return true;

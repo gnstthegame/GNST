@@ -16,6 +16,7 @@ public class Unit : MonoBehaviour {
     public int ap = 2;//private
     public int MovRange = 3, MovMod = 0;
     public Transform Hand;
+    public GameObject hudPrefab;
     public Hud hud;
 
     internal TileMap map;
@@ -66,8 +67,14 @@ public class Unit : MonoBehaviour {
         CanMove = false;
         CanAct = false;
     }
-    private void Start() {
+    private void Awake() {
         anim = GetComponent<Animator>();
+    }
+    public void createHud() {
+        GameObject go = Instantiate(hudPrefab);
+        hud = go.GetComponent<Hud>();
+    }
+    public virtual void Activ() {
     }
 
     /// <summary>
@@ -106,6 +113,7 @@ public class Unit : MonoBehaviour {
     /// jednostka umiera
     /// </summary>
     void Die() {
+        Destroy(hud.gameObject);
         map.UnitDie(this);
         anim.SetTrigger("Die");
         hud.Deactiv();
@@ -169,7 +177,6 @@ public class Unit : MonoBehaviour {
         CanMove = false;
         map.ClearTiles(true);
         hud.Upd();
-        Destroy(weapon);
         if (p.useSkill.trigger != "Wait") {
             anim.SetTrigger(p.useSkill.trigger);
             if (p.useSkill.Model != null) weapon = Instantiate(p.useSkill.Model, Hand.position, Hand.rotation, Hand);
@@ -184,6 +191,10 @@ public class Unit : MonoBehaviour {
     /// </summary>
     /// <param name="v">kolejka pól</param>
     IEnumerator Steps(Queue<Pole> v) {
+        while (v.Count == 0) {
+            map.tiles[tileX, tileY].Unit = this;
+            transform.position = map.tiles[tileX, tileY].transform.position;
+        }
         if (v != null) {
             if (v.Count > 0) {
                 if (map != null && map.tiles != null && map.tiles[tileX, tileY] != null) {
@@ -242,16 +253,26 @@ public class Unit : MonoBehaviour {
     /// <param name="pos">pozycja</param>
     IEnumerator GoTo(Vector3 pos) {
         pos.y = transform.position.y;
-        while (Vector3.Distance(pos, transform.position) > 0.22f) {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(pos - transform.position), 8f);
-            anim.SetFloat("Forward", 1f, 0.1f, Time.deltaTime);
-            yield return 0;
+        if (anim == null) {
+            anim = GetComponent<Animator>();
         }
-        while (anim.GetFloat("Forward") > 0.01f) {
-            anim.SetFloat("Forward", 0f, 0.1f, Time.deltaTime);
-            yield return 0;
+        List<AnimatorControllerParameter> v = new List<AnimatorControllerParameter>(anim.parameters);
+        if (v.Find(item => item.name == "Forward") != null) {
+
+            while (Vector3.Distance(pos, transform.position) > 0.22f) {
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(pos - transform.position), 8f);
+                anim.SetFloat("Forward", 1f, 0.1f, Time.deltaTime);
+                yield return 0;
+            }
+            while (anim.GetFloat("Forward") > 0.01f) {
+                anim.SetFloat("Forward", 0f, 0.1f, Time.deltaTime);
+                yield return 0;
+            }
+            anim.SetFloat("Forward", 0);
+        } else {
+
+            map.wait = false;
         }
-        anim.SetFloat("Forward", 0);
     }
     /// <summary>
     /// rutyna blokująca inne działania do czasu wykonania połowy animacji
@@ -263,6 +284,7 @@ public class Unit : MonoBehaviour {
         }
         float d = anim.GetCurrentAnimatorClipInfo(0)[0].clip.length / 5;
         yield return new WaitForSeconds(d);
+        Destroy(weapon);
         map.wait = false;
     }
     /// <summary>

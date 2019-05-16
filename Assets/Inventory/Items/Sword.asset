@@ -11,22 +11,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  Id: 2
-  Name: Meele Sword
-  Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  id: 7bb1bdd8-0b14-46c8-92c0-3530f4470d83
+  Name: "D\u0142ugi Miecz"
+  Sprite: {fileID: 21300000, guid: 35e67c5b5c181e947ad242d84f3ec766, type: 3}
+  BuyValue: 0
+  SellValue: 0
+  MaximumStacks: 1
   Strength: 0
   Agility: 0
   Stamina: 0
   Luck: 0
   Armor: 0
-  Crit: 0
-  Hit: 0
-  Dmg: {x: 2, y: 4}
+  equipmentType: 2
+  Opis: 
   Area:
   - {x: 0, y: 1}
+  Dmg: {x: 2, y: 4}
   Cost: 1
-  AttackRange: 0
   AnimTrigger: Dash
-  Model3d: {fileID: 1261094532972180, guid: fcd7fc46184d7be4883442d00e2933ac, type: 2}
+  AttackRange: 0
+  Model3d: {fileID: 1742254201562672, guid: 44c5654f0e18ff74c92cb44a8d08acb2, type: 2}
   positive: 0
-  equipmentType: 2
+  Efekt: 0
+  OnDestroy: 0
+  EfektPower: 0
+  EffectTriggered: 0
+  CzasTrwania: 0

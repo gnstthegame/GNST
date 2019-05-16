@@ -3,11 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Trigger : MonoBehaviour {
-    public GameObject Object;
-
+    public Transform place;
+    public GameObject Prefab;
+    public int mapX = 10;
+    public int mapY = 10;
+    /// <summary>
+    /// uaktywnia Objekt, gdy gracz wejdzie w trigger
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Player") {
-            Object.SetActive(true);
+            GameObject go = new GameObject();
+            go.transform.position = place.position;
+            go.transform.rotation = place.rotation;
+            var tm = go.AddComponent<TileMap>();
+            tm.mapSizeX = mapX;
+            tm.mapSizeY = mapY;
+            tm.VisualPrefab = Prefab;
             Destroy(gameObject);
         }
     }

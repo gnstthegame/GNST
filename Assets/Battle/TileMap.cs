@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+
 public class Pole {
     public int X, Y;
     public Queue<Pole> path;
@@ -27,6 +28,9 @@ public class Pole {
         X = xx; Y = yy; dist = d;
     }
 };
+/// <summary>
+/// możliwość ataku
+/// </summary>
 public class Posibilieties {
     public int BestDir = 0;
     public float Points = 0;
@@ -51,6 +55,9 @@ public class Posibilieties {
         return (Posibilieties)this.MemberwiseClone();
     }
 }
+/// <summary>
+/// zarządza całym polem walki
+/// </summary>
 public class TileMap : MonoBehaviour {
     readonly Vector2[] neighbor = new Vector2[4] {new Vector2(0, 1),//up
                                             new Vector2(0, -1),//down
@@ -167,7 +174,7 @@ public class TileMap : MonoBehaviour {
         }
     }
     /// <summary>
-    /// tworzy pole walki i przypisuje do nich jednostki
+    /// tworzy pole walki z pól interaktywnych i przypisuje do nich jednostki
     /// </summary>
     void MakeTiles() {
         Quaternion rem = transform.rotation;
@@ -187,6 +194,7 @@ public class TileMap : MonoBehaviour {
             t.Init();
         }
         Units = FindObjectsOfType<Unit>().ToList();
+        List<Unit> outt = new List<Unit>();
         foreach (Unit u in Units) {
             if (!u.gameObject.activeSelf) {
                 continue;
@@ -195,16 +203,18 @@ public class TileMap : MonoBehaviour {
             Vector3 center = tiles[mapSizeX / 2, mapSizeY / 2].transform.position;
             if (Mathf.Abs(vec.x - center.x) > VisualPrefab.transform.localScale.x * (mapSizeX / 2 + 2) || Mathf.Abs(vec.z - center.z) > VisualPrefab.transform.localScale.z * (mapSizeY / 2 + 2)) {
                 Debug.Log("out of battleground");
+                outt.Add(u);
                 continue;
             }
+            u.Activ();
             if (u is Ai) {
+                u.createHud();
                 EnemyUnits.Add(u);
-                u.hud.Activ(u, false);
+                u.hud.Activ(u, this, false);
             } else {
                 PlayerUnits.Add(u);
                 PlayerUnit uu = (PlayerUnit)u;
-                uu.Activ();
-                u.hud.Activ(u, true);
+                u.hud.Activ(u, this, true);
             }
             u.hud.Upd();
             int ux = Mathf.CeilToInt((vec.x - tiles[0, 0].transform.position.x) / VisualPrefab.transform.localScale.x), uy = Mathf.CeilToInt((vec.z - tiles[0, 0].transform.position.z) / VisualPrefab.transform.localScale.z) + 1;
@@ -227,6 +237,9 @@ public class TileMap : MonoBehaviour {
             u.MoveToPos(new Vector3(tiles[ux, uy].transform.position.x, u.transform.position.y, tiles[ux, uy].transform.position.z));
             Debug.Log("asign" + ux.ToString() + uy.ToString());
             u.NewRound();
+        }
+        foreach (Unit u in outt) {
+            Units.Remove(u);
         }
         EnemyEndTurn();
     }
@@ -276,7 +289,7 @@ public class TileMap : MonoBehaviour {
         }
     }
     /// <summary>
-    /// podświetla pola w zasięgu ataku
+    /// podświetla pola interaktywne w zasięgu ataku
     /// </summary>
     /// <param name="k">umiejętność</param>
     public void AtackMode(int k) {
@@ -308,7 +321,7 @@ public class TileMap : MonoBehaviour {
         }
     }
     /// <summary>
-    /// wykonuje konsekwencje wybrania pola walki
+    /// wykonuje konsekwencje wybrania pola interaktywnego
     /// </summary>
     /// <param name="x">pozycja x</param>
     /// <param name="y">pozycja y</param>
@@ -361,7 +374,7 @@ public class TileMap : MonoBehaviour {
         return IntDistance(x1, y1, (int)b.x, (int)b.y);
     }
     /// <summary>
-    /// oblicz dystans pól w int
+    /// oblicza dystans całkowitoliczbowo
     /// </summary>
     /// <param name="a">pozycja a</param>
     /// <param name="b">pozycja b</param>
@@ -400,7 +413,15 @@ public class TileMap : MonoBehaviour {
         }
         return odp;
     }
-    public void GenerateMap(Unit u, bool Ignore = false, List<Vector2> Obstacle = null) {//generuje mape chodzenia
+    /// <summary>
+    /// tworzy dwuwymiarową tablice pól, do których jest w stanie dojść jednostka.
+    /// wykorzystuje metode propagacji fali do obliczenia najkrótszej drogi przejścia
+    /// dodatkowo dla każdego pola są obliczane wektory do innych jednostek
+    /// </summary>
+    /// <param name="u">jednostka</param>
+    /// <param name="Ignore">czy ignorować inne jednostki</param>
+    /// <param name="Obstacle">lista dodatkowych przeszkód</param>
+    public void GenerateMap(Unit u, bool Ignore = false, List<Vector2> Obstacle = null) {
         int maxDist = 0;
         if (u.CanMove) {
             maxDist = u.Movement;
@@ -446,6 +467,12 @@ public class TileMap : MonoBehaviour {
             }
         }
     }
+    /// <summary>
+    /// planuje i wykonuje ataki przeciwników.
+    /// oblicza możliwości ze względu na przeczekanie tury, umiejętności wsparcia, atak bezpośredni i zasięgowy
+    /// tworzy plan ataku dla najlepszych możliwości samodzielnych oraz drugi dla najlepszych ataków wspierających, sprawdzając czy jest on wykonywalny
+    /// wykonuje lepszy plan ataku
+    /// </summary>
     public void AiBehavior() {
         List<Posibilieties> filds = new List<Posibilieties>();
         List<Vector2> obstacle = new List<Vector2>();
@@ -526,10 +553,10 @@ public class TileMap : MonoBehaviour {
                 }
             }
         }
-        Debug.Log("sum1");
         var ord = filds.OrderByDescending(item => item.SumPoints());
         List<Posibilieties> Schedule = new List<Posibilieties>();
         obstacle = new List<Vector2>();
+        Debug.Log(Units.Count);
         foreach (Unit u in Units) {
             Vector2 v = new Vector2(u.tileX, u.tileY);
             obstacle.Add(v);
@@ -560,10 +587,8 @@ public class TileMap : MonoBehaviour {
                     obstacle.Add(new Vector2(p.CoordinatedWith.pole.X, p.CoordinatedWith.pole.Y));
                     obstacle.Remove(new Vector2(p.CoordinatedWith.executor.tileX, p.CoordinatedWith.executor.tileY));
                 }
-
                 executors++;
                 Schedule.Add(p);
-                Debug.Log("sum2");
                 sh1 += p.SumPoints();
             }
         }
@@ -587,7 +612,6 @@ public class TileMap : MonoBehaviour {
                 p.pole = p.executor.mapa[p.pole.X, p.pole.Y];
                 executors++;
                 Schedule2.Add(p);
-                Debug.Log("sum3");
                 sh2 += p.SumPoints();
                 obstacle.Add(new Vector2(p.pole.X, p.pole.Y));
                 obstacle.Remove(new Vector2(p.executor.tileX, p.executor.tileY));
@@ -608,6 +632,10 @@ public class TileMap : MonoBehaviour {
         }
         StartCoroutine(Execute(Schedule));
     }
+    /// <summary>
+    /// rutyna wykonująca plan ataku
+    /// </summary>
+    /// <param name="Schedule">plan ataku</param>
     IEnumerator Execute(List<Posibilieties> Schedule) {
         for (int i = 0; i < 4; i++) {
             foreach (Posibilieties p in Schedule) {
@@ -629,6 +657,10 @@ public class TileMap : MonoBehaviour {
         }
         EnemyEndTurn();
     }
+    /// <summary>
+    /// rutyna wykonująca możliwość atak
+    /// </summary>
+    /// <param name="p">możliwość ataku</param>
     IEnumerator DealAttack(Posibilieties p) {
         p.executor.AP -= p.useSkill.Cost;
         p.executor.CanAct = false;
@@ -638,10 +670,8 @@ public class TileMap : MonoBehaviour {
         yield return new WaitUntil(() => wait == false);
         float TLuck = p.executor.TestLuck();
 
-
         int dmg = (int)Mathf.LerpUnclamped(p.useSkill.Dmg.x, p.useSkill.Dmg.y, TLuck);
         //int dmg = (int)Random.Range(p.useSkill.Dmg.x, p.useSkill.Dmg.y);
-        Debug.Log("dmg" + dmg);
         foreach (Vector2 v in p.useSkill.DirectedArea[p.BestDir]) {
             Vector2 asd = AtackPoint + v;
             if (NotOutOfRange(asd)) {
@@ -661,7 +691,13 @@ public class TileMap : MonoBehaviour {
         selectedSkill = null;
         //ClearTiles(true);
     }
-
+    /// <summary>
+    /// oblicza możliwości ataku zasięgowego dla podanych celów
+    /// </summary>
+    /// <param name="s">umiejętność</param>
+    /// <param name="bot">jednostka</param>
+    /// <param name="tar">lista celów</param>
+    /// <returns>lista możliwości</returns>
     public List<Posibilieties> RangeAtak(Skill s, Ai bot, List<Vector2> tar) {
         List<Posibilieties> posible = new List<Posibilieties>();
         foreach (Pole sp in bot.mapa) {
@@ -702,6 +738,13 @@ public class TileMap : MonoBehaviour {
         return posible;
     }
 
+    /// <summary>
+    /// oblicza możliwości ataku bezpośredniego dla podanych celów
+    /// </summary>
+    /// <param name="s">umiejętność</param>
+    /// <param name="bot">jednostka</param>
+    /// <param name="tar">lista celów</param>
+    /// <returns>lista możliwości</returns>
     public List<Posibilieties> MeleAtak(Skill s, Ai bot, List<Vector2> tar) {
         List<Posibilieties> posible = new List<Posibilieties>();
 
@@ -747,12 +790,15 @@ public class TileMap : MonoBehaviour {
                 }
             }
         }
-        //Debug.Log("asd");
-        //foreach (Posibilieties sp in posible) {
-        //    Debug.Log(sp.pole.X + " " + sp.pole.Y + " poi: " + sp.Points + " dir " + sp.BestDir);
-        //}
         return posible;
     }
+    /// <summary>
+    /// oblicza możliwości wsparcia podanych celów
+    /// </summary>
+    /// <param name="s">umiejętność</param>
+    /// <param name="bot">jednostka</param>
+    /// <param name="tar">lista celów</param>
+    /// <returns>lista możliwości</returns>
     public List<Posibilieties> SupportAtak(Skill s, Ai bot, List<Posibilieties> tar) {
         List<Posibilieties> posible = new List<Posibilieties>();
         foreach (Pole p in bot.mapa) {
@@ -794,6 +840,10 @@ public class TileMap : MonoBehaviour {
         }
         return posible;
     }
+    /// <summary>
+    /// resetuje podświetlenie pól interaktywnych
+    /// </summary>
+    /// <param name="All">resetować wszystkie</param>
     public void ClearTiles(bool All = false) {
         if (map == null) {
             return;
@@ -809,7 +859,11 @@ public class TileMap : MonoBehaviour {
         }
     }
 
-
+    /// <summary>
+    /// podświetla pola interaktywne prowadzące do celu
+    /// </summary>
+    /// <param name="x">pozycja x</param>
+    /// <param name="y">pozycja y</param>
     public void ViewPath(int x, int y) {
         if (map == null || map[x, y] == null) {
             return;
@@ -825,6 +879,11 @@ public class TileMap : MonoBehaviour {
             q.Dequeue();
         }
     }
+    /// <summary>
+    /// rozkaż aktualnie wybranej jednostce przejść na pozycje
+    /// </summary>
+    /// <param name="x">pozycja x</param>
+    /// <param name="y">pozycja y</param>
     void GoTo(int x, int y) {
         if (map[x, y] == null) {
             return;

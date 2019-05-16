@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// klasa kontrolująca tworzenie planszy
+/// </summary>
 public class ShadowRealm : MonoBehaviour {
     public int width = 5, variationW = 2;
     public int langth = 5, variationL = 2;
@@ -16,6 +19,9 @@ public class ShadowRealm : MonoBehaviour {
     FallingTrigger triger;
     bool win = false;
 
+    /// <summary>
+    /// inicjowanie planszy
+    /// </summary>
     void Awake() {
         FindObjectOfType<AudioManager>().PlayMusic("ThemeShadowRealm");
         FindObjectOfType<AudioManager>().StopMusic("ThemeTutorial");
@@ -33,8 +39,10 @@ public class ShadowRealm : MonoBehaviour {
         good[ry][rx].SendMessage("Mark", GSym[0] + 3, SendMessageOptions.DontRequireReceiver);
 
         Build();
-        //Restart();
     }
+    /// <summary>
+    /// usuń poprzednią planszę, i stwórz nową
+    /// </summary>
     void Restart() {
         DestroyList(decoy);
         DestroyList(way);
@@ -52,13 +60,13 @@ public class ShadowRealm : MonoBehaviour {
         int ry = Random.Range(1, good.Count);
         int rx = Random.Range(1, good[ry].Length - 1);
         good[ry][rx].SendMessage("Mark", GSym[0] + 3, SendMessageOptions.RequireReceiver);
-        Debug.Log(ry + " " + rx);
         Build();
         Player.position = new Vector3(way[0].Length / 2 * scaleX, 30f, 2f);
         triger.Contin();
-
     }
-
+    /// <summary>
+    /// usuówa niepotrzebne płyty i tworzy nową ścieżkę z rozwidleniem oraz odpowiednio oznacza płyty
+    /// </summary>
     void Build() {
         DestroyList(decoy);
         DestroyList(way);
@@ -101,14 +109,16 @@ public class ShadowRealm : MonoBehaviour {
 
         s = seg < 5 ? seg - 1 : Random.Range(0, 4);
         ry = Random.Range(yy + 1, decoy.Count);
-        //Debug.Log(ry + " " + seg + " " + s + " " + yy + " " + y + " " + x + " " + r);
         rx = Random.Range(1, decoy[ry].Length - 1);
         decoy[ry][rx].SendMessage("Mark", BSym[s] + 3, SendMessageOptions.DontRequireReceiver);
+
         if (seg == segments) {
             szaf = (GameObject)Instantiate(szafa, new Vector3(((good[good.Count - 1].Length) / 2 + x) * scaleX, szafa.transform.localScale.y / 2, y * scaleY) + transform.position, Quaternion.identity);
         }
     }
-
+    /// <summary>
+    /// sprawdza, czy gracz spadł z mapy lub poszedł odpowiednią drogą
+    /// </summary>
     void Update() {
         if (Mathf.Abs(y * scaleY - Player.position.z) < 16f && Mathf.Abs((x+2) * scaleX - Player.position.x) < 16f && !win) {
             if (seg < segments) {
@@ -130,6 +140,10 @@ public class ShadowRealm : MonoBehaviour {
         }
 
     }
+    /// <summary>
+    /// niszczy płyty i czyści liste
+    /// </summary>
+    /// <param name="tmp">lista płyt</param>
     void DestroyList(List<GameObject[]> tmp) {
         foreach (var g in tmp) {
             foreach (var h in g) {
@@ -138,7 +152,13 @@ public class ShadowRealm : MonoBehaviour {
         }
         tmp = new List<GameObject[]>();
     }
-
+    /// <summary>
+    /// buduje prostą, nieregularną ścieżkę
+    /// </summary>
+    /// <param name="y">odległość początkowa</param>
+    /// <param name="xoffset">przesunięcie w bok</param>
+    /// <param name="tmp">lista płyt</param>
+    /// <returns>odległość końcowa</returns>
     int makePath(int y, float xoffset, List<GameObject[]> tmp) {
         int maxL = langth + y + Random.Range(0, variationL + 1);
         for (; y < maxL; y++) {
@@ -160,6 +180,10 @@ public class ShadowRealm : MonoBehaviour {
         }
         return y;
     }
+    /// <summary>
+    /// losuje jedną z trzech płyt
+    /// </summary>
+    /// <returns>płyta</returns>
     GameObject randomBrick() {
         switch (Random.Range(0, 3)) {
             case (1):
@@ -170,6 +194,12 @@ public class ShadowRealm : MonoBehaviour {
                 return Prefab0;
         }
     }
+    /// <summary>
+    /// buduje poszerzającą się ścieżkę
+    /// </summary>
+    /// <param name="y">początkowa odległość</param>
+    /// <param name="xoffset">przesunięcie w bok</param>
+    /// <returns>końcowa odległość</returns>
     int rozwidlenie(int y, float xoffset) {
         int maxL = langth + variationL + y;
         int maxW = width;

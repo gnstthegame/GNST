@@ -16,7 +16,35 @@ public class ItemTooltip : MonoBehaviour {
     public void ShowTooltip(EquippableItem item)
     {
         ItemNameText.text = item.Name;
-        ItemSlotText.text = item.equipmentType.ToString();
+        //ItemSlotText.text = item.equipmentType. .ToString();
+        string typ;
+        switch (item.equipmentType) {
+            case EquipmentType.Helmet:
+                typ = "Hełm";
+                break;
+            case EquipmentType.Chest:
+                typ = "Pancerz";
+                break;
+            case EquipmentType.Melee:
+                typ = "Broń Biała";
+                break;
+            case EquipmentType.Ranged:
+                typ = "Broń Dwuręczna";
+                break;
+            case EquipmentType.Usable1:
+                typ = "Mikstura";
+                break;
+            case EquipmentType.Usable2:
+                typ = "Przedmiot Rzucany";
+                break;
+            case EquipmentType.Sticker:
+                typ = "Naklejka";
+                break;
+            default:
+                typ = "Przedmiot Fabularny";
+                break;
+        };
+        ItemSlotText.text = typ;
 
         sb.Length = 0;
         AddStat(item.Armor, "Armor");

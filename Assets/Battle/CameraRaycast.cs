@@ -18,7 +18,6 @@ public class CameraRaycast : MonoBehaviour {
     /// śledzi ruchy myszy względem pól walki
     /// </summary>
     void Update () {
-
         if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, mask)) {
             col = hit.collider;
             if (old != col) {

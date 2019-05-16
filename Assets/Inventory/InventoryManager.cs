@@ -67,7 +67,6 @@ public class InventoryManager : MonoBehaviour {
                 usableItem.Destroy();
             }
         }
-        Debug.Log(Strength.Value);
     }
 
     private void EquipmentPanelRightClick(ItemSlot itemSlot) {
@@ -141,7 +140,7 @@ public class InventoryManager : MonoBehaviour {
     }
     public List<Item> GetItems() {
         List<EquipmentSlot> eq = new List<EquipmentSlot>(equipmentPanel.equipmentSlots);
-        eq = eq.FindAll(item => item.Item != null && (item.equipmentType == EquipmentType.Usable1 || item.equipmentType == EquipmentType.Usable2 || item.equipmentType == EquipmentType.Usable3));
+        eq = eq.FindAll(item => item.Item != null && (item.equipmentType == EquipmentType.Usable1 || item.equipmentType == EquipmentType.Usable2));
 
         List<Item> skils = new List<Item>();
         foreach (EquipmentSlot i in eq) {

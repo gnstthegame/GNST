@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// klasa kontrolująca unoszenie płyt
+/// </summary>
 public class FallingTrigger : MonoBehaviour {
     public float BaseRadius = 15f;
     float radius;
@@ -9,7 +12,9 @@ public class FallingTrigger : MonoBehaviour {
     public float BaseSpeed = 0.1f;
     bool stop = false;
 
-    // Use this for initialization
+    /// <summary>
+    /// podnieś płyty startowe
+    /// </summary>
     void Awake() {
         radius = BaseRadius;
         speed = BaseSpeed;
@@ -21,6 +26,9 @@ public class FallingTrigger : MonoBehaviour {
             }
         }
     }
+    /// <summary>
+    /// podnieś wszystkie płyty
+    /// </summary>
     public void Win() {
         List<Collider> r = new List<Collider>(Physics.OverlapSphere(transform.position, 5f * BaseRadius));
         foreach (Collider c in r) {
@@ -31,6 +39,9 @@ public class FallingTrigger : MonoBehaviour {
         }
         stop = true;
     }
+    /// <summary>
+    /// opuść wszystkie pływy
+    /// </summary>
     void Lose() {
         List<Collider> f = new List<Collider>(Physics.OverlapSphere(transform.position, 5f * BaseRadius));
         foreach (Collider c in f) {
@@ -41,12 +52,17 @@ public class FallingTrigger : MonoBehaviour {
         }
         radius = 0;
     }
+    /// <summary>
+    /// odnów zasięg budowania
+    /// </summary>
     public void Contin() {
         radius = BaseRadius;
         speed = BaseSpeed;
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// unosi płyty w zasięgu, zwalnia płyty z niego wychodzące, zmniejsza zasięg budowania
+    /// </summary>
     void Update() {
         if (!stop) {
             if (radius <= 1) {

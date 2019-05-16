@@ -117,6 +117,7 @@
     <Compile Include="Assets\Levels\ShadowRealm\ShadowRealm.cs" />
     <Compile Include="Assets\Menu\change.cs" />
     <Compile Include="Assets\Menu\Checkpoint.cs" />
+    <Compile Include="Assets\Menu\CircleRotate.cs" />
     <Compile Include="Assets\Menu\InputMenager.cs" />
     <Compile Include="Assets\Menu\LevelLoader.cs" />
     <Compile Include="Assets\Menu\MainMenu.cs" />
@@ -176,8 +177,8 @@
     <Compile Include="Assets\Scripts\ChangeCameraPosition.cs" />
     <Compile Include="Assets\Scripts\CharacterMotor.cs" />
     <Compile Include="Assets\Scripts\DamageReciver.cs" />
+    <Compile Include="Assets\Scripts\DestroyAfter.cs" />
     <Compile Include="Assets\Scripts\DoorTrigger.cs" />
-    <Compile Include="Assets\Scripts\E.cs" />
     <Compile Include="Assets\Scripts\Quests\Dialogue\DialogueSystem.cs" />
     <Compile Include="Assets\Scripts\Quests\GatherGoal.cs" />
     <Compile Include="Assets\Scripts\Quests\Goal.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="Assets\Scripts\Quests\QuestGoal.cs" />
     <Compile Include="Assets\Scripts\Quests\Quests\PrzykladowyQuest.cs" />
     <Compile Include="Assets\Scripts\RandomSlide.cs" />
+    <Compile Include="Assets\Scripts\YieldE.cs" />
     <Compile Include="Assets\UMotion Examples\Miscellaneous\Scripts\ResetPosition.cs" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
     <None Include="Assets\Editor Default Resources\UMotionEditor\Shaders\UnlitDashedLine.shader" />

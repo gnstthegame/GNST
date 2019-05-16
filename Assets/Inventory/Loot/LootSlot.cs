@@ -53,7 +53,7 @@ public class LootSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         for (int i = 0; i < lootPanel.chest.lootItems.Count; i++) {
             if (lootPanel.chest.lootItems[i].item == item) {
-                if (item != null && item.MaximumStacks > 1) {
+                if (item != null && item.MaximumStacks > 0) {
                     inventory.AddItem(item);
                     amount--;
                     lootPanel.chest.lootItems[i].amount--;

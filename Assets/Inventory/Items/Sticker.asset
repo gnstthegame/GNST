@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
+  m_Name: Sticker
+  m_EditorClassIdentifier: 
+  id: e66b0b1d-b260-4c39-8488-1d313c988b87
+  Name: "Szcz\u0119\u015Bliwa Naklejka"
+  Sprite: {fileID: 21300000, guid: 4da2162d64339464bbc73245fb1704e3, type: 3}
+  BuyValue: 0
+  SellValue: 0
+  MaximumStacks: 5
+  Strength: 0
+  Agility: 0
+  Stamina: 0
+  Luck: 3
+  Armor: 0
+  equipmentType: 6
+  Opis: asd
+  Area:
+  - {x: 0, y: -1}
+  Dmg: {x: 0, y: 0}
+  Cost: 1
+  AnimTrigger: Wait
+  AttackRange: 0
+  Model3d: {fileID: 0}
+  positive: 1
+  Efekt: 0
+  OnDestroy: 0
+  EfektPower: 0
+  EffectTriggered: 2
+  CzasTrwania: 0

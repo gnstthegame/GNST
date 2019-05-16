@@ -7,14 +7,13 @@ public class PlayerUnit : Unit {
     public InventoryManager Inv;
     
     /// <summary>
-    /// importuje przelicza atrybuty gracza 
+    /// importuje i przelicza atrybuty gracza na modyfikatory podczas walki
     /// </summary>
-    public void Activ() {
+    public override void Activ() {
         GetComponent<CharacterMotor>().enabled = false;
         MaxAP = 2+ (int)Inv.Stamina.Value;
         Movement = 1+(int)Inv.Agility.Value;
         MaxHP = 4+(int)Inv.Stamina.Value;
-        //AP = (int)Inv.Stamina.Value;
         AP = 0;
         APacc = (int)Inv.Stamina.Value;
         Armor = (int)Inv.Armor.Value;
@@ -22,24 +21,5 @@ public class PlayerUnit : Unit {
         CanAct = true;
         Skile = Inv.GetSkills();
         Items = Inv.GetItems();
-    }
-    private void Awake() {
-        //Effect e = new Effect(0,3, (int dmg, Unit u) => { return 0; });
-
-        //Skile.Add(new Skill(new Vector2(2, 3)));
-        /*
-        Vector2[] tmp = new Vector2[4];
-        tmp[0] = new Vector2(-1, 0);
-        tmp[1] = new Vector2(0, 0);
-        tmp[2] = new Vector2(1, 0);
-        tmp[3] = new Vector2(0, 1);
-        Vector2[] tmp2 = new Vector2[4];
-        tmp2[0] = new Vector2(1, 0);
-        tmp2[1] = new Vector2(0, 0);
-        tmp2[2] = new Vector2(1, -1);
-        tmp2[3] = new Vector2(0, -1);
-        Skile.Add(new Skill(tmp, new Vector2(2, 3)));
-        Skile.Add(new Skill(tmp2, new Vector2(2, 3), 1, "Dash", 0, null, false, 6));
-        */
     }
 }

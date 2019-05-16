@@ -12,9 +12,10 @@ public class change : MonoBehaviour {
 
     void Awake() {
         image_set = GetComponent<Image>();
-
     }
-
+    /// <summary>
+    /// zamienia obrazki przy kliknięciu przycisku
+    /// </summary>
     private void Update() {
         if (Input.anyKeyDown) {
             count++;

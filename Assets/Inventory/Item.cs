@@ -12,7 +12,6 @@ public class Item : ScriptableObject {
     public Sprite Sprite;
     public int BuyValue;
     public int SellValue;
-    [Range(1, 999)]
     public int MaximumStacks = 1;
 
     private void OnValidate() {

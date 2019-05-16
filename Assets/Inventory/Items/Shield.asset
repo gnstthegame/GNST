@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: 
-  id: 1372.558
+  id: 91a54574-94f5-445e-bd66-eddaab6313e5
   Name: Tarcza
   Sprite: {fileID: 21300000, guid: ddc46577f97fa9548bc96cf9344e1515, type: 3}
   BuyValue: 0
@@ -23,17 +23,17 @@ MonoBehaviour:
   Luck: 0
   Armor: 0
   equipmentType: 3
-  Opis: "Na 1 tur\u0119 zwi\u0119ksza pancerz o 2"
+  Opis: "Na 2 tury zwi\u0119ksza pancerz o 3"
   Area:
   - {x: 0, y: -1}
   Dmg: {x: 0, y: 0}
   Cost: 1
   AnimTrigger: Shield
   AttackRange: 0
-  Model3d: {fileID: 100000, guid: 068353abeca5eea448c53561ec6ddf67, type: 3}
+  Model3d: {fileID: 1251532771750526, guid: 3c89c52ab0d34e24594720789b9443d7, type: 2}
   positive: 1
   Efekt: 1
   OnDestroy: 2
-  EfektPower: 2
+  EfektPower: 3
   EffectTriggered: 2
-  CzasTrwania: 1
+  CzasTrwania: 2
