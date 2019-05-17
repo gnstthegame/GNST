@@ -414,12 +414,11 @@ public class InventoryManager : MonoBehaviour {
             statPanel.UpdateStatValues();
             inventory.AddItem(item);
         }
-
+    }
     /// <summary>
     /// Metoda ustawiająca wartości statystyk w panelu z nimi
     /// </summary>
     public void ReloadStats() {
-        
         statPanel.UpdateStatValues();
     }
 }

@@ -6,9 +6,6 @@ using System;
 
 [System.Serializable]
 public class Inventory : MonoBehaviour, IItemContainter {
-<<<<<<< Updated upstream
-    //przedmioty startowe
-    [SerializeField] Item[] startingItems;
     //przedmioty startowe(domyślnie znajdą się w ekwipunku)
     [SerializeField] public Item[] startingItems;
     //obiekt przechowujący wszystkie sloty ekwipunku

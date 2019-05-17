@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 
-<<<<<<< Updated upstream
-=======
 [System.Serializable]
 //Typ wyliczeniowy definiujący typy przedmiotów możliwych do wyposażenia
->>>>>>> Stashed changes
 public enum EquipmentType
 {
     Helmet,

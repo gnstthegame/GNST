@@ -46,17 +46,11 @@ public class EquipmentPanel : MonoBehaviour {
             equipmentSlots[i].OnDropEvent += OnDropEvent;
         }
     }
-<<<<<<< Updated upstream
-
-    private void Awake()
-    {
-=======
     /// <summary>
     ///Odnalezienie wszystkich slotów ekwipunku w hierarchii projektu, oraz dodanie ich do tablicy
     /// </summary>
     private void Awake()
     {      
->>>>>>> Stashed changes
         equipmentSlots = equipmentSlotsParent.GetComponentsInChildren<EquipmentSlot>();
     }
 

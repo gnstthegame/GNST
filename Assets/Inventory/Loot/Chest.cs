@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-<<<<<<< Updated upstream
-public class Chest : MonoBehaviour {
+public class Chest : Interactable {
     LootPanel lootPanel;
     Transform playerTransform;
     public int plusz;
