@@ -17,13 +17,13 @@ public class StatPanel : MonoBehaviour {
     public void SetStats(params CharacterStat[] characterStats)
     {
         stats = characterStats;
-        if(stats.Length > statDisplays.Length)
+        if (stats.Length > statDisplays.Length)
         {
             Debug.Log("Blad");
             return;
         }
 
-        for(int i = 0; i < statDisplays.Length; i++)
+        for (int i = 0; i < statDisplays.Length; i++)
         {
             statDisplays[i].gameObject.SetActive(i < stats.Length);
 
@@ -32,6 +32,9 @@ public class StatPanel : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Ustawia statystyki w UI
+    /// </summary>
     public void UpdateStatValues()
     {
         for (int i = 0; i < stats.Length; i++)

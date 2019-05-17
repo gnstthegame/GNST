@@ -94,6 +94,12 @@ public class TileMap : MonoBehaviour {
     private void Start() {
         far = mapSizeX + mapSizeY;
         tiles = new ClickableTile[mapSizeX, mapSizeY];
+<<<<<<< Updated upstream
+=======
+        //AM.PlayMusic("Battle");
+        //AM.StopMusic("ThemeTutorial");
+        IM.BlockInventory();
+>>>>>>> Stashed changes
         MakeTiles();
     }
     public void PlayerEndTurn() {

@@ -39,6 +39,13 @@ public class Ai : Unit {
         Effect f = new Effect(Effect.trig.OnApply, 1, (int dmg, Unit u) => { u.AP += 2; return 0; });
         Skile.Add(new Skill(self, Vector2.zero, 0, "Wait", 3, f));
     }
+<<<<<<< Updated upstream
+=======
+    /// <summary>
+    /// usuwa model jednostki i zastępuje go skrzynią z nagrodą, a także dodaje punkty doświadczenia i plusz bohaterowi
+    /// </summary>
+    /// <returns></returns>
+>>>>>>> Stashed changes
     public Loot Clear() {
         if (reward.Rewards.Length > 0) {
             GameObject go = Instantiate(chest, transform.position, transform.rotation);

@@ -11,7 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   id: 3848034699e541d40a6c2b18548e1085
+=======
+  id: 683fb5c5-af4d-4e47-9824-9ebdb0926cb6
+>>>>>>> Stashed changes
   Name: Tarcza
   Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   BuyValue: 0
@@ -21,7 +25,7 @@ MonoBehaviour:
   Stamina: 0
   Luck: 0
   Armor: 0
-  equipmentType: 3
+  equipmentType: 2
   Opis: "Na 1 tur\u0119 zwi\u0119ksza pancerz o 2"
   Area:
   - {x: 0, y: -1}

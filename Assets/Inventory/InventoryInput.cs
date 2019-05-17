@@ -1,11 +1,19 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Klasa obsługująca skróy klawiszowe dla panelu ekwipunku
+/// </summary>
 public class InventoryInput : MonoBehaviour {
+    //panel ekwipunku
     [SerializeField] GameObject inventoryGameObject;
+    //tablica skrótów otwierających/zamykających panel ekwipunku
     [SerializeField] KeyCode[] toggleInventoryKeys;
 
 
-	// Update is called once per frame
+	/// <summary>
+    /// Metoda sprawdzająca, czy wciśnięto jeden z przycisków tablicy.
+    /// Jeżeli tak, to otwiera/zamyka panel.
+    /// </summary>
 	void Update () {
         for (int i = 0; i < toggleInventoryKeys.Length; i++)
         {

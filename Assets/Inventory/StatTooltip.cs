@@ -82,7 +82,6 @@ public class StatTooltip : MonoBehaviour {
             }
 
         }
-
         return sb.ToString();
     }
 }

@@ -89,6 +89,7 @@
     <Compile Include="Assets\Inventory\EquipmentSlot.cs" />
     <Compile Include="Assets\Inventory\EquippableItem.cs" />
     <Compile Include="Assets\Inventory\ExampleItem.cs" />
+    <Compile Include="Assets\Inventory\ExpUI.cs" />
     <Compile Include="Assets\Inventory\IItemContainter.cs" />
     <Compile Include="Assets\Inventory\Inventory.cs" />
     <Compile Include="Assets\Inventory\InventoryInput.cs" />
@@ -168,9 +169,25 @@
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\ChangeCameraPosition.cs" />
+    <Compile Include="Assets\Scripts\CharacterInteraction.cs" />
     <Compile Include="Assets\Scripts\CharacterMotor.cs" />
     <Compile Include="Assets\Scripts\DamageReciver.cs" />
     <Compile Include="Assets\Scripts\DoorTrigger.cs" />
+<<<<<<< Updated upstream
+=======
+    <Compile Include="Assets\Scripts\E.cs" />
+    <Compile Include="Assets\Scripts\Quests\Dialogue\DialogueSystem.cs" />
+    <Compile Include="Assets\Scripts\Quests\GatherGoal.cs" />
+    <Compile Include="Assets\Scripts\Quests\Goal.cs" />
+    <Compile Include="Assets\Scripts\Quests\KillGoal.cs" />
+    <Compile Include="Assets\Scripts\Quests\NPC\Interactable.cs" />
+    <Compile Include="Assets\Scripts\Quests\NPC\Interactablepoprzednie.cs" />
+    <Compile Include="Assets\Scripts\Quests\NPC\NPC.cs" />
+    <Compile Include="Assets\Scripts\Quests\Quest.cs" />
+    <Compile Include="Assets\Scripts\Quests\QuestGiver.cs" />
+    <Compile Include="Assets\Scripts\Quests\QuestGoal.cs" />
+    <Compile Include="Assets\Scripts\Quests\Quests\PrzykladowyQuest.cs" />
+>>>>>>> Stashed changes
     <Compile Include="Assets\Scripts\RandomSlide.cs" />
     <Compile Include="Assets\UMotion Examples\Miscellaneous\Scripts\ResetPosition.cs" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
