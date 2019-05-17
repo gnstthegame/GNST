@@ -88,8 +88,6 @@ public class Hud : MonoBehaviour {
                     Buttons[i].SetActive(false);
                 }
             }
-            //ButtonsMenu.SetActive(false);
-
             for (int i = 3; i < 6; i++) {
                 if (i < u.Items.Count + 3) {
                     Buttons[i].SetActive(true);

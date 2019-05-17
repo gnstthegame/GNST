@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
   m_Name: Shield 1
   m_EditorClassIdentifier: 
-  id: 588a3c9b-dd73-4a48-9080-e56b507f35f9
+  id: cc1bf3bb-529e-4432-8c4f-cf38662a16bf
   Name: "Ma\u0142a Tarcza"
-  Sprite: {fileID: 21300000, guid: ddc46577f97fa9548bc96cf9344e1515, type: 3}
+  Sprite: {fileID: 21300000, guid: c0b54b68f96d5f04fb23d22371d06e62, type: 3}
   BuyValue: 0
   SellValue: 0
   MaximumStacks: 1
@@ -22,13 +22,13 @@ MonoBehaviour:
   Stamina: 0
   Luck: 0
   Armor: 0
-  equipmentType: 3
+  equipmentType: 4
   Opis: "Na 1 tur\u0119 zwi\u0119ksza pancerz o 2"
   Area:
   - {x: 0, y: -1}
   Dmg: {x: 0, y: 0}
   Cost: 1
-  AnimTrigger: Shield
+  AnimTrigger: Wait
   AttackRange: 0
   Model3d: {fileID: 1654161157516704, guid: 951fab80858dda54ba01a10df9bb956d, type: 2}
   positive: 1

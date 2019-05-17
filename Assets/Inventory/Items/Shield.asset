@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: 
-  id: 91a54574-94f5-445e-bd66-eddaab6313e5
+  id: e03c7a6f-c0e9-40e4-ba4b-7d4f89ac2241
   Name: Tarcza
   Sprite: {fileID: 21300000, guid: ddc46577f97fa9548bc96cf9344e1515, type: 3}
   BuyValue: 0
@@ -22,13 +22,13 @@ MonoBehaviour:
   Stamina: 0
   Luck: 0
   Armor: 0
-  equipmentType: 3
+  equipmentType: 4
   Opis: "Na 2 tury zwi\u0119ksza pancerz o 3"
   Area:
   - {x: 0, y: -1}
   Dmg: {x: 0, y: 0}
   Cost: 1
-  AnimTrigger: Shield
+  AnimTrigger: Wait
   AttackRange: 0
   Model3d: {fileID: 1251532771750526, guid: 3c89c52ab0d34e24594720789b9443d7, type: 2}
   positive: 1

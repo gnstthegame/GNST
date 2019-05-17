@@ -35,6 +35,14 @@ ModelImporter:
     100058: tail_end
     100060: //RootNode
     100062: word
+    100064: Bone.008_end_end
+    100066: Bone.011_end_end
+    100068: Bone.012_end_end
+    100070: Bone.013_end_end
+    100072: Bone.014_end_end
+    100074: shield_end_end
+    100076: sword_end_end
+    100078: tail_end_end
     400000: Armature
     400002: Bone
     400004: Bone.001
@@ -67,6 +75,14 @@ ModelImporter:
     400058: tail_end
     400060: //RootNode
     400062: word
+    400064: Bone.008_end_end
+    400066: Bone.011_end_end
+    400068: Bone.012_end_end
+    400070: Bone.013_end_end
+    400072: Bone.014_end_end
+    400074: shield_end_end
+    400076: sword_end_end
+    400078: tail_end_end
     2000000: Camera
     2100000: No Name
     4300000: "kube\u0142"
@@ -167,7 +183,7 @@ ModelImporter:
     tangentImportMode: 3
     normalCalculationMode: 4
   importAnimation: 1
-  copyAvatar: 0
+  copyAvatar: 1
   humanDescription:
     serializedVersion: 2
     human: []
@@ -183,7 +199,8 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: af411d1f041704643a6edad328520b56,
+    type: 3}
   animationType: 2
   humanoidOversampling: 1
   additionalBone: 0

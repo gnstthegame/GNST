@@ -72,6 +72,7 @@ public class TileMap : MonoBehaviour {
     List<Unit> DeadUnits = new List<Unit>();
     public Pole[,] map;
     Skill selectedSkill;
+    int selSkill;
     bool playerTurn = true;
     public bool wait = false;
 
@@ -94,6 +95,7 @@ public class TileMap : MonoBehaviour {
     /// <param name="u">jednostka</param>
     public void UnitDie(Unit u) {
         DeadUnits.Add(u);
+        u.anim.SetTrigger("die");
         Units.Remove(u);
         PlayerUnits.Remove(u);
         EnemyUnits.Remove(u);
@@ -170,6 +172,7 @@ public class TileMap : MonoBehaviour {
     void Update() {
         if (Input.GetButtonDown("Fire2")) {
             selectedSkill = null;
+            selSkill = 10;
             ClearTiles();
         }
     }
@@ -248,10 +251,10 @@ public class TileMap : MonoBehaviour {
     /// </summary>
     /// <param name="a">współrzędne</param>
     /// <returns>fałsz, gdy poza polem</returns>
-    bool NotOutOfRange(Vector2 a) {
+    public bool NotOutOfRange(Vector2 a) {
         return NotOutOfRange((int)a.x, (int)a.y);
     }
-    bool NotOutOfRange(int x, int y) {
+    public bool NotOutOfRange(int x, int y) {
         if (x < 0 || y < 0 || x >= mapSizeX || y >= mapSizeY) {
             return false;
         }
@@ -297,6 +300,7 @@ public class TileMap : MonoBehaviour {
             return;
         }
         selectedSkill = selectedUnit.GetSkill(k);
+        selSkill = k;
         AtackMode();
     }
     /// <summary>
@@ -329,7 +333,7 @@ public class TileMap : MonoBehaviour {
         if (playerTurn == false) {
             return;
         }
-        if (selectedSkill != null && selectedUnit != null && selectedUnit.CanAct) {
+        if (selectedSkill != null && selectedUnit != null && selectedUnit.CanAct || selSkill > 2) {
             if (selectedSkill.AttackRange > 0) {//check for attack
                 if (Mathf.Abs(selectedUnit.tileX - x) + Mathf.Abs(selectedUnit.tileY - y) >= selectedSkill.AttackRange) {
                     return;
@@ -504,7 +508,7 @@ public class TileMap : MonoBehaviour {
                 }
             }
         }
-
+        
         List<Vector2> pla = new List<Vector2>();
         foreach (Unit u in PlayerUnits) {
             pla.Add(new Vector2(u.tileX, u.tileY));
@@ -556,7 +560,6 @@ public class TileMap : MonoBehaviour {
         var ord = filds.OrderByDescending(item => item.SumPoints());
         List<Posibilieties> Schedule = new List<Posibilieties>();
         obstacle = new List<Vector2>();
-        Debug.Log(Units.Count);
         foreach (Unit u in Units) {
             Vector2 v = new Vector2(u.tileX, u.tileY);
             obstacle.Add(v);
@@ -664,6 +667,7 @@ public class TileMap : MonoBehaviour {
     IEnumerator DealAttack(Posibilieties p) {
         p.executor.AP -= p.useSkill.Cost;
         p.executor.CanAct = false;
+        p.executor.SkillUsed(selSkill);
         Vector2 AtackPoint = p.target;
         wait = true;
         p.executor.CastSkill(p);
@@ -689,6 +693,7 @@ public class TileMap : MonoBehaviour {
             }
         }
         selectedSkill = null;
+        selSkill = 10;
         //ClearTiles(true);
     }
     /// <summary>

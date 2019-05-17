@@ -13,7 +13,7 @@ public class Chest : MonoBehaviour {
     bool isShown = false;
     public bool DestroyEmpty = true;
 
-    public float distance = 3f;
+    public float distance = 4f;
 
     private void Awake() {
         lootPanel = FindObjectOfType<LootPanel>();

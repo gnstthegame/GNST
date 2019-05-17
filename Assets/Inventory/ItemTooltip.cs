@@ -31,6 +31,9 @@ public class ItemTooltip : MonoBehaviour {
             case EquipmentType.Ranged:
                 typ = "Broń Dwuręczna";
                 break;
+            case EquipmentType.Defence:
+                typ = "Osłona";
+                break;
             case EquipmentType.Usable1:
                 typ = "Mikstura";
                 break;

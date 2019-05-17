@@ -7,6 +7,7 @@ public enum EquipmentType
     Chest,
     Melee,
     Ranged,
+    Defence,
     Usable1,
     Usable2,
     Sticker,

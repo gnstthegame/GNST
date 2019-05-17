@@ -19,7 +19,8 @@ public class Ai : Unit {
     public enum Personality {
         lil,
         Boss,
-        slime
+        slime,
+        archer
     }
     public Personality Person;
     public GameObject chest;
@@ -37,22 +38,30 @@ public class Ai : Unit {
             new Vector2(1, 0),new Vector2(0, 0),new Vector2(1, -1),new Vector2(0, -1) };
         Vector2[] tmp3 = new Vector2[3]{//-
             new Vector2(-1, -1),new Vector2(0, -1),new Vector2(1, -1)};
+        Vector2[] tmp4 = new Vector2[2]{//-
+            new Vector2(0, 1),new Vector2(0, 0)};// |
 
         Effect rest = new Effect(Effect.trig.OnApply, 1, (int dmg, Unit u) => { u.AP += 2; return 0; });
         switch (Person) {
             case Personality.lil:
                 Skile.Add(new Skill(self, Vector2.zero, 0, "Wait", 3, rest, true));
-                Skile.Add(new Skill(fwd, new Vector2(1, 2), 0, "Punch", 1));
-
+                Skile.Add(new Skill(fwd, new Vector2(1, 3), 0, "Stab", 1));
+                Skile.Add(new Skill(tmp4, new Vector2(2, 4), 4, "Slash", 1));
                 break;
             case Personality.Boss:
                 Skile.Add(new Skill(self, Vector2.zero, 0, "Wait", 3, rest, true));
-                Skile.Add(new Skill(fwd, new Vector2(1, 2), 0, "Punch", 1));
+                Skile.Add(new Skill(fwd, new Vector2(1, 3), 0, "Punch", 1));
                 Skile.Add(new Skill(tmp, new Vector2(2, 4), 4, "Slam", 1));
                 break;
             case Personality.slime:
+                freezRotation = true;
                 Skile.Add(new Skill(self, Vector2.zero, 0, "Wait", 3, rest, true));
-                Skile.Add(new Skill(fwd, new Vector2(1, 2), 0, "atack", 1));
+                Skile.Add(new Skill(fwd, new Vector2(2, 3), 0, "attack", 1));
+                break;
+            case Personality.archer:
+                Skile.Add(new Skill(self, Vector2.zero, 0, "Wait", 3, rest, true));
+                //Skile.Add(new Skill(fwd, new Vector2(1, 2), 0, "attack", 1));
+                Skile.Add(new Skill(fwd, new Vector2(2, 4), 0, "shoot", 1,null,false,5));
                 break;
             default:
                 break;
@@ -75,15 +84,20 @@ public class Ai : Unit {
     public Loot Clear() {
         if (reward.Rewards.Length > 0) {
             GameObject go = Instantiate(chest, transform.position, transform.rotation);
-            go.GetComponent<Collectable>().items = reward.Rewards;
+            List<Pair> par = new List<Pair>();
+            foreach(Item i in reward.Rewards) {
+                par.Add(new Pair(i,1));
+            }
+            go.GetComponent<Chest>().lootItems = par;
         }
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        Destroy(this);
         return reward;
     }
     public override void Activ() {
         if (Person == Personality.slime) {
-            anim= GetComponent<Animator>();
-            anim.SetTrigger("Exp");
+            anim = GetComponent<Animator>();
+            anim.SetTrigger("expand");
         }
     }
 }

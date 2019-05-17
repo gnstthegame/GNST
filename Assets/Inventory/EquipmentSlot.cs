@@ -9,11 +9,6 @@ public class EquipmentSlot : ItemSlot
 {
     public EquipmentType equipmentType;
 
-    protected override void Awake()
-    {
-        base.Awake();
-        gameObject.name = equipmentType.ToString() + " Slot";
-    }
 
     public override bool CanReceiveItem(Item item)
     {

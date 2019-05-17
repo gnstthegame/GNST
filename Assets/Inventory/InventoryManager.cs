@@ -119,7 +119,7 @@ public class InventoryManager : MonoBehaviour {
     }
     public List<Skill> GetSkills() {
         List<EquipmentSlot> eq = new List<EquipmentSlot>(equipmentPanel.equipmentSlots);
-        eq = eq.FindAll(item => item.Item != null && (item.equipmentType == EquipmentType.Melee || item.equipmentType == EquipmentType.Ranged));
+        eq = eq.FindAll(item => item.Item != null && (item.equipmentType == EquipmentType.Melee || item.equipmentType == EquipmentType.Ranged || item.equipmentType == EquipmentType.Defence));
 
         List<Skill> skils = new List<Skill>();
         foreach (EquipmentSlot i in eq) {
