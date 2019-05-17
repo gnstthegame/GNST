@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shop : MonoBehaviour {
+public class Shop : Interactable {
 
     [SerializeField] Inventory inventory;
     //Pair
@@ -19,19 +19,28 @@ public class Shop : MonoBehaviour {
         playerTransform = FindObjectOfType<CharacterMotor>().transform;
     }
 
-    private void Update() {
-        if (Input.GetButtonDown("Interact")) {
-            if (Vector3.Distance(playerTransform.position, transform.position) < distance) {
-                if (!show) {
-                    show = true;
-                    shop.Show();
-                    return;
-                }
+    public override void Interact()
+    {
+        base.Interact();
+        if (Vector3.Distance(playerTransform.position, transform.position) < distance)
+        {
+            if (!show)
+            {
+                show = true;
+                shop.Show();
+                return;
             }
-            if (show) {
+            if (show)
+            {
                 show = false;
                 shop.Hide();
             }
+        }
+    }
+
+    private void Update() {
+        if (Input.GetButtonDown("Interact")) {
+                Interact();
         }
         if (show && Vector3.Distance(playerTransform.position, transform.position) > distance) {
             show = false;

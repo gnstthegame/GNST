@@ -7,9 +7,15 @@ using UnityEngine;
 /// </summary>
 public class EquipmentSlot : ItemSlot
 {
+    //Typ przedmiotu
     public EquipmentType equipmentType;
 
 
+    /// <summary>
+    /// Metoda sprawdzająca, czy można założyć dany przedmiot do konkretnego slotu
+    /// </summary>
+    /// <param name="item">Przedmiot, który chcemy dodać(nie musi być możliwy do założenia)</param>
+    /// <returns></returns>
     public override bool CanReceiveItem(Item item)
     {
         if (item == null)

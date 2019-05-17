@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 
+/// <summary>
+/// Klasa implementująca statystyki postaci
+/// </summary>
 [Serializable]
 public class CharacterStat {
     public int BaseValue;

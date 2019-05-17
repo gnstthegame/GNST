@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+<<<<<<< Updated upstream
 public class Chest : MonoBehaviour {
     LootPanel lootPanel;
     Transform playerTransform;
     public int plusz;
 
     [SerializeField] public List<Pair> lootItems;
-    bool isInRange = false;
     bool isShown = false;
     public bool DestroyEmpty = true;
 
     public float distance = 4f;
 
+	
     private void Awake() {
         lootPanel = FindObjectOfType<LootPanel>();
         playerTransform = FindObjectOfType<CharacterMotor>().transform;
@@ -27,26 +28,32 @@ public class Chest : MonoBehaviour {
         }
     }
 
+    public override void Interact()
+    {
+        base.Interact();
+        if (Vector3.Distance(playerTransform.position, transform.position) < distance)
+        {
+            lootPanel.chest = this;
+            if (!isShown)
+            {
+                isShown = true;
+                lootPanel.Show();
+                return;
+            }
+        }
+        if (isShown)
+        {
+            isShown = false;
+            lootPanel.Hide();
+            lootPanel.chest = null;
+        }
+    }
+
     // Update is called once per frame
     void Update () {
         if (Input.GetButtonDown("Interact"))
         {
-            if (Vector3.Distance(playerTransform.position, transform.position) < distance)
-            {
-                lootPanel.chest = this;
-                if (!isShown)
-                {
-                    isShown = true;
-                    lootPanel.Show();
-                    return;
-                }
-            }
-            if (isShown)
-            {
-                isShown = false;
-                lootPanel.Hide();
-                lootPanel.chest = null;
-            }
+            Interact();
         }
         if (isShown && Vector3.Distance(playerTransform.position, transform.position) > distance)
         {

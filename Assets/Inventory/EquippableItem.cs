@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 
+<<<<<<< Updated upstream
+=======
 [System.Serializable]
+//Typ wyliczeniowy definiujący typy przedmiotów możliwych do wyposażenia
+>>>>>>> Stashed changes
 public enum EquipmentType
 {
     Helmet,
@@ -17,9 +21,13 @@ public enum EquipmentType
     Quest4
 }
 
+/// <summary>
+/// Klasa definiująca przedmiot możliwy do wyposażenia
+/// </summary>
 [CreateAssetMenu]
 [System.Serializable]
 public class EquippableItem : Item {
+    //statystyki
     public int Strength;
     public int Agility;
     public int Stamina;
@@ -47,7 +55,10 @@ public class EquippableItem : Item {
     {
         Destroy(this);
     }
-    //Tutaj beda modyfikatory statystyk
+    /// <summary>
+    /// Metoda modyfikująca statystyki po wyposażeniu przedmiotu
+    /// </summary>
+    /// <param name="c">Klasa przechowująca statystyki postaci</param>
     public void Equip(InventoryManager c)
     {
         if (Strength != 0)
@@ -61,11 +72,16 @@ public class EquippableItem : Item {
         if (Armor != 0)
             c.Armor.AddModifier(new StatModifier(Armor, StatModType.Flat, this));
     }
+
     public override Skill getskill() {
         Skill skl = new Skill(Area, Dmg, Cost, AnimTrigger, Sprite, Model3d, EffectTriggered, CzasTrwania, EfektPower, Efekt, OnDestroy, positive, AttackRange);
         return skl;
     }
 
+    /// <summary>
+    /// Metoda modyfikująca statystyki postaci po zdjęciu aktualnie wyposażonego przedmiotu
+    /// </summary>
+    /// <param name="c">Klasa przechowująca statystyki postaci</param>
     public void Unequip(InventoryManager c)
     {
         c.Strength.RemoveAllModifiersFromSource(this);

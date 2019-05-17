@@ -8,30 +8,74 @@ using UnityEngine.UI;
 /// </summary>
 /// Character
 public class InventoryManager : MonoBehaviour {
+    //panel z przedmiotami posiadanymi
     [SerializeField] public Inventory inventory;
+    //panel ekwipunku
     [SerializeField] public EquipmentPanel equipmentPanel;
+
+    //przyciski zwiększające statystyki
+    public Button[] statButtons;
+
+    /// <summary>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>Poziom postaci</description>
+    /// </item>
+    /// <item>
+    /// <description>Siła postaci</description>
+    /// </item>
+    /// <item>
+    /// <description>Zwinność postaci</description>
+    /// </item>
+    /// <item>
+    /// <description>Wytrzymałość postaci</description>
+    /// </item>
+    /// <item>
+    /// <description>Szczęście postaci</description>
+    /// </item>
+    /// <item>
+    /// <description>Pancerz postaci</description>
+    /// </item>
+    /// </list>
+    /// </summary>
     public CharacterStat Level;
     public CharacterStat Strength;
     public CharacterStat Agility;
     public CharacterStat Stamina;
     public CharacterStat Luck;
     public CharacterStat Armor;
+
+    public int statPoints = 0;
+
     public Sprite fist;
 
+    //panel statystyk postaci
     [SerializeField] StatPanel statPanel;
+    //panel z informacjami o przedmiocie
     [SerializeField] ItemTooltip itemTooltip;
-    //ostatnia rzecz
+    //ikonka przeciąganego przedmiotu(do drag and drop)
     [SerializeField] Image draggableItem;
 
+    //slot z którego przemieszczamy przedmiot(drag and drop)
     private ItemSlot draggedSlot;
-    
 
+
+    /// <summary>
+    /// Odszukanie obiektu panelu do informacji o przedmiotach
+    /// Ustawienie statystyk
+    /// Dodanie obsługi zdarzeń
+    /// </summary>
     private void Awake() {
         if (itemTooltip == null) {
             itemTooltip = FindObjectOfType<ItemTooltip>();
         }
+        statPanel.SetStats(Level, Strength, Agility, Stamina, Luck, Armor);
         ReloadStats();
         statPanel.UpdateStatNames();
+        
+        statPanel.UpdateStatValues();
+    
+
 
         inventory.OnRightClickEvent += InventoryRightClick;
         equipmentPanel.OnRightClickEvent += EquipmentPanelRightClick;
@@ -53,8 +97,96 @@ public class InventoryManager : MonoBehaviour {
 
         inventory.OnDropEvent += Drop;
         equipmentPanel.OnDropEvent += Drop;
+
+        statPoints = 5;
     }
 
+    private void OnValidate()
+    {
+        statButtons = statPanel.GetComponentsInChildren<Button>();
+    }
+
+    private void Update()
+    {
+        CheckButtons();
+    }
+
+    /// <summary>
+    /// Metoda sprawdzająca, czy przyciski zwiększające statystyki powinny być aktywne
+    /// </summary>
+    void CheckButtons()
+    {
+        if (statPoints <= 0)
+        {
+            foreach (Button b in statButtons)
+            {
+                b.GetComponent<Image>().enabled = false;
+            }
+        }
+        else if(statPoints > 0)
+        {
+            foreach (Button b in statButtons)
+            {
+                b.GetComponent<Image>().enabled = true;
+            }
+        }
+    }
+
+    public void IncreaseStrength()
+    {
+        if(statPoints > 0)
+        {
+            IncreaseStat(Strength);
+            statPoints--;
+            ReloadStats();
+            //Debug.Log("BV: " + Strength.BaseValue);
+            //Debug.Log("V:" + Strength.Value);
+        }
+        
+    }
+
+    public void IncreaseAgility()
+    {
+        if(statPoints > 0)
+        {
+            IncreaseStat(Agility);
+            statPoints--;
+            ReloadStats();
+        }     
+    }
+
+    public void IncreaseStamina()
+    {
+        if (statPoints > 0)
+        {
+            IncreaseStat(Stamina);
+            statPoints--;
+            ReloadStats();
+        }       
+    }
+
+    public void IncreaseLuck()
+    {
+        if (statPoints > 0)
+        {
+            IncreaseStat(Luck);
+            statPoints--;
+            ReloadStats();
+        }      
+    }
+
+    public void IncreaseStat(CharacterStat stat)
+    {
+        stat.BaseValue++;
+        //stat.AddModifier(new StatModifier(1f, StatModType.Flat));
+    }
+
+    /// <summary>
+    /// Metoda wykonywana po wciśnięciu w jeden ze slotów panelu posiadanych przedmiotów
+    /// Sprawdza typ przedmiotu w slocie, a następnie na jego podstawie wykonuje odpowiednią metodę 
+    /// zależną od typu przemiotu
+    /// </summary>
+    /// <param name="itemSlot">Wybrany slot</param>
     private void InventoryRightClick(ItemSlot itemSlot) {
         if (itemSlot.Item is EquippableItem) {
             Equip((EquippableItem)itemSlot.Item);
@@ -69,12 +201,21 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Metoda wywołana po wciśnięciu na jeden ze slotów panelu ekwipunku, odpowiada za
+    /// zdjęcie aktualnie wyposażonego przemiotu
+    /// </summary>
+    /// <param name="itemSlot">Wybrany slot</param>
     private void EquipmentPanelRightClick(ItemSlot itemSlot) {
         if (itemSlot.Item is EquippableItem) {
             Unequip((EquippableItem)itemSlot.Item);
         }
     }
 
+    /// <summary>
+    /// Metoda wyświetlająca panel z informacjami o przedmiocie(po najechaniu myszką na odpowiedni slot)
+    /// </summary>
+    /// <param name="itemSlot">Wybrany slot</param>
     private void ShowTooltip(ItemSlot itemSlot) {
         if (itemSlot.Item != null && itemSlot.Item is EquippableItem) {
             itemTooltip.ShowTooltip((EquippableItem)itemSlot.Item);
@@ -83,10 +224,18 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Metoda chowająca panel z informacjami o przedmiocie
+    /// </summary>
     private void HideTooltip(ItemSlot itemSlot) {
         itemTooltip.HideTooltip();
     }
 
+
+    /// <summary>
+    /// Metoda obsługująca początek procesu przeciągania.
+    /// </summary>
+    /// <param name="itemSlot">Slot, z którego przeciąganie się rozpoczęło.</param>
     private void BeginDrag(ItemSlot itemSlot) {
         if (itemSlot.Item != null) {
             draggedSlot = itemSlot;
@@ -96,11 +245,17 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Metoda wywoływana po zakończeniu procesu przeciągania
+    /// </summary>
     private void EndDrag(ItemSlot itemSlot) {
         draggedSlot = null;
         draggableItem.enabled = false;
     }
 
+    /// <summary>
+    /// Metoda obsługująca proces przeciągania
+    /// </summary>
     private void Drag(ItemSlot itemSlot) {
         if (draggableItem.enabled) {
             draggableItem.transform.position = Input.mousePosition;
@@ -108,6 +263,11 @@ public class InventoryManager : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// Metoda wywoływana po upuszczeniu obiektu na slocie
+    /// Sprawdza, czy przedmioty należy zamienić, czy zwiększyc ich ilość(jeżeli są takie same)
+    /// </summary>
+    /// <param name="dropItemSlot">slot na którym upuszczono obiekt</param>
     private void Drop(ItemSlot dropItemSlot) {
         if (draggedSlot.Item != null) {
             if (dropItemSlot.CanAddStack(draggedSlot.Item)) {
@@ -149,6 +309,10 @@ public class InventoryManager : MonoBehaviour {
         return skils;
     }
 
+    /// <summary>
+    /// Metoda zamieniająca przedmioty na dwóch slotach(przy drag and drop)
+    /// </summary>
+    /// <param name="dropItemSlot">Slot na którym zakończono przeciąganie</param>
     private void SwapItems(ItemSlot dropItemSlot) {
         EquippableItem dragItem = draggedSlot.Item as EquippableItem;
         EquippableItem dropItem = dropItemSlot.Item as EquippableItem;
@@ -174,16 +338,28 @@ public class InventoryManager : MonoBehaviour {
         dropItemSlot.Amount = draggedItemAmount;
     }
 
+    /// <summary>
+    /// Metoda wyliczająca ilość przedmiotów w slocie po drag and drop(ile z nich można umieścić w slocie)
+    /// </summary>
+    /// <param name="dropItemSlot">Slot na którym upuszczono przedmiot</param>
     private void NewMethod(ItemSlot dropItemSlot) {
         int numAddableStacks = dropItemSlot.Item.MaximumStacks;
         int stacksToAdd = Mathf.Min(numAddableStacks, draggedSlot.Amount);
         dropItemSlot.Amount += stacksToAdd;
         draggedSlot.Amount -= stacksToAdd;
     }
+
+    /// <summary>
+    /// Metoda pokazująca panel ekwipunku
+    /// </summary>
     public void Show() {
         GetComponent<CanvasGroup>().alpha = 1;
         GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
+
+    /// <summary>
+    /// Metoda ukrywająca panel ekwipunku
+    /// </summary>
     public void Hide() {
         GetComponent<CanvasGroup>().alpha = 0;
         GetComponent<CanvasGroup>().blocksRaycasts = false;
@@ -202,6 +378,10 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Metoda wyposażająca przedmiot
+    /// </summary>
+    /// <param name="item">Przedmiot do wyposażenia</param>
     public void Equip(EquippableItem item) {
         //Usuniecie z panelu ekwipunku
         if (inventory.RemoveItem(item.ID)) {
@@ -223,6 +403,10 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Metoda sprawdza, czy możliwe jest zdjęcie przedmiotu, oraz odświeża wartości statystyk
+    /// </summary>
+    /// <param name="item">Założony przedmiot</param>
     public void Unequip(EquippableItem item) {
         //sprawdzenie czy jest miejsce w ekwipunku
         if (!inventory.IsFull() && equipmentPanel.RemoveItem(item)) {
@@ -230,8 +414,12 @@ public class InventoryManager : MonoBehaviour {
             statPanel.UpdateStatValues();
             inventory.AddItem(item);
         }
-    }
+
+    /// <summary>
+    /// Metoda ustawiająca wartości statystyk w panelu z nimi
+    /// </summary>
     public void ReloadStats() {
-        statPanel.SetStats(Level, Strength, Agility, Stamina, Luck, Armor);
+        
+        statPanel.UpdateStatValues();
     }
 }

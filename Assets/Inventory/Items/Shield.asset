@@ -11,29 +11,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: 
-  id: e03c7a6f-c0e9-40e4-ba4b-7d4f89ac2241
+<<<<<<< Updated upstream
+  id: 3848034699e541d40a6c2b18548e1085
+=======
+  id: 683fb5c5-af4d-4e47-9824-9ebdb0926cb6
+>>>>>>> Stashed changes
   Name: Tarcza
-  Sprite: {fileID: 21300000, guid: ddc46577f97fa9548bc96cf9344e1515, type: 3}
+  Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   BuyValue: 0
   SellValue: 0
-  MaximumStacks: 1
   Strength: 0
   Agility: 0
   Stamina: 0
   Luck: 0
   Armor: 0
-  equipmentType: 4
-  Opis: "Na 2 tury zwi\u0119ksza pancerz o 3"
+  equipmentType: 2
+  Opis: "Na 1 tur\u0119 zwi\u0119ksza pancerz o 2"
   Area:
   - {x: 0, y: -1}
   Dmg: {x: 0, y: 0}
   Cost: 1
-  AnimTrigger: Wait
+  AnimTrigger: Shield
   AttackRange: 0
-  Model3d: {fileID: 1251532771750526, guid: 3c89c52ab0d34e24594720789b9443d7, type: 2}
+  Model3d: {fileID: 0}
   positive: 1
   Efekt: 1
   OnDestroy: 2
-  EfektPower: 3
+  EfektPower: 2
   EffectTriggered: 2
-  CzasTrwania: 2
+  CzasTrwania: 1
