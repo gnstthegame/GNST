@@ -11,7 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
   m_Name: Bow
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   id: e3c30281ce5751e4e881ea555485d2c6
+=======
+  id: 8d9a9187-1d50-4ab7-bfc9-cf51c89274cd
+>>>>>>> Stashed changes
   Name: "\u0141uk"
   Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   BuyValue: 0
@@ -21,7 +25,7 @@ MonoBehaviour:
   Stamina: 0
   Luck: 0
   Armor: 0
-  equipmentType: 3
+  equipmentType: 4
   Opis: 
   Area:
   - {x: 0, y: 0}

@@ -11,22 +11,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  Id: 2
+  id: 0cc9d701-1057-47fc-bdcd-3d40f8a31727
   Name: Meele Sword
-  Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  Strength: 0
-  Agility: 0
-  Stamina: 0
-  Luck: 0
-  Armor: 0
-  Crit: 0
-  Hit: 0
-  Dmg: {x: 2, y: 4}
+  Sprite: {fileID: 21300000, guid: 0b8b9ab0e11e001479de97fd1176d3e8, type: 3}
+  BuyValue: 0
+  SellValue: 0
+  MaximumStacks: 1
+  Strength: 1
+  Agility: 1
+  Stamina: 1
+  Luck: 1
+  Armor: 1
+  equipmentType: 3
+  Opis: 
   Area:
   - {x: 0, y: 1}
+  Dmg: {x: 2, y: 4}
   Cost: 1
-  AttackRange: 0
   AnimTrigger: Dash
+  AttackRange: 0
   Model3d: {fileID: 1261094532972180, guid: fcd7fc46184d7be4883442d00e2933ac, type: 2}
   positive: 0
-  equipmentType: 2
+  Efekt: 0
+  OnDestroy: 0
+  EfektPower: 0
+  EffectTriggered: 0
+  CzasTrwania: 0
