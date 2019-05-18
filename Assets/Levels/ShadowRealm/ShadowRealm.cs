@@ -61,7 +61,7 @@ public class ShadowRealm : MonoBehaviour {
         int rx = Random.Range(1, good[ry].Length - 1);
         good[ry][rx].SendMessage("Mark", GSym[0] + 3, SendMessageOptions.RequireReceiver);
         Build();
-        Player.position = new Vector3(way[0].Length / 2 * scaleX, 30f, 2f);
+        Player.position = new Vector3(way[0].Length / 2 * scaleX, 30f, 8f);
         triger.Contin();
     }
     /// <summary>
@@ -87,9 +87,9 @@ public class ShadowRealm : MonoBehaviour {
             decoy = left;
         }
         int yy = good.Count;
-        makePath(y, x - r * 4, decoy);
-        y = makePath(y, x + r * 4, good);
-        x += r * 4;
+        makePath(y, x - r * width, decoy);
+        y = makePath(y, x + r * width, good);
+        x += r * width;
 
         int s = seg < 5 ? Random.Range(0, seg) : Random.Range(0, 4);
         ry = Random.Range(yy - 3, yy);
@@ -120,7 +120,7 @@ public class ShadowRealm : MonoBehaviour {
     /// sprawdza, czy gracz spadł z mapy lub poszedł odpowiednią drogą
     /// </summary>
     void Update() {
-        if (Mathf.Abs(y * scaleY - Player.position.z) < 16f && Mathf.Abs((x+2) * scaleX - Player.position.x) < 16f && !win) {
+        if (Mathf.Abs(y * scaleY - Player.position.z) < 25f && Mathf.Abs((x+2) * scaleX - Player.position.x) < 25f && !win) {
             if (seg < segments) {
                 Debug.Log("bild");
                 Build();

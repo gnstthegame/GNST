@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class savedata {
@@ -10,24 +11,32 @@ public class savedata {
     public int[] CS;
     public string[] INV, EQ;
     public int[] INVc;
-    public int Money;
+    public int Money, exp, statP;
+    public float[] camPos, camRot, camPro;
+    public float camUp;
+    public bool[] camFrez;
+    public string Scen;
 
     //funkcja trzymająca dane playera z zapisu
     public savedata(SaveLinker player) {
-
+        Scen = SceneManager.GetActiveScene().name;
         position = VecToFlo(player.player.position);
 
         CS = new int[6] { player.IM.Level.BaseValue, player.IM.Strength.BaseValue, player.IM.Agility.BaseValue, player.IM.Stamina.BaseValue, player.IM.Luck.BaseValue, player.IM.Armor.BaseValue };
         Money = player.IM.inventory.money;
-        
+        exp = player.IM.Exp;
+        statP = player.IM.statPoints;
+
         List<string> temp = new List<string>();
         List<int> tempc = new List<int>();
 
         ItemSlot[] tmp = player.IM.inventory.itemSlots;
         for (int i = 0; i < tmp.Length; i++) {
-            if (tmp[i].Amount != 0 && tmp[i].Item.ID != null) {
-                tempc.Add(tmp[i].Amount);
-                temp.Add(tmp[i].Item.ID);
+            if (tmp[i].Amount != 0) {
+                if (tmp[i].Item != null && tmp[i].Item.ID != null) {
+                    tempc.Add(tmp[i].Amount);
+                    temp.Add(tmp[i].Item.ID);
+                }
             }
         }
         tempc.Add(0);
@@ -44,6 +53,15 @@ public class savedata {
         }
         temp.Add("0");
         EQ = temp.ToArray();
+        camPos = VecToFlo(player.cam.currentPlace.transform.position);
+        camRot = VecToFlo(player.cam.currentPlace.transform.eulerAngles);
+        camPro = VecToFlo(player.cam.distance);
+        camUp = player.cam.lookUP;
+        camFrez = new bool[] { player.cam.x, player.cam.y, player.cam.z, player.cam.ThirdPerson };
+
+
+        //Debug.Log(position.Length + " " + CS.Length + " " + INV.Length + " " + EQ.Length + " " + INVc.Length + " " + Money + " " + exp + " " + statP + " " + camPos.Length + " " + camRot.Length + " " + camPro.Length + " " + camUp + " " + camFrez.Length + " " + Scen);
+
     }
 
     float[] VecToFlo(Vector3 v) {

@@ -6,7 +6,8 @@ public class CameraFollow : MonoBehaviour {
     public Transform player, currentPlace;
     public Vector3 distance;
     CharacterMotor motor;
-    public float speed = 1f, lookUP = 6, pSmo = 4, rSmo = 8;
+    public float lookUP = 6;
+    float speed = 1f, pSmo = 4, rSmo = 8;
     public bool x, y, z;
     public bool ThirdPerson = true;
     bool frez=false;

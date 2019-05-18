@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorTrigger : MonoBehaviour {
+public class CameraTrigger : MonoBehaviour {
     public Transform pos;
     public Vector3 distance;
     public bool x=true, y=true, z=true;

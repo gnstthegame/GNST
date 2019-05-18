@@ -5,8 +5,12 @@ using UnityEngine.UI;
 
 public class RewardMenu : MonoBehaviour {
     public Text EXP,Plusz;
+    InventoryManager IM;
+    private void Awake() {
+        IM = FindObjectOfType<InventoryManager>();
+    }
     //quest menu
-	/// <summary>
+    /// <summary>
     /// wyświetl panel
     /// </summary>
     public void Show() {
@@ -27,6 +31,8 @@ public class RewardMenu : MonoBehaviour {
             //quest rew.name
         }
         //inventory +exp +pl
+        IM.inventory.money += pl;
+        IM.Exp += exp;
         EXP.text = exp.ToString();
         Plusz.text = pl.ToString();
     }

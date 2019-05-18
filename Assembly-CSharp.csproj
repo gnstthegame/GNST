@@ -122,6 +122,7 @@
     <Compile Include="Assets\Menu\InputMenager.cs" />
     <Compile Include="Assets\Menu\LevelLoader.cs" />
     <Compile Include="Assets\Menu\MainMenu.cs" />
+    <Compile Include="Assets\Menu\NewGame.cs" />
     <Compile Include="Assets\Menu\PauseMenu.cs" />
     <Compile Include="Assets\Menu\savedata.cs" />
     <Compile Include="Assets\Menu\SaveLinker.cs" />
@@ -175,12 +176,12 @@
     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\CameraTrigger.cs" />
     <Compile Include="Assets\Scripts\ChangeCameraPosition.cs" />
     <Compile Include="Assets\Scripts\CharacterInteraction.cs" />
     <Compile Include="Assets\Scripts\CharacterMotor.cs" />
     <Compile Include="Assets\Scripts\DamageReciver.cs" />
     <Compile Include="Assets\Scripts\DestroyAfter.cs" />
-    <Compile Include="Assets\Scripts\DoorTrigger.cs" />
     <Compile Include="Assets\Scripts\Quests\Dialogue\DialogueSystem.cs" />
     <Compile Include="Assets\Scripts\Quests\GatherGoal.cs" />
     <Compile Include="Assets\Scripts\Quests\Goal.cs" />

@@ -175,9 +175,8 @@ public class Skill {/*
     /// przelicza informacje dodatkowe
     /// </summary>
     void Calculate() {
-        Vector2 s = new Vector2(0, -1);
         foreach (Vector2 v in Area) {
-            maxDist = Mathf.Max(TileMap.IntDistance(s, v), maxDist);
+            maxDist = Mathf.Max(TileMap.IntDistance(0,-1, v), maxDist);
         }
         DirectedArea = new List<Vector2>[4];
         List<Vector2> up = new List<Vector2>();

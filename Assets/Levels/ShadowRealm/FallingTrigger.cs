@@ -9,15 +9,18 @@ public class FallingTrigger : MonoBehaviour {
     public float BaseRadius = 15f;
     float radius;
     float speed;
-    public float BaseSpeed = 0.1f;
+    public float BaseSpeed = 0.3f;
     bool stop = false;
+    Animator anim;
+    Rigidbody rig;
 
     /// <summary>
     /// podnieś płyty startowe
     /// </summary>
     void Awake() {
+        rig = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
         radius = BaseRadius;
-        speed = BaseSpeed;
         List<Collider> r = new List<Collider>(Physics.OverlapSphere(transform.position, radius));
         foreach (Collider c in r) {
             FallingBlock fa;
@@ -57,7 +60,6 @@ public class FallingTrigger : MonoBehaviour {
     /// </summary>
     public void Contin() {
         radius = BaseRadius;
-        speed = BaseSpeed;
     }
 
     /// <summary>
@@ -65,17 +67,19 @@ public class FallingTrigger : MonoBehaviour {
     /// </summary>
     void Update() {
         if (!stop) {
-            if (radius <= 1) {
+            if (radius <= 5) {
                 radius = 0;
                 GetComponent<Collider>().enabled = false;
             } else {
                 GetComponent<Collider>().enabled = true;
-                speed = (BaseRadius - radius) / BaseRadius + 0.3f;
+                speed = (BaseRadius - radius) / BaseRadius + BaseSpeed;
                 radius -= Time.deltaTime * speed;
             }
-            if (transform.position.y < -3) {
-                //fall anim
+            if (transform.position.y < -1f) {
+                anim.SetBool("Fall",true);
                 Lose();
+            } if(rig.velocity.y > 0f) {
+                anim.SetBool("Fall", false);
             }
             List<Collider> r = new List<Collider>(Physics.OverlapSphere(transform.position, radius));
             List<Collider> f = new List<Collider>(Physics.OverlapSphere(transform.position, radius + 8f));

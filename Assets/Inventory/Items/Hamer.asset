@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
   m_Name: Hamer
   m_EditorClassIdentifier: 
-  id: f0fe33bd-fdc5-43cb-97af-79ee80a7aab8
+  id: dfbf8dbf-e1e0-42e8-8b9b-ef4c48b54f57
   Name: "M\u0142ot"
   Sprite: {fileID: 21300000, guid: 321cd780b8c82434f882dac49bf926fc, type: 3}
   BuyValue: 0
@@ -30,7 +30,7 @@ MonoBehaviour:
   - {x: 1, y: 0}
   Dmg: {x: 2, y: 4}
   Cost: 1
-  AnimTrigger: Dash
+  AnimTrigger: hamer
   AttackRange: 0
   Model3d: {fileID: 1735330869198942, guid: 3ec1fce583f95974e916847d0d72758a, type: 2}
   positive: 0

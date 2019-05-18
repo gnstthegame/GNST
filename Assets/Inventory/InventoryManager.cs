@@ -15,6 +15,7 @@ public class InventoryManager : MonoBehaviour {
 
     //przyciski zwiększające statystyki
     public Button[] statButtons;
+    public GameObject ex;
 
     /// <summary>
     /// <list type="bullet">
@@ -44,6 +45,7 @@ public class InventoryManager : MonoBehaviour {
     public CharacterStat Stamina;
     public CharacterStat Luck;
     public CharacterStat Armor;
+    int exp = 0;
 
     public int statPoints = 0;
 
@@ -58,6 +60,23 @@ public class InventoryManager : MonoBehaviour {
 
     //slot z którego przemieszczamy przedmiot(drag and drop)
     private ItemSlot draggedSlot;
+
+    public int Exp {
+        get {
+            return exp;
+        }
+        set {
+            int e = value;
+            while (5 * Mathf.Pow(2, Level.Value) < e) {
+                e -= 5 * (int)Mathf.Pow(2, Level.Value);
+                statPoints++;
+                Level.BaseValue++;
+            }
+            CheckButtons();
+            exp = e;
+            ex.GetComponent<Text>().text = exp.ToString();
+        }
+    }
 
 
     /// <summary>
@@ -75,8 +94,6 @@ public class InventoryManager : MonoBehaviour {
         
         statPanel.UpdateStatValues();
     
-
-
         inventory.OnRightClickEvent += InventoryRightClick;
         equipmentPanel.OnRightClickEvent += EquipmentPanelRightClick;
 
@@ -97,8 +114,6 @@ public class InventoryManager : MonoBehaviour {
 
         inventory.OnDropEvent += Drop;
         equipmentPanel.OnDropEvent += Drop;
-
-        statPoints = 5;
     }
 
     private void OnValidate()
@@ -284,9 +299,11 @@ public class InventoryManager : MonoBehaviour {
         List<Skill> skils = new List<Skill>();
         foreach (EquipmentSlot i in eq) {
             Skill s = i.Item.getskill();
-            s.Dmg += new Vector2(Agility.Value, Strength.Value);
-            if (s.Dmg.x > s.Dmg.y) {
-                s.Dmg.y = s.Dmg.x;
+            if (!s.positive) {
+                s.Dmg += new Vector2(Agility.Value, Strength.Value);
+                if (s.Dmg.x > s.Dmg.y) {
+                    s.Dmg.y = s.Dmg.x;
+                }
             }
             skils.Add(s);
         }

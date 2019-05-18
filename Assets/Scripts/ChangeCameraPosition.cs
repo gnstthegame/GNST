@@ -5,8 +5,7 @@ using UnityEngine;
 public class ChangeCameraPosition : MonoBehaviour {
     public CharacterMotor Player;
     public float speed = 1f;
-    private void Start() {
-    }
+
     public void MoveCamera(Transform pos) {
         StopCoroutine(Move(pos));
         StartCoroutine(Move(pos));

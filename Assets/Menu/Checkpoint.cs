@@ -12,6 +12,7 @@ public class Checkpoint : MonoBehaviour {
         if (other.tag == "Player") {
             SL.SavePlayer();
         }
+        Destroy(this);
     }
 
 }

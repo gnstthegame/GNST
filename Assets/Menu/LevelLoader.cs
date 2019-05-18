@@ -19,6 +19,11 @@ public class LevelLoader : MonoBehaviour {
         operation = SceneManager.LoadSceneAsync(sceneName);
         StartCoroutine(LoadAsynchronosly());
     }
+    public void RestartLevel() {
+        LoadingScreen.SetActive(true);
+        operation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+        StartCoroutine(LoadAsynchronosly());
+    }
 
     IEnumerator LoadAsynchronosly() {
         while (!operation.isDone) {

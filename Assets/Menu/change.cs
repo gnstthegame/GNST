@@ -24,7 +24,8 @@ public class change : MonoBehaviour {
                 gameObject.SetActive(true);
                 LevelLoader load = gameObject.GetComponent<LevelLoader>();
                 load.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
-            } else {
+            }
+            if(count < images.Length){
                 image_set.sprite = images[count];
             }
         }

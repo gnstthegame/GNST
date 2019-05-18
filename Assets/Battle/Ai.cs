@@ -60,8 +60,8 @@ public class Ai : Unit {
                 break;
             case Personality.archer:
                 Skile.Add(new Skill(self, Vector2.zero, 0, "Wait", 3, rest, true));
-                //Skile.Add(new Skill(fwd, new Vector2(1, 2), 0, "attack", 1));
                 Skile.Add(new Skill(fwd, new Vector2(2, 4), 0, "shoot", 1,null,false,5));
+                bestDist = 5;
                 break;
             default:
                 break;

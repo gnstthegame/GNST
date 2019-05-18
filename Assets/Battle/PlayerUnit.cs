@@ -21,5 +21,12 @@ public class PlayerUnit : Unit {
         CanAct = true;
         Skile = Inv.GetSkills();
         Items = Inv.GetItems();
+        HP = MaxHP;
+    }
+    public void SkillUsed(int k) {
+        if (k > 2 && k < 9) {
+            Items.RemoveAt(k - 3);
+            hud.Upd();
+        }
     }
 }

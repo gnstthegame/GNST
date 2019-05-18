@@ -2,23 +2,24 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SaveLinker : MonoBehaviour {
 
     public Transform player;
     public bool saveTrigger = false;
     public InventoryManager IM;
-    public bool newScene = true;
+    [HideInInspector]
+    public CameraFollow cam;
 
     private void Awake() {
         player = FindObjectOfType<CharacterMotor>().transform;
         IM = GetComponentInChildren<InventoryManager>();
+        cam = Camera.main.GetComponent<CameraFollow>();
     }
     private void Start() {
-        if (newScene) {
-            LoadPlayer(false);
-            SavePlayer();
-        }
+        LoadPlayer();
+        SavePlayer();
     }
 
     private void Update() {
@@ -33,13 +34,26 @@ public class SaveLinker : MonoBehaviour {
         Debug.Log("Save Succes");
     }
 
-    public void LoadPlayer(bool Position = true) {
+    public void LoadPlayer() {
         savedata data = saveSystem.Loaddata(this);
         if (data == null) {
             return;
         }
+        bool Position = false;
+        if (data.Scen == SceneManager.GetActiveScene().name) {
+            Position = true;
+        }
+        //Debug.Log(data.position.Length + " " + data.CS.Length + " " + data.INV.Length + " " + data.EQ.Length + " " + data.INVc.Length + " " + data.Money + " " + data.exp + " " + data.statP + " " + data.camPos.Length + " " + data.camRot.Length + " " + data.camPro.Length + " " + data.camUp + " " + data.camFrez.Length + " " + data.Scen);
         if (Position) {
             player.transform.position = data.FloToVec(data.position);
+            cam.transform.position = data.FloToVec(data.camPos);
+            cam.transform.eulerAngles = data.FloToVec(data.camRot);
+            cam.distance = data.FloToVec(data.camPro);
+            cam.lookUP = data.camUp;
+            cam.x = data.camFrez[0];
+            cam.y = data.camFrez[1];
+            cam.z = data.camFrez[2];
+            cam.ThirdPerson = data.camFrez[3];
         }
         player.GetComponent<Animator>().SetTrigger("Live");
         player.GetComponent<CharacterMotor>().enabled = true;
@@ -50,6 +64,8 @@ public class SaveLinker : MonoBehaviour {
         IM.Luck.BaseValue = data.CS[4];
         IM.Armor.BaseValue = data.CS[5];
         IM.inventory.money = data.Money;
+        IM.Exp = data.exp;
+        IM.statPoints = data.statP;
 
         List<Item> itms = new List<Item>(Resources.FindObjectsOfTypeAll<Item>());
         IM.inventory.startingItems = new Item[0];

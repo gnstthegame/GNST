@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
   m_Name: Fork
   m_EditorClassIdentifier: 
-  id: f1fe9200-0160-4463-85ed-80c57e3f022e
+  id: 3e63ba93-c892-4f5f-8b6a-0b34c1ac2b5c
   Name: Widelec
   Sprite: {fileID: 21300000, guid: 0b8b9ab0e11e001479de97fd1176d3e8, type: 3}
   BuyValue: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
   - {x: 0, y: 0}
   Dmg: {x: 2, y: 4}
   Cost: 1
-  AnimTrigger: Dash
+  AnimTrigger: stab
   AttackRange: 0
   Model3d: {fileID: 1756887636274656, guid: 71caef2847f7b814fb31b7564e48c9c9, type: 2}
   positive: 0

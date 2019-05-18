@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
   m_Name: Miecz
   m_EditorClassIdentifier: 
-  id: f9817b2f-ad85-4de8-a091-8aa130596dbe
+  id: ca5f1000-dd0e-4969-9ae4-f254fb1925d7
   Name: Meele Sword
   Sprite: {fileID: 21300000, guid: fa186c43b9f7242428489a148d8ed4e7, type: 3}
   BuyValue: 0
@@ -28,7 +28,7 @@ MonoBehaviour:
   - {x: 0, y: 1}
   Dmg: {x: 2, y: 4}
   Cost: 1
-  AnimTrigger: Dash
+  AnimTrigger: slash
   AttackRange: 0
   Model3d: {fileID: 1423939346964840, guid: 4c99cb0af50a25e4e8fe847d22402d86, type: 2}
   positive: 0

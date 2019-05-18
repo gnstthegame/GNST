@@ -7,7 +7,7 @@ public class CharacterMotor : MonoBehaviour {
     public float moc;
     public float BaseRotationSpeed = 10f;
     float RotationSpeed = 10f;
-    public bool thirdP = false;
+    public bool thirdP = false, saveLastPos=true;
     Animator anim;
     Vector3 LevelForward, dir = Vector3.forward;
     public bool frez = false, draging = false, prepere = false; //private
@@ -19,8 +19,9 @@ public class CharacterMotor : MonoBehaviour {
     [SerializeField]
     bool grounded = false;
     static Vector3 UpOfset = new Vector3(0, 0.2f, 0);
+    Vector3[] lastPos = new Vector3[2] { Vector3.zero, Vector3.zero };
+    int posIndex = 0;
 
-    //==========================================================
     public GameObject triggeringNPC;
     public bool triggering;
 
@@ -38,18 +39,23 @@ public class CharacterMotor : MonoBehaviour {
 
         }
     }
-    //==========================================================
 
-    void Start() {
+    void Awake() {
         if (cam == null) {
             cam = Camera.main;
         }
         colider = GetComponent<CapsuleCollider>();
         anim = GetComponent<Animator>();
         LevelDir();
+        if (saveLastPos) {
+            StartCoroutine(SaveFromFall());
+        }
     }
 
     void Update() {
+        if (saveLastPos && transform.position.y < -5) {
+            transform.position = lastPos[0];
+        }
         if (thirdP) {
             LevelDir();
         }
@@ -228,6 +234,14 @@ public class CharacterMotor : MonoBehaviour {
     }
     public void EndJump() {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
+    }
+
+    IEnumerator SaveFromFall() {
+        while (true) {
+            lastPos[0] = new Vector3(lastPos[1].x, lastPos[1].y, lastPos[1].z);
+            lastPos[1] = transform.position;
+            yield return new WaitForSeconds(5f);
+        }
     }
 
 }

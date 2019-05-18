@@ -6,8 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class saveSystem{
 
-    public static void SavePlayer(SaveLinker player)
-    {
+    public static void SavePlayer(SaveLinker player) {
         BinaryFormatter formatter = new BinaryFormatter();
 
         string path = Application.persistentDataPath + "/player.fun";
@@ -18,7 +17,12 @@ public class saveSystem{
         formatter.Serialize(stream, data);
         stream.Close();
     }
-
+    public static void DeletePlayer() {
+        string path = Application.persistentDataPath + "/player.fun";
+        if (File.Exists(path)) {
+            File.Delete(path);
+        }
+    }
 
     public static savedata Loaddata (SaveLinker player)
     {
@@ -27,7 +31,11 @@ public class saveSystem{
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
-
+            if (stream.Length<1) {
+                stream.Close();
+                Debug.Log("Save is empty " + path);
+                return null;
+            }
             savedata data = formatter.Deserialize(stream) as savedata;
             stream.Close();
 
@@ -35,7 +43,7 @@ public class saveSystem{
              
         } else
         {
-            Debug.LogError("Save file not found in " + path);
+            Debug.Log("Save file not found in " + path);
             return null;
         }
     }

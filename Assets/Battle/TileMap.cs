@@ -333,7 +333,7 @@ public class TileMap : MonoBehaviour {
         if (playerTurn == false) {
             return;
         }
-        if (selectedSkill != null && selectedUnit != null && selectedUnit.CanAct || selSkill > 2) {
+        if (selectedSkill != null && selectedUnit != null && selectedUnit.CanAct || selSkill > 2 && selSkill < 6) {
             if (selectedSkill.AttackRange > 0) {//check for attack
                 if (Mathf.Abs(selectedUnit.tileX - x) + Mathf.Abs(selectedUnit.tileY - y) >= selectedSkill.AttackRange) {
                     return;
@@ -459,10 +459,10 @@ public class TileMap : MonoBehaviour {
             foreach (Unit pu in PlayerUnits) {
                 Vector2 dif = new Vector2(m.X - pu.tileX, m.Y - pu.tileY);
                 m.toPlayer.Add(dif);
-                if (u.agresive) {
-                    m.PosPoints += (far - dif.magnitude) * 0.01f;
-                } else {
+                if (dif.magnitude < u.bestDist && !u.agresive) {
                     m.PosPoints += (dif.magnitude) * 0.01f;
+                } else {
+                    m.PosPoints += (far - dif.magnitude) * 0.01f;
                 }
             }
             foreach (Unit pu in EnemyUnits) {
@@ -508,7 +508,7 @@ public class TileMap : MonoBehaviour {
                 }
             }
         }
-        
+
         List<Vector2> pla = new List<Vector2>();
         foreach (Unit u in PlayerUnits) {
             pla.Add(new Vector2(u.tileX, u.tileY));
@@ -645,14 +645,18 @@ public class TileMap : MonoBehaviour {
                 if (p.useSkill.moment == i) {
                     wait = true;
                     p.executor.MovingOnTiles(p.pole.path);
+                    Debug.Log("move " + p.executor.HP);
                     yield return new WaitUntil(() => wait == false);
                     StartCoroutine(DealAttack(p));
+                    Debug.Log("atack" + p.useSkill.trigger);
                     yield return new WaitUntil(() => wait == false);
                 }
                 if (p.CoordinatedWith != null && p.CoordinatedWith.useSkill.moment == i) {
                     wait = true;
                     p.CoordinatedWith.executor.MovingOnTiles(p.CoordinatedWith.pole.path);
+                    Debug.Log("move " + p.executor.HP);
                     yield return new WaitUntil(() => wait == false);
+                    Debug.Log("atack" + p.useSkill.trigger);
                     StartCoroutine(DealAttack(p.CoordinatedWith));
                     yield return new WaitUntil(() => wait == false);
                 }
@@ -667,14 +671,17 @@ public class TileMap : MonoBehaviour {
     IEnumerator DealAttack(Posibilieties p) {
         p.executor.AP -= p.useSkill.Cost;
         p.executor.CanAct = false;
-        p.executor.SkillUsed(selSkill);
+        if (p.executor is PlayerUnit) {
+            PlayerUnit pla = (PlayerUnit)p.executor;
+            pla.SkillUsed(selSkill);
+        }
         Vector2 AtackPoint = p.target;
         wait = true;
         p.executor.CastSkill(p);
         yield return new WaitUntil(() => wait == false);
         float TLuck = p.executor.TestLuck();
-
         int dmg = (int)Mathf.LerpUnclamped(p.useSkill.Dmg.x, p.useSkill.Dmg.y, TLuck);
+        Debug.Log(p.useSkill.Dmg.y + " " + TLuck + " " + dmg);
         //int dmg = (int)Random.Range(p.useSkill.Dmg.x, p.useSkill.Dmg.y);
         foreach (Vector2 v in p.useSkill.DirectedArea[p.BestDir]) {
             Vector2 asd = AtackPoint + v;

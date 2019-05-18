@@ -90,7 +90,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -768,6 +768,22 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 263403711}
   m_CullTransparentMesh: 0
+--- !u!1 &274502763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1975255827258632, guid: 685d8e4c5da084146b3689a847bf1b51,
+    type: 2}
+  m_PrefabInternal: {fileID: 1516512967}
+--- !u!114 &274502764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 274502763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b684002e5c6812045bc8e3b3d97420ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &283954933
 GameObject:
   m_ObjectHideFlags: 0
@@ -3464,6 +3480,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114449716710309082, guid: 685d8e4c5da084146b3689a847bf1b51,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 224256687728239778, guid: 685d8e4c5da084146b3689a847bf1b51,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -3559,6 +3580,31 @@ Prefab:
       propertyPath: m_TargetCamera
       value: 
       objectReference: {fileID: 534669904}
+    - target: {fileID: 114449716710309082, guid: 685d8e4c5da084146b3689a847bf1b51,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114449716710309082, guid: 685d8e4c5da084146b3689a847bf1b51,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114449716710309082, guid: 685d8e4c5da084146b3689a847bf1b51,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 274502764}
+    - target: {fileID: 114449716710309082, guid: 685d8e4c5da084146b3689a847bf1b51,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: DeleteSave
+      objectReference: {fileID: 0}
+    - target: {fileID: 114449716710309082, guid: 685d8e4c5da084146b3689a847bf1b51,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 685d8e4c5da084146b3689a847bf1b51, type: 2}
   m_IsPrefabAsset: 0

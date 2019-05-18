@@ -8,6 +8,7 @@ using UnityEngine.UI;
 /// </summary>
 public class Unit : MonoBehaviour {
     internal bool freezRotation = false;
+    public float BreakDistance = 0.22f;
     public int tileX;
     public int tileY;
     public int MaxHP = 5, MaxAP = 10;//private
@@ -27,11 +28,12 @@ public class Unit : MonoBehaviour {
     public bool CanAct = true;
     internal int lastUsedSkill;
     internal Animator anim;
+    internal int bestDist = 0;
     public bool agresive = true;//defense offens
     public List<Skill> Skile = new List<Skill>();
     public List<Item> Items = new List<Item>();
     GameObject weapon;
-    Coroutine rut,corut;
+    Coroutine rut1, rut2, rut3;
 
     public int AP {
         get { return ap; }
@@ -96,7 +98,7 @@ public class Unit : MonoBehaviour {
         AP += APacc;
         CanMove = true;
         CanAct = true;
-        hud.Upd();
+        if (HP > 0) hud.Upd();
     }
     /// <summary>
     /// zwraca umiejętność z pozycja k
@@ -104,19 +106,14 @@ public class Unit : MonoBehaviour {
     /// <param name="k">pozycja</param>
     /// <returns>umiejętność</returns>
     public Skill GetSkill(int k) {
+        if (k > 8) {
+            return null;
+        }
         if (k > 2) {
             return Items[k - 3].getskill();
         }
         lastUsedSkill = k;
         return Skile[k];
-    }
-    public void SkillUsed(int k) {
-        if (k > 2 && k<9) {
-            Debug.Log("delete" + k+" " +Items.Count);
-            Items.RemoveAt(k-3);
-            //Items[k - 3] = null;
-            hud.Upd();
-        }
     }
     /// <summary>
     /// jednostka umiera
@@ -145,18 +142,19 @@ public class Unit : MonoBehaviour {
             }
         }
         foreach (Effect i in Effects) {
-            if (i.Triger == Effect.trig.BeforeGetHit) {
+            if (i.Triger == Effect.trig.BeforeGetHit && i.Func != null) {
                 dmg = i.Func(dmg, this);
             }
         }
-        if (dmg > 0) {
-            anim.SetTrigger("Hit");
-        }
+        int bdmg = dmg;
         dmg -= Armor;
         dmg = Mathf.Max(0, dmg);
         HP = HP - dmg;
-        Debug.Log(dmg + " " + HP);
-        hud.Upd();
+        if (dmg > 0 && HP > 0) {
+            anim.SetTrigger("Hit");
+        }
+        if (HP > 0) hud.Upd();
+
     }
     /// <summary>
     /// zwraca prawdopodobieństwo zadania obrażeń krytycznych
@@ -176,8 +174,8 @@ public class Unit : MonoBehaviour {
     /// <param name="v">kolejka pól</param>
     public void MovingOnTiles(Queue<Pole> v) {
         CanMove = false;
-        if (rut != null) StopCoroutine(rut);
-        rut = StartCoroutine(Steps(v));
+        if (rut1 != null) StopCoroutine(rut1);
+        rut1 = StartCoroutine(Steps(v));
     }
     /// <summary>
     /// prezentacja wizualna wykorzystania umiejętności i blokowanie dalszych działań do jej końca
@@ -192,8 +190,8 @@ public class Unit : MonoBehaviour {
         if (p.useSkill.Model != null) weapon = Instantiate(p.useSkill.Model, Hand.position, Hand.rotation, Hand);
         if (p.useSkill.trigger != "Wait") {
             anim.SetTrigger(p.useSkill.trigger);
-            if (corut != null) StopCoroutine(corut);
-            corut = StartCoroutine(RotateTowards(map.tiles[(int)p.target.x, (int)p.target.y].transform.position));
+            if (rut3 != null) StopCoroutine(rut3);
+            rut3 = StartCoroutine(RotateTowards(map.tiles[(int)p.target.x, (int)p.target.y].transform.position));
             StartCoroutine(WaitForAnim());
         } else {
             map.wait = false;
@@ -213,11 +211,11 @@ public class Unit : MonoBehaviour {
                 tileY = v.Peek().Y;
                 map.tiles[tileX, tileY].Unit = this;
                 Vector3 vec = map.tiles[tileX, tileY].transform.position;
-                if (corut != null) StopCoroutine(corut);
-                corut = StartCoroutine(GoTo(vec));
+                if (rut2 != null) StopCoroutine(rut2);
+                rut2 = StartCoroutine(GoTo(vec));
                 while (v.Count > 0) {
                     vec.y = transform.position.y;
-                    if (Vector3.Distance(vec, transform.position) < 0.21f) {
+                    if (Vector3.Distance(vec, transform.position) < BreakDistance) {
                         v.Dequeue();
                         if (v.Count > 0) {
                             map.tiles[tileX, tileY].Unit = null;
@@ -225,8 +223,8 @@ public class Unit : MonoBehaviour {
                             tileY = v.Peek().Y;
                             map.tiles[tileX, tileY].Unit = this;
                             vec = map.tiles[tileX, tileY].transform.position;
-                            if (corut != null) StopCoroutine(corut);
-                            corut = StartCoroutine(GoTo(vec));
+                            if (rut2 != null) StopCoroutine(rut2);
+                            rut2 = StartCoroutine(GoTo(vec));
                         }
                     }
                     yield return 0;
@@ -234,14 +232,9 @@ public class Unit : MonoBehaviour {
                 map.GenerateMap(this);
                 map.ClearTiles();
             } else {
-                while (v.Count > 0) {
-                    map.tiles[tileX, tileY].Unit = null;
-                    tileX = v.Peek().X;
-                    tileY = v.Peek().Y;
-                    map.tiles[tileX, tileY].Unit = this;
+                map.tiles[tileX, tileY].Unit = this;
+                if (!freezRotation) {
                     transform.position = map.tiles[tileX, tileY].transform.position;
-                    v.Dequeue();
-                    yield return new WaitForSeconds(0.5f);
                 }
             }
         }
@@ -252,8 +245,8 @@ public class Unit : MonoBehaviour {
     /// </summary>
     /// <param name="pos">pozycja</param>
     public void MoveToPos(Vector3 pos) {
-        if (corut != null) StopCoroutine(corut);
-        corut = StartCoroutine(GoTo(pos));
+        if (rut2 != null) StopCoroutine(rut2);
+        rut2 = StartCoroutine(GoTo(pos));
     }
     /// <summary>
     /// rutyna przejścia do pozycji w świecie
@@ -267,7 +260,7 @@ public class Unit : MonoBehaviour {
         List<AnimatorControllerParameter> v = new List<AnimatorControllerParameter>(anim.parameters);
         if (v.Find(item => item.name == "Forward") != null) {
 
-            while (Vector3.Distance(pos, transform.position) > 0.22f) {
+            while (Vector3.Distance(pos, transform.position) > BreakDistance) {
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(pos - transform.position), 8f);
                 anim.SetFloat("Forward", 1f, 0.1f, Time.deltaTime);
                 yield return 0;
@@ -278,7 +271,6 @@ public class Unit : MonoBehaviour {
             }
             anim.SetFloat("Forward", 0);
         } else {
-
             map.wait = false;
         }
     }
