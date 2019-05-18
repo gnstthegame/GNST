@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// uruchamia zmiane pozycji kamery
+/// </summary>
 public class CameraTrigger : MonoBehaviour {
     public Transform pos;
     public Vector3 distance;
@@ -14,7 +17,6 @@ public class CameraTrigger : MonoBehaviour {
             cam = Camera.main.GetComponent<CameraFollow>();
         }
     }
-
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Player") {
             if (ThirdPerson) {

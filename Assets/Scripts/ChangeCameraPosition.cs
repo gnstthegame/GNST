@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// prosta zmiana położenia kamery
+/// </summary>
 public class ChangeCameraPosition : MonoBehaviour {
     public CharacterMotor Player;
     public float speed = 1f;

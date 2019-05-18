@@ -11507,18 +11507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cfb2c65a9e126742962d34078107193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingItems:
-  - {fileID: 11400000, guid: ad86aafbcb7623147a8d9bd43ca5217b, type: 2}
-  - {fileID: 11400000, guid: 332beb139e539d14c835a682acab31f0, type: 2}
-  - {fileID: 11400000, guid: 736d7991f1f02844dbbc4981db236082, type: 2}
-  - {fileID: 11400000, guid: ad86aafbcb7623147a8d9bd43ca5217b, type: 2}
-  - {fileID: 11400000, guid: 2932a2a7276ec6541939ec05a12ee5c8, type: 2}
-  - {fileID: 11400000, guid: e3c30281ce5751e4e881ea555485d2c6, type: 2}
-  - {fileID: 11400000, guid: 60e7c0c9c4348474c9a0c5672d54c7ba, type: 2}
-  - {fileID: 11400000, guid: db8f947d1f0ec0c479bf9459c723e625, type: 2}
-  - {fileID: 11400000, guid: 5c08b6315784dcd46955ef33e8f4a9bd, type: 2}
-  - {fileID: 11400000, guid: a3135823b47c23c4b8a85d86afd73719, type: 2}
-  - {fileID: 11400000, guid: a3135823b47c23c4b8a85d86afd73719, type: 2}
+  startingItems: []
   itemsParent: {fileID: 224351859545556100}
   itemSlots:
   - {fileID: 0}
@@ -15334,8 +15323,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   saveTrigger: 0
+  deleteTrigger: 0
   IM: {fileID: 114408581036522376}
-  newScene: 1
   cam: {fileID: 0}
 --- !u!114 &114653605634003316
 MonoBehaviour:

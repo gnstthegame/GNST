@@ -2,6 +2,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// klasa interaktywnych pól bojowych
+/// </summary>
 public class ClickableTile : MonoBehaviour {
 
     public int tileX;

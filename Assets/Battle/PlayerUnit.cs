@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+/// <summary>
+/// jednostka gracza
+/// </summary>
 public class PlayerUnit : Unit {
     public InventoryManager Inv;
     
@@ -23,6 +26,10 @@ public class PlayerUnit : Unit {
         Items = Inv.GetItems();
         HP = MaxHP;
     }
+    /// <summary>
+    /// umiejętność wykorzystana
+    /// </summary>
+    /// <param name="k">numer umiejętności</param>
     public void SkillUsed(int k) {
         if (k > 2 && k < 9) {
             Items.RemoveAt(k - 3);

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// zarządza pozycją kamery
+/// </summary>
 public class CameraFollow : MonoBehaviour {
     public Transform player, currentPlace;
     public Vector3 distance;
@@ -18,13 +21,11 @@ public class CameraFollow : MonoBehaviour {
             currentPlace = transform;
         }
     }
-
-    // Update is called once per frame
+    
+    /// <summary>
+    /// porusza kamerą gdy nie jest statyczna
+    /// </summary>
     void Update() {
-        //LevelForward = Vector3.ProjectOnPlane(cam.transform.forward, transform.up);
-        //dir = LevelForward * Input.GetAxis("Vertical") + Vector3.Cross(LevelForward, transform.up) * -Input.GetAxis("Horizontal");
-        //transform.rotation = Quaternion.LookRotation(dir);
-        //tar.z = startPos.z;
         if (frez) {
             return;
         }
@@ -57,7 +58,14 @@ public class CameraFollow : MonoBehaviour {
             transform.localPosition = loc;
         }
     }
-
+    /// <summary>
+    /// zmienia ustawienie kamery
+    /// </summary>
+    /// <param name="pos">pozycja</param>
+    /// <param name="dis">odległość</param>
+    /// <param name="a">zamróź x</param>
+    /// <param name="b">zamróź y</param>
+    /// <param name="c">zamróź z</param>
     public void MoveCamera(Transform pos, Vector3 dis, bool a = false, bool b = false, bool c = false) {
         currentPlace = pos;
         ThirdPerson = false;
@@ -73,10 +81,19 @@ public class CameraFollow : MonoBehaviour {
             StartCoroutine(Move(player, dis));
         }
     }
+    /// <summary>
+    /// zmień w tryb trzecio-osobowy
+    /// </summary>
+    /// <param name="dis">odległość</param>
     public void MoveCamera(Vector3 dis) {
         ThirdPerson = true;
         distance = dis;
     }
+    /// <summary>
+    /// przejazd między pozycjami
+    /// </summary>
+    /// <param name="pos">pozycja</param>
+    /// <param name="dif">odległość</param>
     IEnumerator Move(Transform pos, Vector3 dif) {
         float tmp = 0;
 

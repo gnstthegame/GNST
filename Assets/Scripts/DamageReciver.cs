@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class DamageReciver : MonoBehaviour {
     public Material mat;
     public bool asd = false;

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// klasa efektów nakładanych na jednostki
+/// </summary>
 public class Effect {
     public enum trig {
         BeforeGetHit, OnTurnStart, OnApply
@@ -113,7 +116,9 @@ public class Effect {
     }
 
 }
-
+/// <summary>
+/// umiejętność
+/// </summary>
 public class Skill {/*
     -1,0 |0,0 |1,0
     -1,-1| U  |1,-1

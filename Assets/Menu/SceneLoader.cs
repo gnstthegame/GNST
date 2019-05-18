@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// trigger wczytujący poziom
+/// </summary>
 public class SceneLoader : LevelLoader {
     public string scene;
     bool inside=false;

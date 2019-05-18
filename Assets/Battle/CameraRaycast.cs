@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// umożliwia wybieranie pól interaktywnych
+/// </summary>
 public class CameraRaycast : MonoBehaviour {
     Camera cam;
     RaycastHit hit;

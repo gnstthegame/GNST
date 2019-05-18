@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// podstawowa klasa przedmiotów
+/// </summary>
 [CreateAssetMenu]
 [System.Serializable]
 public class Item : ScriptableObject {

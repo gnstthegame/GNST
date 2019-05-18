@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
+/// <summary>
+/// zmienia położenie ui względem objektów na mapie
+/// </summary>
 public class YieldE : MonoBehaviour {
     public Transform track, panel;
     Text txt;

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// klasa przechowująca dane do zapisu
+/// </summary>
 [System.Serializable]
 public class savedata {
 
@@ -17,7 +20,10 @@ public class savedata {
     public bool[] camFrez;
     public string Scen;
 
-    //funkcja trzymająca dane playera z zapisu
+    /// <summary>
+    /// konstruktor
+    /// </summary>
+    /// <param name="player"></param>
     public savedata(SaveLinker player) {
         Scen = SceneManager.GetActiveScene().name;
         position = VecToFlo(player.player.position);
@@ -63,7 +69,11 @@ public class savedata {
         //Debug.Log(position.Length + " " + CS.Length + " " + INV.Length + " " + EQ.Length + " " + INVc.Length + " " + Money + " " + exp + " " + statP + " " + camPos.Length + " " + camRot.Length + " " + camPro.Length + " " + camUp + " " + camFrez.Length + " " + Scen);
 
     }
-
+    /// <summary>
+    /// zamiana wektora 3d na tablice float
+    /// </summary>
+    /// <param name="v">wektor</param>
+    /// <returns>float</returns>
     float[] VecToFlo(Vector3 v) {
         float[] position = new float[3];
         position[0] = v.x;
@@ -71,6 +81,11 @@ public class savedata {
         position[2] = v.z;
         return position;
     }
+    /// <summary>
+    /// zamiana tablicy float na wektor 3d 
+    /// </summary>
+    /// <param name="v">float</param>
+    /// <returns>wektor</returns>
     public Vector3 FloToVec(float[] f) {
         Vector3 position = new Vector3(f[0], f[1], f[2]);
         return position;

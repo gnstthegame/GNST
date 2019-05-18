@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
+/// <summary>
+/// menu opcji
+/// </summary>
 public class SettingsMenu : MonoBehaviour {
 
     public AudioMixer audioMixer;
@@ -31,26 +34,40 @@ public class SettingsMenu : MonoBehaviour {
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
-        
-    }
 
+        SetQuality(5);
+    }
+    /// <summary>
+    /// zmień rozdzielczość
+    /// </summary>
+    /// <param name="resolutionIndex">index</param>
     public void SetResolution (int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
 
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
-
+    /// <summary>
+    /// zmień głośność
+    /// </summary>
+    /// <param name="volume">głośniść</param>
     public void SetVolume (float volume)
     {
         audioMixer.SetFloat("volume", volume);
     }
-
+    /// <summary>
+    /// zmień jakość
+    /// </summary>
+    /// <param name="qualityInsex">index</param>
     public void SetQuality (int qualityInsex)
     {
+        Debug.Log(qualityInsex);
         QualitySettings.SetQualityLevel(qualityInsex);
     }
-
+    /// <summary>
+    /// ustaw pełny ekran
+    /// </summary>
+    /// <param name="isFullscreen">Fullscreen</param>
     public void SetFullscreen (bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;

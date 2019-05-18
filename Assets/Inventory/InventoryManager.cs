@@ -401,7 +401,7 @@ public class InventoryManager : MonoBehaviour {
     /// <param name="item">Przedmiot do wyposażenia</param>
     public void Equip(EquippableItem item) {
         //Usuniecie z panelu ekwipunku
-        if (inventory.RemoveItem(item.ID)) {
+        if (inventory!=null && item!=null && inventory.RemoveItem(item.ID)!=null) {
             //przedmiot ktory poprzednio byl zalozony
             EquippableItem previousItem;
             //dodanie do panelu ekwipunku

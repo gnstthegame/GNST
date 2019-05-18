@@ -3,6 +3,9 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// klasa pól do obliczania trasy
+/// </summary>
 public class Pole {
     public int X, Y;
     public Queue<Pole> path;
@@ -220,7 +223,8 @@ public class TileMap : MonoBehaviour {
                 u.hud.Activ(u, this, true);
             }
             u.hud.Upd();
-            int ux = Mathf.CeilToInt((vec.x - tiles[0, 0].transform.position.x) / VisualPrefab.transform.localScale.x), uy = Mathf.CeilToInt((vec.z - tiles[0, 0].transform.position.z) / VisualPrefab.transform.localScale.z) + 1;
+            float margin = VisualPrefab.transform.localScale.z * 0.5f;
+            int ux = Mathf.RoundToInt((vec.x - tiles[0, 0].transform.position.x- margin) / VisualPrefab.transform.localScale.x), uy = Mathf.RoundToInt((vec.z - tiles[0, 0].transform.position.z -margin) / VisualPrefab.transform.localScale.z);
             ux = Mathf.Clamp(ux, 0, mapSizeX - 1);
             uy = Mathf.Clamp(uy, 0, mapSizeY - 1);
             int tx = ux, ty = uy;
@@ -239,7 +243,8 @@ public class TileMap : MonoBehaviour {
             u.tileY = uy;
             u.MoveToPos(new Vector3(tiles[ux, uy].transform.position.x, u.transform.position.y, tiles[ux, uy].transform.position.z));
             Debug.Log("asign" + ux.ToString() + uy.ToString());
-            u.NewRound();
+            EnemyEndTurn();
+            //u.NewRound();
         }
         foreach (Unit u in outt) {
             Units.Remove(u);

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DialogueCollection>
+    <Dialogues>
+        <Dialogue DialogueID="118">
+            <CharacterName>"Jack"</CharacterName>
+            <text>"12:1 że rozszarpią cię na kawałki, jednak dobrze obstawiłem. Nazywam się Jack i prowadzę interesy w tej okolicy? Jakie interesy? Wszystkie interesy! Jak czegoś potrzebujesz ja to mam. Przedmioty, informacje, przysługi, oczywiście w odpowiedniej cenie. Nic nie jest za darmo."</text>
+            <choices>
+                <choice>
+                    nul
+                </choice>
+            </choices>
+        </Dialogue>
+        <Dialogue DialogueID="118">
+            <CharacterName>"Moduł"</CharacterName>
+            <text>"Jack, stary druchu. Dawno się nie widzieliśmy!"</text>
+            <choices>
+                <choice>
+                    nul
+                </choice>
+            </choices>
+        </Dialogue>
+        <Dialogue DialogueID="118">
+            <CharacterName>"Jack"</CharacterName>
+            <text>"To ty? Ugh. O nie... Słuchaj Strażniku, na Twoim miejscu pozbyłbym się tej gaduły tak szybko jak to możliwe. To i tak cud że tyle z nim wytrzymałeś. Wrzuć go do najbliższej fontanny albo zostaw pod drzewem. On przynosi same kłopoty."</text>
+            <choices>
+                <choice>
+                    nul 
+                </choice>
+            </choices>
+        </Dialogue>
+        <Dialogue DialogueID="118">
+            <CharacterName>"Moduł"</CharacterName>
+            <text>"Jack, co ty? Jak możesz tak mówić? Przecież byliśmy kuplami!"</text>
+            <choices>
+                <choice>
+                    nul
+                </choice>
+            </choices>
+        </Dialogue>
+        <Dialogue DialogueID="118">
+            <CharacterName>"Jack"</CharacterName>
+            <text>"Ja się z takimi jak ty nie kumpluje. Co ty właściwie robisz ze strażnikiem?"</text>
+            <choices>
+                <choice>
+                    nul
+                </choice>
+            </choices>
+        </Dialogue>
+        <Dialogue DialogueID="118">
+            <CharacterName>"Moduł"</CharacterName>
+            <text>"Pokazuję mu drogę do miasta. Jestem dumnym i pełnopranym przewodnikiem naszego cudownego śmietniska!"</text>
+            <choices>
+                <choice>
+                    nul
+                </choice>
+            </choices>
+        </Dialogue>
+        <Dialogue DialogueID="118">
+            <CharacterName>"Jack"</CharacterName>
+            <text>"Ty to byś się we własnej szafie zgubił. Hej strażniku, chcesz poznać drogę do miasta?"</text>
+            <choices>
+                <choice>
+                    <text>"Nie potrzebuje twojej pomocy, sam znajdę drogę."</text>
+                    <nextDialogueID>119</nextDialogueID>
+                </choice>
+                <choice>
+                    <text>"Wiesz jak tam trafić?"</text>
+                    <nextDialogueID>120</nextDialogueID>
+                </choice>
+                <choice>
+                    <text>"Chętnie odciążę się z odrobiny pluszu za taką informacje."</text>
+                    <nextDialogueID>121</nextDialogueID>
+                </choice>
+            </choices>
+        </Dialogue>
+        <Dialogue DialogueID="118">
+            <CharacterName>"Jack"</CharacterName>
+            <text>"Do miasta prowadzi niebezpieczna drogą. Czego szukasz w mieście? Nie wyglądasz mi na Porzuconego czy szperacza."</text>
+            <choices>
+                <choice>
+                    <text>"Zgubiłem swoje dziecko. Miałem nadzieję, że ktoś w mieście da rade mi pomóc."</text>
+                    <nextDialogueID>122</nextDialogueID>
+                </choice>
+                <choice>
+                    <text>"Nie Twój interes Pajacu!"</text>
+                    <nextDialogueID>123</nextDialogueID>
+                </choice>
+                <choice>
+                    <text>"Sam nie wiem."</text>
+                    <nextDialogueID>124</nextDialogueID>
+                </choice>
+            </choices>
+        </Dialogue>
+        <Dialogue DialogueID="118">
+            <CharacterName>"Jack"</CharacterName>
+            <text>"Muszę wiedzieć czy godny jesteś wstępu do miasta."</text>
+            <choices>
+                <choice>
+                    nul
+                </choice>
+            </choices>
+        </Dialogue>
+        <Dialogue DialogueID="118">
+            <CharacterName>"Jack"</CharacterName>
+            <text>"Czy najpierw wsypujesz do miski płatki czy wlewasz mleko? Odpowiedzi na niezmiernie ważne pytanie a zdecyduję czy pokazać ci drogę."</text>
+            <choices>
+                <choice>
+                   <text>"Zgubiłem swoje dziecko. Miałem nadzieję, że ktoś w mieście da rade mi pomóc."</text>
+                    <nextDialogueID>122</nextDialogueID>
+                </choice>
+                <choice>
+                    <text>"Nie Twój interes Pajacu!"</text>
+                    <nextDialogueID>123</nextDialogueID>
+                </choice>
+                <choice>
+                    <text>"Sam nie wiem."</text>
+            <nextDialogueID>124</nextDialogueID>
+              </choice>
+            </choices>
+        </Dialogue>
+        <Dialogue DialogueID="118">
+            <CharacterName>"Jack"</CharacterName>
+            <text>"Niech będzie. Chcesz poznać drogę do miasta? opróżniaj kieszenie. będzie cię to kosztować X pluszu."</text>
+            <choices>
+                <choice>
+                   nul
+              </choice>
+            </choices>
+        </Dialogue>
+    </Dialogues>
+</DialogueCollection>

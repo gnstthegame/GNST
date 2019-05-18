@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// blokuje i odbiera kliknięte przyciski w menu
+/// </summary>
 public class InputMenager : MonoBehaviour {
     bool pause = false, inv = false, BlockP = false, BlockI = false;
     PauseMenu PM;

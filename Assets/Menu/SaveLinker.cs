@@ -4,10 +4,13 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// gromadzi relacje potrzebne do zapisu
+/// </summary>
 public class SaveLinker : MonoBehaviour {
 
     public Transform player;
-    public bool saveTrigger = false;
+    public bool saveTrigger = false, deleteTrigger=false;
     public InventoryManager IM;
     [HideInInspector]
     public CameraFollow cam;
@@ -19,7 +22,7 @@ public class SaveLinker : MonoBehaviour {
     }
     private void Start() {
         LoadPlayer();
-        SavePlayer();
+        //SavePlayer();
     }
 
     private void Update() {
@@ -27,17 +30,26 @@ public class SaveLinker : MonoBehaviour {
             SavePlayer();
             saveTrigger = false;
         }
+        if (deleteTrigger) {
+            saveSystem.DeletePlayer();
+            deleteTrigger = false;
+        }
     }
-
+    /// <summary>
+    /// zapisz stan gry
+    /// </summary>
     public void SavePlayer() {
         saveSystem.SavePlayer(this);
         Debug.Log("Save Succes");
     }
-
-    public void LoadPlayer() {
+    /// <summary>
+    /// wczytaj stan gry
+    /// </summary>
+    /// <returns>true gdy udało sie</returns>
+    public bool LoadPlayer() {
         savedata data = saveSystem.Loaddata(this);
         if (data == null) {
-            return;
+            return false;
         }
         bool Position = false;
         if (data.Scen == SceneManager.GetActiveScene().name) {
@@ -95,5 +107,6 @@ public class SaveLinker : MonoBehaviour {
         IM.ReloadStats();
 
         Debug.Log("Load Succes");
+        return true;
     }
 }

@@ -11,12 +11,12 @@ public class Unit : MonoBehaviour {
     public float BreakDistance = 0.22f;
     public int tileX;
     public int tileY;
-    public int MaxHP = 5, MaxAP = 10;//private
-    public int ArmorBase = 0, APaccBase = 2;//private
-    public int ArmorMod = 0, APaccMod = 2;
-    public int LuckMod = 0, luckBase = 0;
-    public int ap = 2;//private
-    public int MovRange = 3, MovMod = 0;
+    public int MaxHP = 5, MaxAP = 10;
+    public int ArmorBase = 0, APaccBase = 2, luckBase = 0;
+    public int ArmorMod = 0, APaccMod = 0;
+    public int LuckMod = 0, MovMod = 0;
+    public int ap = 0;
+    public int MovRange = 3;
     public Transform Hand;
     public GameObject hudPrefab;
     public Hud hud;
@@ -48,7 +48,7 @@ public class Unit : MonoBehaviour {
         get { return hp; }
         set {
             hp = Mathf.Clamp(value, 0, MaxHP);
-            if (hp == 0) Die();
+            if (hp <= 0) Die();
         }
     }
     public int APacc {
@@ -84,6 +84,7 @@ public class Unit : MonoBehaviour {
     /// nowa runda odnawia Punkty Akcji umożliwia ruch jednostki i aktywuje niektóre nałożone efekty
     /// </summary>
     public void NewRound() {
+        if (HP > 0) hud.Upd();
         foreach (Effect i in Effects) {
             if (i.Triger == Effect.trig.OnTurnStart) {
                 i.Func(0, this);
@@ -94,7 +95,6 @@ public class Unit : MonoBehaviour {
             }
         }
         Effects.RemoveAll(item => item.Duration <= 0);
-        HP = HP;
         AP += APacc;
         CanMove = true;
         CanAct = true;
@@ -119,10 +119,10 @@ public class Unit : MonoBehaviour {
     /// jednostka umiera
     /// </summary>
     void Die() {
-        Destroy(hud.gameObject);
-        map.UnitDie(this);
         anim.SetTrigger("Die");
         hud.Deactiv();
+        //Destroy(hud.gameObject);
+        map.UnitDie(this);
     }
     /// <summary>
     /// funkcja otrzymywania obrażeń i efektów
@@ -187,6 +187,7 @@ public class Unit : MonoBehaviour {
         CanMove = false;
         map.ClearTiles(true);
         hud.Upd();
+        Destroy(weapon);
         if (p.useSkill.Model != null) weapon = Instantiate(p.useSkill.Model, Hand.position, Hand.rotation, Hand);
         if (p.useSkill.trigger != "Wait") {
             anim.SetTrigger(p.useSkill.trigger);

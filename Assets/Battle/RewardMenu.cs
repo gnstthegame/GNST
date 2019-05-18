@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// okienku nagrody
+/// </summary>
 public class RewardMenu : MonoBehaviour {
     public Text EXP,Plusz;
     InventoryManager IM;

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// obsługa poruszania się gracza
+/// </summary>
 public class CharacterMotor : MonoBehaviour {
     public float maxDist = 0.5f, armLength = 1f, prepereSpeed = 2, climbDistans = 1.5f;
     public float moc;
@@ -52,6 +55,9 @@ public class CharacterMotor : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// reaguje na wciśnięte klawisze
+    /// </summary>
     void Update() {
         if (saveLastPos && transform.position.y < -5) {
             transform.position = lastPos[0];
@@ -113,7 +119,9 @@ public class CharacterMotor : MonoBehaviour {
         }
     }
 
-
+    /// <summary>
+    /// rutyna wspinania się
+    /// </summary>
     IEnumerator Climb() {
         frez = true;
         RaycastHit hit, hit2;
@@ -140,6 +148,9 @@ public class CharacterMotor : MonoBehaviour {
         }
         routine = null;
     }
+    /// <summary>
+    /// rutyna przeciągania przedmiotów
+    /// </summary>
     IEnumerator Drag() {
         RaycastHit hit;
         Debug.Log("mov");
@@ -213,6 +224,9 @@ public class CharacterMotor : MonoBehaviour {
     private void OnCollisionExit(Collision collision) {
         grounded = false;
     }
+    /// <summary>
+    /// przerwij przeciąganie obiektu
+    /// </summary>
     void Drop() {
         Debug.Log("drop");
         StopAllCoroutines();
@@ -226,16 +240,28 @@ public class CharacterMotor : MonoBehaviour {
             Destroy(go);
         }
     }
+    /// <summary>
+    /// oblicz orientacje względem kamery
+    /// </summary>
     public void LevelDir() {
         LevelForward = Vector3.ProjectOnPlane(cam.transform.forward, transform.up);
     }
+    /// <summary>
+    /// odblokuj rotacje
+    /// </summary>
     public void unfreez() {
         frez = false;
     }
+    /// <summary>
+    /// koniec skoku
+    /// </summary>
     public void EndJump() {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
-
+    /// <summary>
+    /// rutyna zapisująca ostatnią bezpieczną pozycję gracza
+    /// </summary>
+    /// <returns></returns>
     IEnumerator SaveFromFall() {
         while (true) {
             lastPos[0] = new Vector3(lastPos[1].x, lastPos[1].y, lastPos[1].z);

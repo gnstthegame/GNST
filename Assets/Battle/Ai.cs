@@ -44,22 +44,22 @@ public class Ai : Unit {
         Effect rest = new Effect(Effect.trig.OnApply, 1, (int dmg, Unit u) => { u.AP += 2; return 0; });
         switch (Person) {
             case Personality.lil:
-                Skile.Add(new Skill(self, Vector2.zero, 0, "Wait", 3, rest, true));
-                Skile.Add(new Skill(fwd, new Vector2(1, 3), 0, "Stab", 1));
-                Skile.Add(new Skill(tmp4, new Vector2(2, 4), 4, "Slash", 1));
+                Skile.Add(new Skill(self, Vector2.zero, 0, "Wait", 3, null, true));
+                Skile.Add(new Skill(fwd, new Vector2(2, 3), 0, "Stab", 1));
+                Skile.Add(new Skill(tmp4, new Vector2(3, 4), 2, "Slash", 1));
                 break;
             case Personality.Boss:
-                Skile.Add(new Skill(self, Vector2.zero, 0, "Wait", 3, rest, true));
+                Skile.Add(new Skill(self, Vector2.zero, 0, "Wait", 3, null, true));
                 Skile.Add(new Skill(fwd, new Vector2(1, 3), 0, "Punch", 1));
                 Skile.Add(new Skill(tmp, new Vector2(2, 4), 4, "Slam", 1));
                 break;
             case Personality.slime:
                 freezRotation = true;
-                Skile.Add(new Skill(self, Vector2.zero, 0, "Wait", 3, rest, true));
+                Skile.Add(new Skill(self, Vector2.zero, 0, "Wait", 3, null, true));
                 Skile.Add(new Skill(fwd, new Vector2(2, 3), 0, "attack", 1));
                 break;
             case Personality.archer:
-                Skile.Add(new Skill(self, Vector2.zero, 0, "Wait", 3, rest, true));
+                Skile.Add(new Skill(self, Vector2.zero, 0, "Wait", 3, null, true));
                 Skile.Add(new Skill(fwd, new Vector2(2, 4), 0, "shoot", 1,null,false,5));
                 bestDist = 5;
                 break;
@@ -94,6 +94,9 @@ public class Ai : Unit {
         Destroy(this);
         return reward;
     }
+    /// <summary>
+    /// Metoda wywoływana na początku walki
+    /// </summary>
     public override void Activ() {
         if (Person == Personality.slime) {
             anim = GetComponent<Animator>();

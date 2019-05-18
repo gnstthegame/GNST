@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// aktywuje pole walki
+/// </summary>
 public class Trigger : MonoBehaviour {
     public Transform place;
     public GameObject Prefab;
     public int mapX = 10;
     public int mapY = 10;
-    /// <summary>
-    /// uaktywnia Objekt, gdy gracz wejdzie w trigger
-    /// </summary>
-    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Player") {
             GameObject go = new GameObject();

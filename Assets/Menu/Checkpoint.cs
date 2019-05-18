@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// zapisuje stan gry przy wejściu w trigger
+/// </summary>
 public class Checkpoint : MonoBehaviour {
     SaveLinker SL;
     private void Awake() {
@@ -12,7 +14,7 @@ public class Checkpoint : MonoBehaviour {
         if (other.tag == "Player") {
             SL.SavePlayer();
         }
-        Destroy(this);
+        //Destroy(this);
     }
 
 }

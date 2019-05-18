@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// HUD(Head-Up Display)
+/// </summary>
 public class Hud : MonoBehaviour {
     public Slider HPBar;
     public Text HPText,ArmorText,APtext;
@@ -15,7 +18,7 @@ public class Hud : MonoBehaviour {
     bool act = false;
 
     /// <summary>
-    /// aktywuje HUD(Head-Up Display)
+    /// aktywuje HUD
     /// </summary>
     /// <param name="uu">jednostka</param>
     /// <param name="pla">gracz</param>
@@ -38,6 +41,10 @@ public class Hud : MonoBehaviour {
             ButtonsMenu.SetActive(false);
         }
     }
+    /// <summary>
+    /// przekaż wybrany atak do tile map
+    /// </summary>
+    /// <param name="i"></param>
     public void Atack(int i) {
         if (i == 10) {
             map.PlayerEndTurn();
