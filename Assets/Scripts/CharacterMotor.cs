@@ -17,7 +17,7 @@ public class CharacterMotor : MonoBehaviour {
     Collider cl;
     CapsuleCollider colider;
     public Camera cam;
-    Coroutine routine;
+    Coroutine routine, routine2;
     GameObject go;
     [SerializeField]
     bool grounded = false;
@@ -112,7 +112,7 @@ public class CharacterMotor : MonoBehaviour {
 
         Debug.DrawRay(transform.position, dir, Color.red);
         if (Input.GetButtonDown("Interact") && routine == null) {
-            routine = StartCoroutine(Drag());
+            routine2 = StartCoroutine(Drag());
         }
         if (Input.GetButtonUp("Interact")) {
             Drop();
@@ -208,14 +208,12 @@ public class CharacterMotor : MonoBehaviour {
     }
     private void OnCollisionEnter(Collision collision) {
         if (prepere) {
-            Debug.Log(collision.gameObject.name);
             cl = collision.collider;
             Drop();
         }
     }
     private void OnCollisionStay(Collision collision) {
         if (collision.collider == cl) {
-            Debug.Log("colstay");
             Drop();
             cl = null;
         }
@@ -228,9 +226,7 @@ public class CharacterMotor : MonoBehaviour {
     /// przerwij przeciąganie obiektu
     /// </summary>
     void Drop() {
-        Debug.Log("drop");
-        StopAllCoroutines();
-        //StopCoroutine(routine);
+        if(routine!=null) StopCoroutine(routine);
         routine = null;
         colider.center = new Vector3(0, 4, 0);
         anim.SetBool("Drag", false);
