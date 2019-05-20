@@ -90,7 +90,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -8089,6 +8089,34 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114574863701259184, guid: 95c436b2d2544f741b4a5f92e5785842,
+        type: 2}
+      propertyPath: sounds.Array.data[0].output
+      value: 
+      objectReference: {fileID: 24300002, guid: 18359ef6ee5a91c479266ddc834ba0cb,
+        type: 2}
+    - target: {fileID: 114574863701259184, guid: 95c436b2d2544f741b4a5f92e5785842,
+        type: 2}
+      propertyPath: sounds.Array.data[1].output
+      value: 
+      objectReference: {fileID: 24300002, guid: 18359ef6ee5a91c479266ddc834ba0cb,
+        type: 2}
+    - target: {fileID: 114574863701259184, guid: 95c436b2d2544f741b4a5f92e5785842,
+        type: 2}
+      propertyPath: sounds.Array.data[2].output
+      value: 
+      objectReference: {fileID: 24300002, guid: 18359ef6ee5a91c479266ddc834ba0cb,
+        type: 2}
+    - target: {fileID: 114574863701259184, guid: 95c436b2d2544f741b4a5f92e5785842,
+        type: 2}
+      propertyPath: sounds.Array.data[1].name
+      value: ThemeShadow
+      objectReference: {fileID: 0}
+    - target: {fileID: 114574863701259184, guid: 95c436b2d2544f741b4a5f92e5785842,
+        type: 2}
+      propertyPath: sounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9c906a7cb86c24242a2edb13dfb194aa, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95c436b2d2544f741b4a5f92e5785842, type: 2}
   m_IsPrefabAsset: 0
@@ -8296,13 +8324,13 @@ MonoBehaviour:
   MaxAP: 10
   ArmorBase: 0
   APaccBase: 2
+  luckBase: 0
   ArmorMod: 0
   APaccMod: 0
   LuckMod: 0
-  luckBase: 0
+  MovMod: 0
   ap: 0
   MovRange: 3
-  MovMod: 0
   Hand: {fileID: 0}
   hudPrefab: {fileID: 0}
   hud: {fileID: 0}
