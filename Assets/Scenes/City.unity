@@ -30701,6 +30701,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 459360919}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1445800306 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114048168178134634, guid: 9c464cb8fd49c2d4484b40be7b1c5854,
+    type: 2}
+  m_PrefabInternal: {fileID: 459360919}
+  m_Script: {fileID: 11500000, guid: 0cfb2c65a9e126742962d34078107193, type: 3}
 --- !u!1001 &1448035948
 Prefab:
   m_ObjectHideFlags: 0
@@ -41229,6 +41235,12 @@ Transform:
   m_Father: {fileID: 1150173124}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1927254159 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114181863125556900, guid: 9c464cb8fd49c2d4484b40be7b1c5854,
+    type: 2}
+  m_PrefabInternal: {fileID: 459360919}
+  m_Script: {fileID: 11500000, guid: 4d15b98177bc46f45a00e90512eb6f77, type: 3}
 --- !u!1 &1927381333
 GameObject:
   m_ObjectHideFlags: 0
@@ -45319,7 +45331,7 @@ MonoBehaviour:
   radius: 3
   isInRange: 0
   hasInteracted: 0
-  inventory: {fileID: 0}
+  inventory: {fileID: 1445800306}
   sellItems:
   - item: {fileID: 11400000, guid: d32b01264d0324b4e9296b11516f9880, type: 2}
     amount: 1
@@ -45358,7 +45370,7 @@ MonoBehaviour:
   - item: {fileID: 0}
     amount: 0
   playerTransform: {fileID: 0}
-  shop: {fileID: 0}
+  shop: {fileID: 1927254159}
   distance: 4
 --- !u!136 &2050394805
 CapsuleCollider:

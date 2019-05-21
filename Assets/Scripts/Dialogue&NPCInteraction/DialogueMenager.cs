@@ -30,17 +30,16 @@ public class DialogueMenager : MonoBehaviour {
 
     public Queue<Dialogue> sentenses; //
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start() {
         sentenses = new Queue<Dialogue>(); //
-	}
+    }
     private void Awake() {
         CT = FindObjectOfType<CutsceneTrigger>();
     }
 
 
-    public void StartDialogue(TextAsset asset)
-    {
+    public void StartDialogue(TextAsset asset) {
         Debug.Log("czy wchodzę");
         //animator.SetBool("isOpen", true);
         FindObjectOfType<ToggleRendered>().ToggleVisibility(true);
@@ -53,8 +52,7 @@ public class DialogueMenager : MonoBehaviour {
         sentenses.Clear();
 
 
-        foreach (Dialogue item in dc.items)
-        {
+        foreach (Dialogue item in dc.items) {
             sentenses.Enqueue(item);
 
         }
@@ -63,26 +61,24 @@ public class DialogueMenager : MonoBehaviour {
         DisplayNextSentence();
     }
 
-    public void DisplayNextSentence ()
-    {
-        CT.time = 0.1f;
+    public void DisplayNextSentence() {
+        if (CT != null) {
+            CT.time = 0.1f;
+        }
         FindObjectOfType<PlayAudioWithID>().stopAudio();
-        if(sentenses.Count == 0)
-        {
+        if (sentenses.Count == 0) {
             EndDialogue();
             return;
         }
         Dialogue sentence = sentenses.Dequeue();
 
-        if(sentence.mID != null)
-        {
+        if (sentence.mID != null) {
             FindObjectOfType<PlayAudioWithID>().playAudio(sentence.mID);
         }
 
 
 
-        if(sentence.questTrigger != null)
-        {
+        if (sentence.questTrigger != null) {
 
 
             Debug.Log("questID in DialogueMenager" + questID);
@@ -108,11 +104,11 @@ public class DialogueMenager : MonoBehaviour {
 
         //if (sentence.choices.Count != 0)
         //{
-            //Debug.Log("aua");
-            //animator.SetBool("isOpen", false);
-            //if(animatorChoices != null){ 
-            //animatorChoices.SetBool("isOpenC", true);
-            //}
+        //Debug.Log("aua");
+        //animator.SetBool("isOpen", false);
+        //if(animatorChoices != null){ 
+        //animatorChoices.SetBool("isOpenC", true);
+        //}
 
         //    if(sentence.choices.Count >= 1)
         //    {
@@ -145,8 +141,7 @@ public class DialogueMenager : MonoBehaviour {
         nameText.text = sentence.characterName;
     }
 
-    void EndDialogue()
-    {
+    void EndDialogue() {
         Debug.Log("End of conversation");
         FindObjectOfType<ToggleRendered>().ToggleVisibility(false);
         //panel.SetActive(false);
@@ -157,14 +152,12 @@ public class DialogueMenager : MonoBehaviour {
         //}
         //FindObjectOfType<NPC>().IsShownOff();
     }
-    public void EndQuest()
-    {
+    public void EndQuest() {
         //animatorQuest.SetBool("isOpen", false);
         //animatorQuestFinnished.SetBool("isOpen", false);
     }
 
-    public void ShowQuest(string quest)
-    {
+    public void ShowQuest(string quest) {
         //nameQuestFinnished.text = " Zadanie " + quest + " zostało ukończone ";
         //animatorQuestFinnished.SetBool("isOpen", true);
     }
