@@ -55,7 +55,7 @@ public class SellButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     //cos nie tak ze stack size
     public void Sell()
     {
-        if (item != null)
+        if (item != null && shop != null)
         {
             //inventory.RemoveItem(item.ID);
 
@@ -102,9 +102,9 @@ public class SellButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                     }
                     return;
                 }
-            }          
+            }
+            Debug.Log("Sprzedano");
         }
-        Debug.Log("Sprzedano");
     }
 
     public void OnPointerExit(PointerEventData eventData)

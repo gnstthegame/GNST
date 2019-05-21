@@ -19,7 +19,9 @@ public class Trigger : MonoBehaviour {
             tm.mapSizeX = mapX;
             tm.mapSizeY = mapY;
             tm.VisualPrefab = Prefab;
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            //gameObject.GetComponent<BoxCollider>().enabled = false;
+            gameObject.transform.Translate(new Vector3(0f, -100f, 0f));
         }
     }
 

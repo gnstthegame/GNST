@@ -9,8 +9,8 @@ public class CameraFollow : MonoBehaviour {
     public Transform player, currentPlace;
     public Vector3 distance;
     CharacterMotor motor;
-    public float lookUP = 6;
-    float speed = 1f, pSmo = 4, rSmo = 8;
+    public float lookUP = 6, speed = 1f;
+    float  pSmo = 4, rSmo = 8;
     public bool x, y, z;
     public bool ThirdPerson = true;
     bool frez=false;
@@ -20,6 +20,8 @@ public class CameraFollow : MonoBehaviour {
         if (currentPlace == null) {
             currentPlace = transform;
         }
+        StartCoroutine(Move(player, distance));
+
     }
     
     /// <summary>

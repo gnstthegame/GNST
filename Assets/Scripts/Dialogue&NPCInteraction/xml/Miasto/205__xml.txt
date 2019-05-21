@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DialogueCollection>
+    <Dialogues>
+        <Dialogue DialogueID="205">
+            <CharacterName>"Zuzia"</CharacterName>
+            <text>"A więc przyszedłeś. Może i byłeś strażnikiem, ale tutaj to zupełnie inna liga. Gdy jesteś z dala od domowego ciepła i gdy musisz pilnować całego osiedla a nie jednego urwisa, dopiero wychodzi kto z jakiej nici jest uszyty."</text>
+        </Dialogue>
+        <Dialogue DialogueID="205">
+            <CharacterName>"Zuzia"</CharacterName>
+            <text>"Aaaaa co mi szkodzi, sprawdźmy jak sobie radzisz. Przynieś mi kilka pamiątek po naszych przyjaciołach szperaczach. Ale pamiętaj, prawdziwy strażnik musi sobie radzić, wiec niema co wracać z przykulonym ogonem."</text>
+        </Dialogue>
+        <Dialogue DialogueID="205">
+            <CharacterName>"Moduł"</CharacterName>
+            <text>"Rany, gdyby nie ta sukienka to pomyślałbym że jest z kolekcji zimowej. Oj druchu, jak widać nawet mój urok nie jest w stanie załagodzić twojego braku obycia. Zatem czas na naszą pierwszą misję. Powiem ci, że tworzymy zgrany zespół, ja mózg operacji, mam gadane i wiem co trzeba. A ty, no cóż,  masz swoje zalety."</text>
+            <moduleID>042</moduleID>
+            <questTrigger>205</questTrigger>
+        </Dialogue>
+    </Dialogues>
+</DialogueCollection>

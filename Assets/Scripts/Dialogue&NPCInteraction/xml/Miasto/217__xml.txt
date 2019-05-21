@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DialogueCollection>
+    <Dialogues>
+        <Dialogue DialogueID=217>
+            <CharacterName>Zuzia</CharacterName>
+            <text>Czas na nowe zadanie. Sprawa wyglada następująco: w mieście grasuje gang specjalizujący się w organizowaniu walk na Wzniesieniu. Działają w szarej strefie. Nie mamy powodów by ich wygnać ani dowodów że konspirują ze szperaczami. Jednak angażowanie cywili w walki jest niebezpieczne.</text>
+        </Dialogue>
+        <Dialogue DialogueID=217>
+            <CharacterName>Zuzia</CharacterName>
+            <text>"Zatem pomimo tego że tłum ich uwielbia to musimy coś z tym zrobić. Skoro nie możemy ich wykopać, to podburzmy ich renomę. Weź udział w ich zawodach, jak publika zobaczy małego miska jako zwycięzcę to uzna, że walki są ustawiane i przestaną na nie chodzić.</text>
+        </Dialogue>
+        <Dialogue DialogueID=217>
+            <CharacterName>Moduł</CharacterName>
+            <text>W końcu coś ciekawego do roboty. Ej, słyszałem że te walki są nieźle obstawiane. Gdybyśmy postawili na ciebie trochę pluszu… NIE, to by się źle skończyło. Nie mówię, że nie masz szans, ale… no.</text>
+            <moduleID>056</moduleID>
+            <questTrigger>205</questTrigger>
+        </Dialogue>
+    </Dialogues>
+</DialogueCollection>

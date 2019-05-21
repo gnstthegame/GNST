@@ -18,6 +18,7 @@ public class PanelOpener : MonoBehaviour {
 
     public void SellPanel()
     {
+        Debug.Log("sell");
         sellPanel.SetActive(true);
         buyButton.SetActive(true);
         buyPanel.SetActive(false);

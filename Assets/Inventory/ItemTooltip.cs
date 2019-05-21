@@ -18,6 +18,8 @@ public class ItemTooltip : MonoBehaviour {
         ItemNameText.text = item.Name;
         //ItemSlotText.text = item.equipmentType. .ToString();
         string typ;
+        sb.Length = 0;
+        sb.Insert(0, item.Opis.ToString());
         switch (item.equipmentType) {
             case EquipmentType.Helmet:
                 typ = "Hełm";
@@ -49,7 +51,7 @@ public class ItemTooltip : MonoBehaviour {
         };
         ItemSlotText.text = typ;
 
-        sb.Length = 0;
+        //sb.Length = 0;
         AddStat(item.Armor, "Armor");
         AddStat(item.Strength, "Strength");
         AddStat(item.Agility, "Agility");

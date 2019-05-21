@@ -114,6 +114,7 @@ public class ShadowRealm : MonoBehaviour {
 
         if (seg == segments) {
             szaf = (GameObject)Instantiate(szafa, new Vector3(((good[good.Count - 1].Length) / 2 + x) * scaleX, szafa.transform.localScale.y / 2, y * scaleY) + transform.position, Quaternion.identity);
+            szaf.SetActive(true);
         }
     }
     /// <summary>

@@ -17,6 +17,7 @@ public class Unit : MonoBehaviour {
     public int LuckMod = 0, MovMod = 0;
     public int ap = 0;
     public int MovRange = 3;
+    public float HUDHight = 0;
     public Transform Hand;
     public GameObject hudPrefab;
     public Hud hud;

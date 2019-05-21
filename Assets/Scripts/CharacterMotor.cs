@@ -107,22 +107,22 @@ public class CharacterMotor : MonoBehaviour {
 
 
         if (Input.GetButtonDown("Jump") && routine == null) {
-            routine = StartCoroutine(Climb());
+            routine = StartCoroutine(Climbb());
         }
 
         Debug.DrawRay(transform.position, dir, Color.red);
         if (Input.GetButtonDown("Interact") && routine == null) {
-            routine2 = StartCoroutine(Drag());
+            routine2 = StartCoroutine(Dragg());
         }
         if (Input.GetButtonUp("Interact")) {
-            Drop();
+            DropObj();
         }
     }
 
     /// <summary>
     /// rutyna wspinania się
     /// </summary>
-    IEnumerator Climb() {
+    IEnumerator Climbb() {
         frez = true;
         RaycastHit hit, hit2;
         prepere = true;
@@ -151,7 +151,7 @@ public class CharacterMotor : MonoBehaviour {
     /// <summary>
     /// rutyna przeciągania przedmiotów
     /// </summary>
-    IEnumerator Drag() {
+    IEnumerator Dragg() {
         RaycastHit hit;
         Debug.Log("mov");
         if (Physics.Raycast(transform.position + UpOfset, transform.forward, out hit, maxDist) && (hit.transform.tag == "Movable" || hit.transform.tag == "CliMov")) {
@@ -197,7 +197,7 @@ public class CharacterMotor : MonoBehaviour {
                 yield return null;
             }
             colider.center = new Vector3(0, 4, -0.7f);
-            while (true) {
+            while (go!=null) {
                 float differende = Vector3.Distance(go.transform.position, transform.position);
                 go.transform.parent.GetComponent<Rigidbody>().velocity = transform.forward * (armLength - differende) * moc;
                 dir = LevelForward * Input.GetAxis("Vertical") + Vector3.Cross(LevelForward, transform.up) * -Input.GetAxis("Horizontal");
@@ -209,12 +209,12 @@ public class CharacterMotor : MonoBehaviour {
     private void OnCollisionEnter(Collision collision) {
         if (prepere) {
             cl = collision.collider;
-            Drop();
+            DropObj();
         }
     }
     private void OnCollisionStay(Collision collision) {
         if (collision.collider == cl) {
-            Drop();
+            DropObj();
             cl = null;
         }
         grounded = true;
@@ -225,7 +225,7 @@ public class CharacterMotor : MonoBehaviour {
     /// <summary>
     /// przerwij przeciąganie obiektu
     /// </summary>
-    void Drop() {
+    void DropObj() {
         if(routine!=null) StopCoroutine(routine);
         routine = null;
         colider.center = new Vector3(0, 4, 0);

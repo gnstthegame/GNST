@@ -54,7 +54,6 @@ public class AudioManager : MonoBehaviour {
         s.source.Stop();
     }
 
-	// Update is called once per frame
 	public void PlayMusic(string name)
     {
         print("music playing: " + name);
@@ -65,5 +64,18 @@ public class AudioManager : MonoBehaviour {
             return;
         }
         s.source.Play();
+    }
+
+    public float PlayMusicLengthBase(string name)
+    {
+        print("music playing: " + name);
+        MusicScript s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found.");
+            return 0f;
+        }
+        s.source.PlayOneShot(s.clip);
+        return s.clip.length;
     }
 }

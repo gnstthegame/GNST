@@ -31,6 +31,7 @@ public class saveSystem{
         if (File.Exists(path)) {
             File.Delete(path);
         }
+        Debug.Log("save deleted");
     }
     /// <summary>
     /// wczytaj zapis

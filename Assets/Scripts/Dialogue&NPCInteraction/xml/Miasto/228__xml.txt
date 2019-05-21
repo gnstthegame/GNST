@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DialogueCollection>
+    <Dialogues>
+        <Dialogue DialogueID="228">
+            <CharacterName>"Zuzia"</CharacterName>
+            <text>"Niestety przyszła pora by dać ci prawdziwą misje. Na moje to za wcześnie by przydzielać ci jakikolwiek obowiązek, ale sprawa jest wyjątkowa. Jeden z naszych zwiadowców nie daje znaku życia. To do niego nie podobne."</text>
+        </Dialogue>
+        <Dialogue DialogueID="228">
+            <CharacterName>"Zuzia"</CharacterName>
+            <text>"Musisz sprawdzić jego ostatnią znaną pozycje i natychmiast wrócić gdy zauważysz coś podejrzanego lub go znajdziesz. Mam nadzieje że to nic poważnego. Nie ma czasu do stracenia. Portal jest już gotowy, czas ruszać."</text>
+        </Dialogue>
+        <Dialogue DialogueID="228">
+            <CharacterName>"Moduł"</CharacterName>
+            <text>"Co? Znów do szafy? Nie powinnismy tego najpierw przedyskutować? Albo poczekać na niego? Tak poczekać, to dobry pomysł."</text>
+            <moduleID>071</moduleID>
+        </Dialogue>
+        <Dialogue DialogueID="228">
+            <CharacterName>"Moduł"</CharacterName>
+            <text>"Oh shit, here we go again…"</text>
+            <moduleID>072</moduleID>
+            <questTrigger>207</questTrigger>
+        </Dialogue>
+    </Dialogues>
+</DialogueCollection>

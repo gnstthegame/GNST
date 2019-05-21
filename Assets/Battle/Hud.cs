@@ -109,8 +109,9 @@ public class Hud : MonoBehaviour {
     /// uaktualnij pozycje na ekranie
     /// </summary>
     void Update() {
-        if(act)
-        Panel.transform.position = Camera.main.WorldToScreenPoint(u.transform.position);
+        if (act) {
+            Panel.transform.position = Camera.main.WorldToScreenPoint(u.transform.position)+new Vector3(0,u.HUDHight,0);
+        }
     }
     /// <summary>
     /// rutyna płynnie zmieniająca vartość paseka życia

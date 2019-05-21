@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DialogueCollection>
+    <Dialogues>
+        <Dialogue DialogueID="115">
+            <CharacterName>"Boss"</CharacterName>
+            <text>"Jak to nie zaleźliście tego miecza? Większych idiotów to nie widziałem."</text>
+        </Dialogue>
+        <Dialogue DialogueID="115">
+            <CharacterName>"Szperacz 1"</CharacterName>
+            <text>"Ale szefie, szukaliśmy wszędzie, jego tu nie ma."</text>
+        </Dialogue>
+        <Dialogue DialogueID="115">
+            <CharacterName>"Boss"</CharacterName>
+            <text>"Czy na pewno chcecie żebym sam tam poszedł i go poszukał? Bo nie chcecie wiedzieć co wam zrobię jak go znajdę."</text>
+            <questTrigger>102</questTrigger>
+        </Dialogue>     
+    </Dialogues>
+</DialogueCollection>

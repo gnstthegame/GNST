@@ -6,6 +6,7 @@ using UnityEngine;
 /// klasa wrogich jednostek bojowych
 /// </summary>
 public class Ai : Unit {
+    public DialogueSoundTrigger ds;
     /// <summary>
     /// klasa nagród
     /// </summary>
@@ -52,6 +53,7 @@ public class Ai : Unit {
                 Skile.Add(new Skill(self, Vector2.zero, 0, "Wait", 3, null, true));
                 Skile.Add(new Skill(fwd, new Vector2(1, 3), 0, "Punch", 1));
                 Skile.Add(new Skill(tmp, new Vector2(2, 4), 4, "Slam", 1));
+                HUDHight = 30f;
                 break;
             case Personality.slime:
                 freezRotation = true;
@@ -78,10 +80,17 @@ public class Ai : Unit {
         //Skile.Add(new Skill(self, Vector2.zero, 0, "Wait", 3, f));
     }
     /// <summary>
-    /// usówa model jednostki i zastępuje go skrzynią z nagrodą, a także dodaje punkty doświadczenia i plusz bohaterowi
+    /// usuwa model jednostki i zastępuje go skrzynią z nagrodą, a także dodaje punkty doświadczenia i plusz bohaterowi
     /// </summary>
     /// <returns></returns>
     public Loot Clear() {
+        if(Person == Personality.slime && ds != null)
+        {
+            ds.StopAllCoroutines();
+            StartCoroutine(ds.FightWon());
+        }
+            
+
         if (reward.Rewards.Length > 0) {
             GameObject go = Instantiate(chest, transform.position, transform.rotation);
             List<Pair> par = new List<Pair>();
