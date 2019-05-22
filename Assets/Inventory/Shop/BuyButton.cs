@@ -5,22 +5,40 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
-public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+/// <summary>
+/// Klasa obsługująca zakup przedmiotu u handlarza
+/// </summary>
+public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+{
+    //obrazek przedmiotu
     [SerializeField] public Image image;
+    //sprzedawany przedmiot
     [SerializeField] public Item item;
+    //przycisk z metodą sprzedaży
     [SerializeField] Button button;
+    //ekwipunek
     [SerializeField] Inventory inventory;
+    //obiekt sklepu
     [SerializeField] Shop shop;
+    //panel sklepu
     [SerializeField] GameObject shopPanel;
+    //panel z informacjami o przedmiocie
     [SerializeField] ItemTooltip shopTooltip;
+    //ilość przedmiotu w pojedynczym slocie
     public int stackSize;
+    //obiekt wyświetlający ilość przedmiotu
     [SerializeField] public Text stackText;
 
+    //zdarzenie wywoływane po najechaniu kursorem myszki na obiekt
     public event Action<BuyButton> OnPointerEnterEvent;
+    //zdarzenie wywoływane po opuszczeniu obiektu przez kursor
     public event Action<BuyButton> OnPointerExitEvent;
-    
-    
-    private void Awake() {
+
+    /// <summary>
+    /// Metoda odnajdująca w hierarchii projektu podstawowe komponenty
+    /// </summary>
+    private void Awake()
+    {
         shop = FindObjectOfType<Shop>();
         image = GetComponent<Image>();
         button = GetComponent<Button>();
@@ -29,6 +47,9 @@ public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         inventory = FindObjectOfType<Inventory>();
     }
 
+    /// <summary>
+    /// Metoda uaktualniająca UI
+    /// </summary>
     private void Update()
     {
         if (item == null)
@@ -40,7 +61,7 @@ public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         {
             image.color = Color.white;
             image.sprite = item.Sprite;
-            if(stackSize > 1)
+            if (stackSize > 1)
             {
                 stackText.enabled = true;
                 stackText.text = stackSize.ToString();
@@ -51,7 +72,9 @@ public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             }
         }
     }
-    //nie stackuje
+    /// <summary>
+    /// Metoda wywoływana po kliknięciu, jeżeli jest taka możliwość, następuje zakup przedmiotu
+    /// </summary>
     public void Buy()
     {
         if (inventory.IsFull())
@@ -116,10 +139,14 @@ public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 }
 
             }
-        }       
+        }
         Debug.Log("Zakupiono");
     }
 
+    /// <summary>
+    /// Zdarzenie obsługujące najechanie kursorem na obiekt
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerExit(PointerEventData eventData)
     {
         if (OnPointerExitEvent != null)
@@ -128,6 +155,10 @@ public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
     }
 
+    /// <summary>
+    /// Zdarzenie obsługujące po opuszczeniu kursora z obiektu
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (OnPointerEnterEvent != null)

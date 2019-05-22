@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  id: 2869dcbe-a985-4eab-a7d0-4cde910c85f6
+  id: b4f25b59-a6fc-48df-a00b-7e60633a256a
   Name: "D\u0142ugi Miecz"
   Sprite: {fileID: 21300000, guid: 35e67c5b5c181e947ad242d84f3ec766, type: 3}
   BuyValue: 0
@@ -23,10 +23,10 @@ MonoBehaviour:
   Luck: 0
   Armor: 0
   equipmentType: 2
-  Opis: 
+  Opis: Ostry jak maczeta. Dmg 1-4
   Area:
   - {x: 0, y: 0}
-  Dmg: {x: 3, y: 6}
+  Dmg: {x: 1, y: 5}
   Cost: 1
   AnimTrigger: slash2
   AttackRange: 0

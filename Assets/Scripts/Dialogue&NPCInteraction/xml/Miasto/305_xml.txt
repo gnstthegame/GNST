@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DialogueCollection>
+    <Dialogues>
+        <Dialogue DialogueID="301">
+            <CharacterName>"Nawigator"</CharacterName>
+            <text>"Strażniku, niedobrze się dzieje. Dochodzą nas słuchy że otworzyła się wyrwa w szafie, a to może oznaczać tylko jedno. Pewne domostwo stoi przed śmiertelnym zagrożeniem."</text>
+        </Dialogue>
+        <Dialogue DialogueID="301">
+            <CharacterName>"Nawigator"</CharacterName>
+            <text>" A chwila, nie kojarzę ciebie, ale wyczułem że jesteś strażnikiem. Tak jak ja za dawych lat, zanim zanim zostałem dźgnięty wykałaczką w kolano."</text>
+        </Dialogue>
+        <Dialogue DialogueID="301">
+            <CharacterName>"Nawigator"</CharacterName>
+            <text>"Ale skoro przeszedłeś taki kawał drogi, by pogadać ze starym strażnikiem, to musisz mieć dobre intencje w pluszu."</text>
+        </Dialogue>
+        <Dialogue DialogueID="301">
+            <CharacterName>"Nawigator"</CharacterName>
+            <text>"Będę Ci wdzięczny jak odpowiedz na to wezwanie. Zatem proszę, pomóż im."</text>
+            <questTrigger>301</questTrigger>
+        </Dialogue>
+    </Dialogues>
+</DialogueCollection>

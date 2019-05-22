@@ -5,23 +5,44 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SellButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+/// <summary>
+/// Klasa obsługująca sprzedaż przedmiotów u handlarza
+/// </summary>
+public class SellButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+{
+    //obrazek przedmiotu
     [SerializeField] public Image image;
+    //sprzedawany przedmiot
     [SerializeField] public Item item;
+    //przycisk z metodą kupna
     [SerializeField] Button button;
+    //ekwipunek
     [SerializeField] Inventory inventory;
+    //obiekt sklepu
     [SerializeField] Shop shop;
+    //panel z informacjami o przedmiocie
     [SerializeField] ItemTooltip shopTooltip;
+    //panel sklepu
     [SerializeField] GameObject shopPanel;
+    //obiekt wyświetlający ilość przedmiotu
     [SerializeField] public Text stackText;
     [SerializeField] BuyButton[] buyButtons;
+    //obiekt zarządzający sklepem
     [SerializeField] ShopManager shopManager;
+    //ilość przedmiotu w pojedynczym slocie
     public int stackSize;
 
+    //zdarzenie wywoływane po najechaniu kursorem myszki na obiekt
     public event Action<SellButton> OnPointerEnterEvent;
+    //zdarzenie wywoływane po opuszczeniu obiektu przez kursor
     public event Action<SellButton> OnPointerExitEvent;
-    
-    private void Awake() {
+
+
+    /// <summary>
+    /// Metoda odnajdująca w hierarchii projektu podstawowe komponenty
+    /// </summary>
+    private void Awake()
+    {
         shop = FindObjectOfType<Shop>();
         image = GetComponent<Image>();
         button = GetComponent<Button>();
@@ -30,9 +51,13 @@ public class SellButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         inventory = FindObjectOfType<Inventory>();
         buyButtons = FindObjectsOfType<BuyButton>();
     }
+
+    /// <summary>
+    /// Metoda uaktualniająca UI
+    /// </summary>
     private void Update()
     {
-        if(item == null)
+        if (item == null)
         {
             image.color = new Color(0, 0, 0, 0);
             stackText.enabled = false;
@@ -52,16 +77,18 @@ public class SellButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             }
         }
     }
-    //cos nie tak ze stack size
+    /// <summary>
+    /// Metoda wywoływana po kliknięciu, po jej wywołaniu następuje sprzedaż przedmiotu
+    /// </summary>
     public void Sell()
     {
-        if (item != null && shop != null)
+        if (item != null)
         {
             //inventory.RemoveItem(item.ID);
 
             for (int i = 0; i < shop.sellItems.Count; i++)
             {
-                if(inventory.itemSlots[i].Item == item && inventory.itemSlots[i].Amount < item.MaximumStacks)
+                if (inventory.itemSlots[i].Item == item && inventory.itemSlots[i].Amount < item.MaximumStacks)
                 {
                     inventory.itemSlots[i].Amount--;
                     stackSize--;
@@ -81,7 +108,7 @@ public class SellButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                     }
                     return;
                 }
-                else if(inventory.itemSlots[i].Item == item && inventory.itemSlots[i].Amount == item.MaximumStacks)
+                else if (inventory.itemSlots[i].Item == item && inventory.itemSlots[i].Amount == item.MaximumStacks)
                 {
                     inventory.RemoveItem(item);
                     stackSize--;
@@ -103,21 +130,29 @@ public class SellButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                     return;
                 }
             }
-            Debug.Log("Sprzedano");
         }
+        Debug.Log("Sprzedano");
     }
 
+    /// <summary>
+    /// Zdarzenie obsługujące najechanie kursorem na obiekt
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerExit(PointerEventData eventData)
     {
-        if(OnPointerExitEvent != null)
+        if (OnPointerExitEvent != null)
         {
             OnPointerExitEvent(this);
         }
     }
 
+    /// <summary>
+    /// Zdarzenie obsługujące po opuszczeniu kursora z obiektu
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(OnPointerEnterEvent != null)
+        if (OnPointerEnterEvent != null)
         {
             OnPointerEnterEvent(this);
         }

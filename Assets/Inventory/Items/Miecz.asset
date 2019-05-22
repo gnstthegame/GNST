@@ -11,11 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
   m_Name: Miecz
   m_EditorClassIdentifier: 
-  id: ca5f1000-dd0e-4969-9ae4-f254fb1925d7
+  id: b607dfa1-33e7-45d9-ae9b-41578b5b2406
   Name: Meele Sword
   Sprite: {fileID: 21300000, guid: fa186c43b9f7242428489a148d8ed4e7, type: 3}
-  BuyValue: 0
-  SellValue: 0
+  BuyValue: 4
+  SellValue: 2
   MaximumStacks: 1
   Strength: 0
   Agility: 0
@@ -23,10 +23,11 @@ MonoBehaviour:
   Luck: 0
   Armor: 0
   equipmentType: 2
-  Opis: 
+  Opis: "Je\u017Celi jeste\u015B pacyfist\u0105, zawsze mo\u017Cesz rozpali\u0107
+    ognisko. Dmg 1-2"
   Area:
   - {x: 0, y: 1}
-  Dmg: {x: 2, y: 4}
+  Dmg: {x: 1, y: 3}
   Cost: 1
   AnimTrigger: slash
   AttackRange: 0

@@ -90,7 +90,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -5489,6 +5489,34 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 82032659282933338, guid: 7e27ad884ed4ef942bbe85be74eb707b,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9c906a7cb86c24242a2edb13dfb194aa, type: 3}
+    - target: {fileID: 114916571760990276, guid: 7e27ad884ed4ef942bbe85be74eb707b,
+        type: 2}
+      propertyPath: sounds.Array.data[0].output
+      value: 
+      objectReference: {fileID: 24300002, guid: 18359ef6ee5a91c479266ddc834ba0cb,
+        type: 2}
+    - target: {fileID: 114916571760990276, guid: 7e27ad884ed4ef942bbe85be74eb707b,
+        type: 2}
+      propertyPath: sounds.Array.data[1].output
+      value: 
+      objectReference: {fileID: 24300002, guid: 18359ef6ee5a91c479266ddc834ba0cb,
+        type: 2}
+    - target: {fileID: 114916571760990276, guid: 7e27ad884ed4ef942bbe85be74eb707b,
+        type: 2}
+      propertyPath: sounds.Array.data[2].output
+      value: 
+      objectReference: {fileID: 24300002, guid: 18359ef6ee5a91c479266ddc834ba0cb,
+        type: 2}
+    - target: {fileID: 114916571760990276, guid: 7e27ad884ed4ef942bbe85be74eb707b,
+        type: 2}
+      propertyPath: sounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: a0ba12ecd3325504b8b09d7242cb681a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e27ad884ed4ef942bbe85be74eb707b, type: 2}
   m_IsPrefabAsset: 0
@@ -8072,6 +8100,11 @@ Prefab:
       propertyPath: sounds.Array.data[1].clip
       value: 
       objectReference: {fileID: 8300000, guid: 9c906a7cb86c24242a2edb13dfb194aa, type: 3}
+    - target: {fileID: 82525279920986194, guid: 95c436b2d2544f741b4a5f92e5785842,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9c906a7cb86c24242a2edb13dfb194aa, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95c436b2d2544f741b4a5f92e5785842, type: 2}
   m_IsPrefabAsset: 0
@@ -8286,6 +8319,7 @@ MonoBehaviour:
   MovMod: 0
   ap: 0
   MovRange: 3
+  HUDHight: 0
   Hand: {fileID: 0}
   hudPrefab: {fileID: 0}
   hud: {fileID: 0}
@@ -8439,6 +8473,7 @@ MonoBehaviour:
   currentPlace: {fileID: 2075803511}
   distance: {x: 0, y: 35, z: -25}
   lookUP: 6
+  speed: 1
   x: 0
   y: 1
   z: 0

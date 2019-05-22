@@ -11,11 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba42a14c65005c4e849e305190c088e, type: 3}
   m_Name: Hamer
   m_EditorClassIdentifier: 
-  id: e7f51fde-6b59-4db8-9568-355ddd14f244
+  id: 1e8e48a8-da1d-4f53-b117-d392aac63f16
   Name: "M\u0142ot"
   Sprite: {fileID: 21300000, guid: 321cd780b8c82434f882dac49bf926fc, type: 3}
-  BuyValue: 0
-  SellValue: 0
+  BuyValue: 110
+  SellValue: 55
   MaximumStacks: 1
   Strength: 0
   Agility: 0
@@ -23,7 +23,8 @@ MonoBehaviour:
   Luck: 0
   Armor: 0
   equipmentType: 3
-  Opis: 
+  Opis: "M\u0142ot Thora to to nie jest, ale te\u017C jest POT\u0118\u017BNY. Dmg
+    2-3"
   Area:
   - {x: -1, y: 0}
   - {x: 0, y: 0}

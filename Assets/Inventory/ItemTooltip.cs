@@ -52,13 +52,13 @@ public class ItemTooltip : MonoBehaviour {
         ItemSlotText.text = typ;
 
         //sb.Length = 0;
-        AddStat(item.Armor, "Armor");
-        AddStat(item.Strength, "Strength");
-        AddStat(item.Agility, "Agility");
-        AddStat(item.Stamina, "Stamina");
-        AddStat(item.Luck, "Luck");
-        AddStat(item.BuyValue, "BuyValue");
-        AddStat(item.SellValue, "SellValue");
+        AddStat(item.Armor, "Pancerz");
+        AddStat(item.Strength, "Siła");
+        AddStat(item.Agility, "Zwinność");
+        AddStat(item.Stamina, "Wytrzymałość");
+        AddStat(item.Luck, "Szczęście");
+        AddStat(item.BuyValue, "Cena zakupu");
+        AddStat(item.SellValue, "Cena sprzedaży");
 
         ItemStatsText.text = sb.ToString();
 
@@ -72,8 +72,8 @@ public class ItemTooltip : MonoBehaviour {
         sb.Length = 0;
 
         sb.Insert(0, item.description);
-        sb.Insert(sb.Length,"\n" + item.BuyValue + " BuyValue\n");
-        sb.Insert(sb.Length, item.SellValue + " SellValue\n");
+        sb.Insert(sb.Length,"\n" + item.BuyValue + " Cena zakupu\n");
+        sb.Insert(sb.Length, item.SellValue + " Cena sprzedaży\n");
         ItemStatsText.text = sb.ToString();
         gameObject.SetActive(true);
     }

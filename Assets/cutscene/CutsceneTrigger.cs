@@ -18,6 +18,7 @@ public class CutsceneTrigger : Interactable {
 
     private void Awake()
     {
+        FindObjectOfType<AudioManager>().PlayMusic("ThemeTutorial");
         playerTransform = FindObjectOfType<CharacterMotor>().transform;
         timestamps.Enqueue(8);
         timestamps.Enqueue(5);
