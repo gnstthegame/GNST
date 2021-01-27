@@ -5,7 +5,8 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Box 1
   m_Shader: {fileID: 4800000, guid: 5037b4638038893428809bb8c7c403ed, type: 3}
   m_ShaderKeywords: 
@@ -18,6 +19,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_1354A9C7:
+        m_Texture: {fileID: 2800000, guid: 69f1123136eb1c04bae7a3b2002c4654, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_1CE72A9C:
+        m_Texture: {fileID: 2800000, guid: bbb04c170fdd1fe47a79d810c149f825, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_2624CA91:
         m_Texture: {fileID: 2800000, guid: 137df2835d6cc21459f70b0db60e57fc, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -28,6 +37,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     - Texture2D_4527CDA4:
         m_Texture: {fileID: 2800000, guid: e0afc763c315b0246add4afdcd770140, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_5123A223:
+        m_Texture: {fileID: 2800000, guid: 8698cad636242524099de8e2e2050cc2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_C4FB46BD:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_F55CE7A7:
@@ -74,8 +91,22 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_2E729973: 0.9
+    - Vector1_569274C9: 0.1
+    - Vector1_8B8C4A03: 5
     - Vector1_9E931743: 5
     - _AlphaClip: 0
     - _Blend: 0
@@ -103,3 +134,4 @@ Material:
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  m_BuildTextureStacks: []
